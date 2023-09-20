@@ -1,0 +1,145 @@
+/* Police custom de la NAVBAR + FOOTER */
+@font-face{
+    font-family: GeosansLight;
+    src: url(typo/GeosansLight.ttf);
+}
+
+
+/* CSS de la NAVBAR */
+/* ---------------- */
+/* ---------------- */
+
+.navbar-sticky{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+/* Pour que la NAVBAR ne cache pas une partie du contenu */
+#main{
+    margin-top: 80px;
+}
+
+.nav-link, .dropdown-item{
+    font-family: GeosansLight;
+    color: #6e9bb3 !important;
+}
+
+.nav-link.active{
+    font-weight: bold;
+    color:#004163 !important;
+}
+.nav-link:hover{
+    font-weight: bold;
+    color:#004163 !important;
+}
+/* Couleur du clic sur le bouton HAMBURGER */
+.navbar-toggler{
+    color: #dfebf1 !important;
+}
+
+
+/* Modification pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .nav-link{
+        font-size: 20px !important;
+    }
+    .dropdown-item{
+        font-size: 18px !important;
+    }
+}
+
+/* Modification pour un responsive PC */
+@media screen and (min-width: 992px){
+    .nav-link{
+        font-size: 23px !important;
+    }
+    .dropdown-item{
+        font-size: 21px !important;
+    }
+
+    /* Effet de soulignement lors du HOVER sous les éléments de la NAVBAR */
+    .nav-item{
+        position: relative;
+    }
+    .nav-item::after{
+        content: "";
+        height: 4px;
+        width: 100%;
+        background-color: #004163;
+        position: absolute;
+        left: 0;
+        bottom: -18px;
+        opacity: 0;
+        transition: all 0.2s;
+    }
+    .nav-item:hover::after{
+        opacity: 1;
+    }
+
+    /* Effet de soulignement constant sous la page ACTIVE */
+    .nav-link.active::after{
+        content: "";
+        height: 4px;
+        width: 100%;
+        background-color: #72E4EA;
+        position: absolute;
+        left: 0;
+        bottom: -18px;
+        opacity: 1;
+    }
+}
+
+
+/* CSS du FOOTER */
+/* ------------- */
+/* ------------- */
+
+/* Sur version MOBILE, pour réduire l'espacement entre les deux éléments: */
+.footer-item:first-child{
+    margin-bottom: -2vh;
+}
+
+.copyrights{
+    font-family: GeosansLight;
+    font-weight: bold;
+    font-size: 12px;
+    color:#004163;
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+    /* Ajout d'une ligne de séparation entre les copyrights et la nav du FOOTER */
+    border-top: 2px solid #dfebf1;
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+/* Modification pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .nav-link{
+        font-size: 20px !important;
+    }
+    .copyrights{
+        font-size: 16px;
+    }
+
+    /* On retire la margin précédemment appliquée pour la version MOBILE */
+    .footer-item:first-child{
+        margin: 0;
+    }
+}
+
+/* Modification pour un responsive PC */
+@media screen and (min-width: 992px){
+    .nav-link{
+        font-size: 23px !important;
+    }
+    .copyrights{
+        font-size: 19px;
+        width: 30%;
+    }
+
+    /* On retire la margin précédemment appliquée pour la version MOBILE */
+    .footer-item:first-child{
+        margin: 0;
+    }
+}
