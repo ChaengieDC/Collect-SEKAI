@@ -9,12 +9,64 @@
     <title>Collect SEKAI</title>
 </head>
 <body>
+    <!-- Appel de la navbar -->
     <header></header>
 
     <div id="main">
         <img src="./img/header_csekai.png" alt="Bannière CSEKAI" id="banniere">
+        <!-- Présentation du site -->
+        <div class="container-sm text-center container-bienvenue">
+            <p class="presentation">Bienvenue sur Collect SEKAI !<br>
+                <span class="pres-sm">Site communautaire pour le jeu mobile Project SEKAI.</span><br>
+                Rejoins-nous pour toi aussi gérer et partager ta <a href="#">COLLECTION</a> !
+            </p>
+        </div>
+        <!-- Carousel des dernières sorties -->
+        <div class="container-sm container-carousel">
+            <div id="carouselIndex" class="carousel slide" data-bs-ride="carousel">
+                <!-- Boutons des slides -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselIndex" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselIndex" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselIndex" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./img/carousel/saki_01.png" class="d-block w-100" alt="Saki Tenma - Accepter les souvenirs">
+                        <div class="carousel-caption d-none d-sm-block">
+                            <h5 class="card-name">Saki Tenma</h5>
+                            <p>"Mhmm... C'est assez de chocolat chaud pour l'instant..."</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./img/carousel/haruka_02.png" class="d-block w-100" alt="Haruka Kiritani - Collectif d'enfer !">
+                        <div class="carousel-caption d-none d-sm-block">
+                            <h5 class="card-name">Haruka Kiritani</h5>
+                            <p>"Et maintenant, le coup de grâce !"</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./img/carousel/shiho_03.png" class="d-block w-100" alt="Shiho Hinomori - Un regard inégalable">
+                        <div class="carousel-caption d-none d-sm-block">
+                            <h5 class="card-name">Shiho Hinomori</h5>
+                            <p>"...Allez, juste pour cette fois."</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Flèches previous/next -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndex" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselIndex" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
+        </div>
     </div>
 
+    <!-- Appel du footer -->
     <footer></footer>
     <script src="layout.js"></script>
 </body>

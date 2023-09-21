@@ -1,7 +1,7 @@
-/* Police custom de la NAVBAR + FOOTER */
+/* Police custom */
 @font-face{
     font-family: GeosansLight;
-    src: url(typo/GeosansLight.ttf);
+    src: url("./typo/GeosansLight.ttf");
 }
 
 
@@ -9,36 +9,33 @@
 /* ---------------- */
 /* ---------------- */
 
-.navbar-sticky{
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-/* Pour que la NAVBAR ne cache pas une partie du contenu */
-#main{
-    margin-top: 80px;
-}
-
 .nav-link, .dropdown-item{
     font-family: GeosansLight;
     color: #6e9bb3 !important;
 }
-
 .nav-link.active{
     font-weight: bold;
     color:#004163 !important;
 }
-.nav-link:hover{
+.nav-link:hover, .dropdown-item:hover{
     font-weight: bold;
     color:#004163 !important;
 }
-/* Couleur du clic sur le bouton HAMBURGER */
+/* Couleur du clic sur le menu hamburger */
 .navbar-toggler{
     color: #dfebf1 !important;
 }
+/* Couleur de l'icône du menu hamburger */
+.bg-light .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28110, 155, 179, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+/* Couleur de la bordure du menu hamburger */
+.bg-light .navbar-toggler{
+    border: 2px solid #6e9bb359;
+}
 
 
-/* Modification pour un responsive TABLETTE */
+/* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
     .nav-link{
         font-size: 20px !important;
@@ -48,7 +45,7 @@
     }
 }
 
-/* Modification pour un responsive PC */
+/* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
     .nav-link{
         font-size: 23px !important;
@@ -57,18 +54,18 @@
         font-size: 21px !important;
     }
 
-    /* Effet de soulignement lors du HOVER sous les éléments de la NAVBAR */
+    /* Effet de soulignement lors du hover sous les éléments de la navbar */
     .nav-item{
         position: relative;
     }
     .nav-item::after{
         content: "";
-        height: 4px;
-        width: 100%;
         background-color: #004163;
         position: absolute;
-        left: 0;
+        width: 100%;
+        height: 4px;
         bottom: -18px;
+        left: 0;
         opacity: 0;
         transition: all 0.2s;
     }
@@ -76,15 +73,15 @@
         opacity: 1;
     }
 
-    /* Effet de soulignement constant sous la page ACTIVE */
+    /* Effet de soulignement constant sous la page active */
     .nav-link.active::after{
         content: "";
-        height: 4px;
-        width: 100%;
         background-color: #72E4EA;
         position: absolute;
-        left: 0;
+        width: 100%;
+        height: 4px;
         bottom: -18px;
+        left: 0;
         opacity: 1;
     }
 }
@@ -94,7 +91,7 @@
 /* ------------- */
 /* ------------- */
 
-/* Sur version MOBILE, pour réduire l'espacement entre les deux éléments: */
+/* Sur version mobile, pour réduire l'espacement entre les deux éléments */
 .footer-item:first-child{
     margin-bottom: -2vh;
 }
@@ -104,16 +101,16 @@
     font-weight: bold;
     font-size: 12px;
     color:#004163;
-    padding-bottom: 1vh;
     padding-top: 1vh;
-    /* Ajout d'une ligne de séparation entre les copyrights et la nav du FOOTER */
+    padding-bottom: 1vh;
+    /* Ajout d'une ligne de séparation entre les copyrights et la nav du footer */
     border-top: 2px solid #dfebf1;
     width: 50%;
     margin: 0 auto;
 }
 
 
-/* Modification pour un responsive TABLETTE */
+/* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
     .nav-link{
         font-size: 20px !important;
@@ -122,13 +119,13 @@
         font-size: 16px;
     }
 
-    /* On retire la margin précédemment appliquée pour la version MOBILE */
+    /* On retire la margin précédemment appliquée pour la version mobile */
     .footer-item:first-child{
         margin: 0;
     }
 }
 
-/* Modification pour un responsive PC */
+/* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
     .nav-link{
         font-size: 23px !important;
@@ -138,8 +135,21 @@
         width: 30%;
     }
 
-    /* On retire la margin précédemment appliquée pour la version MOBILE */
+    /* On retire la margin précédemment appliquée pour la version mobile */
     .footer-item:first-child{
         margin: 0;
     }
-}
+
+    /* Positionnement de la navbar en haut de l'écran peu importe le défilement */
+    .navbar-sticky{
+        position: fixed;
+        width: 100%;
+        top: 0;
+        /* Pour que la navbar passe au-dessus des éléments */
+        z-index: 2;
+    }
+    /* Pour que la navbar ne cache pas une partie du contenu */
+    #main{
+        margin-top: 80px;
+    }
+    }

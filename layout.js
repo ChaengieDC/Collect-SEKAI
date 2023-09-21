@@ -1,7 +1,7 @@
 // JS du LAYOUT
 /* --------- */
 
-// Chargement du contenu de fichiers HTML vers d'autres fichiers
+// Fonction de chargement du contenu de fichiers HTML vers d'autres fichiers
 function loadContent(file, targetElement){
     fetch(file)
         .then(response =>{
@@ -14,9 +14,9 @@ function loadContent(file, targetElement){
             console.error(`Une erreur est survenue lors du chargement: ${error}`);
         });
 }
-// Chargement du contenu de la NAVBAR (nav.html)
+// Chargement du contenu de la navbar (nav.html)
 let headerElement = document.querySelector("header");
 loadContent("nav.html", headerElement);
-// Chargement du contenu du FOOTER (footer.html)
+// Chargement du contenu du footer (footer.html)
 let footerElement = document.querySelector("footer");
 loadContent("footer.html", footerElement);

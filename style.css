@@ -1,8 +1,123 @@
+/* Polices custom */
+@font-face{
+    font-family: GeosansLight;
+    src: url("./typo/GeosansLight.ttf");
+}
+@font-face{
+    font-family: YurukaUB;
+    src: url("./typo/FOT-YurukaStd-UB.ttf");
+}
+
+
+/* Background des pages */
+body{
+    background-image: url("./img/background.png");
+    background-size: 100% auto;
+}
+
+
 /* CSS de la page d'ACCUEIL */
-/* ---------------- */
-/* ---------------- */
+/* ------------------------ */
+/* ------------------------ */
 
 #banniere{
     width: 100%;
     height: auto;
+}
+
+/* Styles du container de présentation du site */
+.container-bienvenue{
+    background-color: #fafafa;
+    margin-top: 15px;
+}
+.presentation{
+    font-family: GeosansLight;
+    font-size: 12px;
+    color: #006196;
+    margin-bottom: 15px;
+}
+.pres-sm{
+    font-size: 10px;
+}
+
+/* Styles du container du carousel */
+.container-carousel{
+    background-color: #fafafa;
+    margin-bottom: 15px;
+}
+.card-name{
+    font-family: YurukaUB;
+}
+
+/* Effet d'assombrissement des images du carousel si le curseur ne se trouve pas au-dessus */
+.carousel-item::after{
+    content: "";
+    background-color: rgba(0, 0, 0, 0.30);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: all 1s;
+}
+/* Pour que le texte reste au-dessus de l'assombrissement */
+.carousel-caption{
+    font-family: GeosansLight;
+    z-index: 1;
+}
+
+/* Annulation de l'effet d'assombrissement si le curseur passe au-dessus des images */
+.carousel-item:hover::after{
+    background-color: transparent;
+}
+/* Pour que le texte soit + lisible lors du hover sur les images */
+.carousel-caption:hover{
+    font-family: GeosansLight;
+    font-weight: bolder;
+    color: #252525;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    transition: all 0.2s;
+}
+
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .presentation{
+        font-size: 16px;
+    }
+    .pres-sm{
+        font-size: 14px;
+    }
+
+    /* Élargissement du margin entre les éléments */
+    .container-bienvenue{
+        margin-top: 20px;
+    }
+    .presentation{
+        margin-bottom: 20px;
+    }  
+    .container-carousel{
+        margin-bottom: 20px;
+    }
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    .presentation{
+        font-size: 19px;
+    }
+    .pres-sm{
+        font-size: 17px;
+    }
+
+    /* Élargissement du margin entre les éléments */
+    .container-bienvenue{
+        margin-top: 25px;
+    }
+    .presentation{
+        margin-bottom: 25px;
+    }  
+    .container-carousel{
+        margin-bottom: 25px;
+    }
 }
