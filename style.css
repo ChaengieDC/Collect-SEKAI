@@ -7,6 +7,10 @@
     font-family: YurukaUB;
     src: url("./typo/FOT-YurukaStd-UB.ttf");
 }
+@font-face{
+    font-family: GoBOLD;
+    src: url("./typo/Gobold-Light.otf");
+}
 
 
 /* Background des pages */
@@ -25,7 +29,6 @@ body{
     height: auto;
 }
 
-/* Styles du container de présentation du site */
 .container-bienvenue{
     background-color: #fafafa;
     margin-top: 15px;
@@ -40,7 +43,6 @@ body{
     font-size: 10px;
 }
 
-/* Styles du container du carousel */
 .container-carousel{
     background-color: #fafafa;
     margin-bottom: 15px;
@@ -119,5 +121,175 @@ body{
     }  
     .container-carousel{
         margin-bottom: 25px;
+    }
+}
+
+
+/* CSS de la page d'INSCRIPTION */
+/* ---------------------------- */
+/* ---------------------------- */
+
+.container-login{
+    background-color: #fafafa;
+    margin: 15px 0;
+}
+
+form{
+    font-family: GeosansLight;
+    font-size: 14px;
+}
+
+#logInSEKAI{
+    font-size: 16px;
+    font-weight: bold;
+    color: #004163;
+    padding: 25px 0;
+    margin: 0;
+}
+
+/* Styles des inputs */
+.log-input{
+    background-color: #F1F4F7;
+    color: #7A8C9F;
+    text-align: center;
+    border: 0;
+    width: 100%;
+    margin-bottom: 10px;
+}
+/* Bordure autour des champs lorsqu'on les sélectionne */
+.log-input:focus{
+    outline: 2px dashed #6e9bb359;
+}
+input[type="date"]{
+    /* Pour que l'icône et la date se centrent en version mobile */
+    flex-direction: column;
+    margin-bottom: 0;
+}
+input[type="checkbox"]{
+    /* Pour aligner la checkbox avec le label */
+    vertical-align: middle;
+    margin-top: -2px;
+}
+::placeholder{
+    color: #7A8C9F;
+}
+label{
+    font-size: 12px;
+    color: #7A8C9F;
+        /* Pour aligner le label avec la checkbox */
+    vertical-align: middle;
+}
+
+#logButton{
+    font-family: GoBOLD;
+    font-weight: bold;
+    background-color: #72E4EA;
+    color: #252525;
+    border: none;
+    border-radius: 3px;
+    padding: 4px 22px;
+    margin-top: 10px;
+}
+#logButton:hover{
+    background-color: #FFC915;
+    color: #252525;
+}
+
+.login-link{
+    padding: 15px 0;
+}
+.login-link a{
+    text-decoration: none;
+    font-size: 12px;
+    color: #7A8C9F;
+}
+.login-link a:hover{
+    font-weight: bold;
+    color: #004163;
+}
+
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .container-login{
+        width: 50vw !important;
+    }
+
+    #logInSEKAI{
+        font-size: 20px;
+    }
+
+    .log-input{
+        font-size: 18px;
+        /* Pour aligner sur la gauche en responsive */
+        text-align: left;
+        padding: 0 15px;
+    }
+    /* Permet d'aligner à gauche de l'input date, la checkbox et le label */
+    .birthdateCheck{
+        display: flex;
+    }
+    /* Pour remettre en ligne l'icône et la date */
+    input[type="date"]{
+        flex-direction: row;
+    }
+    label{
+        font-size: 16px;
+        margin-left: 5px;
+    }
+
+    #logButton{
+        font-size: 18px;
+        padding: 6px 24px;
+    }
+
+    .login-link a{
+        font-size: 16px;
+    }
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    .container-login{
+        width: 37vw !important;
+        /* Pour prendre un peu + d'espace de la page */
+        margin-bottom: 83px;
+    }
+
+    #logInSEKAI{
+        font-size: 23px;
+        padding: 50px 0;
+    }
+
+    .log-input{
+        font-size: 21px;
+        /* Pour aligner sur la gauche en responsive */
+        text-align: left;
+        padding: 0 15px;
+        margin-bottom: 25px;
+    }
+    /* Permet d'aligner à gauche de l'input date, la checkbox et le label */
+    .birthdateCheck{
+        display: flex;
+    }
+    /* Pour remettre en ligne l'icône et la date */
+    input[type="date"]{
+        flex-direction: row;
+    }
+    label{
+        font-size: 19px;
+        margin-left: 5px;
+    }
+
+    #logButton{
+        font-size: 21px;
+        padding: 8px 26px;
+    }
+
+    .login-link{
+        padding: 30px 0;
+    }
+    .login-link a{
+        font-size: 19px;
     }
 }

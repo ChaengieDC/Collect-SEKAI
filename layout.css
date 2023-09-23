@@ -1,10 +1,3 @@
-/* Police custom */
-@font-face{
-    font-family: GeosansLight;
-    src: url("./typo/GeosansLight.ttf");
-}
-
-
 /* CSS de la NAVBAR */
 /* ---------------- */
 /* ---------------- */
@@ -149,7 +142,12 @@
         z-index: 2;
     }
     /* Pour que la navbar ne cache pas une partie du contenu */
-    #main{
+    /* Sur la page d'accueil */
+    #homepage{
         margin-top: 80px;
     }
+    /* Sur la page d'inscription */
+    #loginpage{
+        margin-top: 170px;
     }
+}
