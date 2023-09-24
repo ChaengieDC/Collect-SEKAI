@@ -125,11 +125,11 @@ body{
 }
 
 
-/* CSS de la page d'INSCRIPTION */
+/* CSS de la page d'INSCRIPTION + CONNEXION */
 /* ---------------------------- */
 /* ---------------------------- */
 
-.container-login{
+.container-signup, .container-login{
     background-color: #fafafa;
     margin: 15px 0;
 }
@@ -139,7 +139,7 @@ form{
     font-size: 14px;
 }
 
-#logInSEKAI{
+#joinSEKAI{
     font-size: 16px;
     font-weight: bold;
     color: #004163;
@@ -176,11 +176,11 @@ input[type="checkbox"]{
 label{
     font-size: 12px;
     color: #7A8C9F;
-        /* Pour aligner le label avec la checkbox */
+    /* Pour aligner le label avec la checkbox */
     vertical-align: middle;
 }
 
-#logButton{
+.log-button{
     font-family: GoBOLD;
     font-weight: bold;
     background-color: #72E4EA;
@@ -190,20 +190,23 @@ label{
     padding: 4px 22px;
     margin-top: 10px;
 }
-#logButton:hover{
+.log-button:hover{
     background-color: #FFC915;
     color: #252525;
 }
 
-.login-link{
+.separateur{
+    color: #7A8C9F;
+}
+.redirect-link{
     padding: 15px 0;
 }
-.login-link a{
+.redirect-link a{
     text-decoration: none;
     font-size: 12px;
     color: #7A8C9F;
 }
-.login-link a:hover{
+.redirect-link a:hover{
     font-weight: bold;
     color: #004163;
 }
@@ -211,11 +214,18 @@ label{
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
-    .container-login{
+    .container-signup, .container-login{
+        border-radius: 10px;
+        margin: 7vh 0;
+    }
+    .container-signup{
         width: 50vw !important;
     }
+    .container-login{
+        width: 43vw !important;
+    }
 
-    #logInSEKAI{
+    #joinSEKAI{
         font-size: 20px;
     }
 
@@ -238,25 +248,35 @@ label{
         margin-left: 5px;
     }
 
-    #logButton{
+    .log-button{
         font-size: 18px;
         padding: 6px 24px;
     }
 
-    .login-link a{
+    .separateur{
+        font-size: 16px;
+        margin: 0 2px;
+    }
+    .redirect-link a{
         font-size: 16px;
     }
 }
 
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
-    .container-login{
-        width: 37vw !important;
+    .container-signup, .container-login{
+        border-radius: 10px;
         /* Pour prendre un peu + d'espace de la page */
         margin-bottom: 83px;
     }
+    .container-signup{
+        width: 37vw !important;
+    }
+    .container-login{
+        width: 30vw !important;
+    }
 
-    #logInSEKAI{
+    #joinSEKAI{
         font-size: 23px;
         padding: 50px 0;
     }
@@ -281,15 +301,19 @@ label{
         margin-left: 5px;
     }
 
-    #logButton{
+    .log-button{
         font-size: 21px;
         padding: 8px 26px;
     }
 
-    .login-link{
+    .separateur{
+        font-size: 19px;
+        margin: 0 2px;
+    }
+    .redirect-link{
         padding: 30px 0;
     }
-    .login-link a{
+    .redirect-link a{
         font-size: 19px;
     }
 }
