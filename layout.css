@@ -97,7 +97,7 @@
     padding-top: 1vh;
     padding-bottom: 1vh;
     /* Ajout d'une ligne de séparation entre les copyrights et la nav du footer */
-    border-top: 2px solid #dfebf1;
+    border-top: 1px solid #dfebf1;
     width: 50%;
     margin: 0 auto;
 }
@@ -147,7 +147,11 @@
         margin-top: 80px;
     }
     /* Sur la page d'inscription */
-    #loginpage{
+    #logpage{
         margin-top: 170px;
+    }
+    /* Sur la page des personnages */
+    #charapage{
+        margin-top: 102px;
     }
 }

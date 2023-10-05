@@ -126,8 +126,8 @@ body{
 
 
 /* CSS de la page d'INSCRIPTION + CONNEXION */
-/* ---------------------------- */
-/* ---------------------------- */
+/* ---------------------------------------- */
+/* ---------------------------------------- */
 
 .container-signup, .container-login{
     background-color: #fafafa;
@@ -215,7 +215,7 @@ label{
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
     .container-signup, .container-login{
-        border-radius: 10px;
+        border-radius: 15px;
         margin: 7vh 0;
     }
     .container-signup{
@@ -265,7 +265,7 @@ label{
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
     .container-signup, .container-login{
-        border-radius: 10px;
+        border-radius: 15px;
         /* Pour prendre un peu + d'espace de la page */
         margin-bottom: 83px;
     }
@@ -315,5 +315,77 @@ label{
     }
     .redirect-link a{
         font-size: 19px;
+    }
+}
+
+
+/* CSS de la page des PERSONNAGES */
+/* ------------------------------ */
+/* ------------------------------ */
+
+.container-chara{
+    background-color: #fafafa;
+    margin: 15px 0;
+}
+
+.groups-logo{
+    margin: 30px 0;
+}
+
+/* Ligne de séparation entre les groupes */
+hr{
+    border-top: 1px solid #6e9bb38e !important;
+}
+
+.chara-name{
+    font-family: YurukaUB;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    transform: rotate(-5deg);
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.ln-color{
+    color: #4455DD;
+}
+.mmj-color{
+    color: #6CCB20;
+}
+.vbs-color{
+    color: #EE1166;
+}
+.wxs-color{
+    color: #FF9900;
+}
+.niigo-color{
+    color: #884499;
+}
+.virtual-color{
+    color: #00cdba;
+}
+
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .groups-logo{
+        width: 196px;
+        height: 82px; 
+    }
+
+    .chara-pic{
+        width: 215px;
+        height: 275px;
+    }
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    .groups-logo{
+        width: 240px;
+        height: 100px; 
+    }
+
+    .chara-pic{
+        width: 235px;
+        height: 300px;
     }
 }
