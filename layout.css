@@ -2,6 +2,18 @@
 /* ---------------- */
 /* ---------------- */
 
+.navbar{
+    border-bottom: 2px solid #C0D3DD;
+}
+/* Positionnement de la navbar en haut de l'écran peu importe le défilement */
+.navbar-sticky{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    /* Pour que la navbar passe au-dessus des autres éléments */
+    z-index: 4;
+}
+
 .nav-link, .dropdown-item{
     font-family: GeosansLight;
     color: #6e9bb3 !important;
@@ -41,10 +53,10 @@
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
     .nav-link{
-        font-size: 23px !important;
+        font-size: 22px !important;
     }
     .dropdown-item{
-        font-size: 21px !important;
+        font-size: 20px !important;
     }
 
     /* Effet de soulignement lors du hover sous les éléments de la navbar */
@@ -84,6 +96,15 @@
 /* ------------- */
 /* ------------- */
 
+footer{
+    border-top: 1px solid #C0D3DD;
+    /* Positionnement du footer en bas de l'écran */
+    position: relative;
+    width: 100%;
+    /* Pour que le footer passe au-dessus des autres éléments */
+    z-index: 2;
+}
+
 /* Sur version mobile, pour réduire l'espacement entre les deux éléments */
 .footer-item:first-child{
     margin-bottom: -2vh;
@@ -92,7 +113,7 @@
 .copyrights{
     font-family: GeosansLight;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     color:#004163;
     padding-top: 1vh;
     padding-bottom: 1vh;
@@ -109,7 +130,7 @@
         font-size: 20px !important;
     }
     .copyrights{
-        font-size: 16px;
+        font-size: 18px;
     }
 
     /* On retire la margin précédemment appliquée pour la version mobile */
@@ -121,10 +142,10 @@
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
     .nav-link{
-        font-size: 23px !important;
+        font-size: 22px !important;
     }
     .copyrights{
-        font-size: 19px;
+        font-size: 20px;
         width: 30%;
     }
 
@@ -132,26 +153,38 @@
     .footer-item:first-child{
         margin: 0;
     }
+}
 
-    /* Positionnement de la navbar en haut de l'écran peu importe le défilement */
-    .navbar-sticky{
-        position: fixed;
-        width: 100%;
-        top: 0;
-        /* Pour que la navbar passe au-dessus des éléments */
-        z-index: 2;
-    }
-    /* Pour que la navbar ne cache pas une partie du contenu */
-    /* Sur la page d'accueil */
-    #homepage{
-        margin-top: 80px;
-    }
-    /* Sur la page d'inscription */
+
+/* CSS de PLACEMENT */
+/* ---------------- */
+/* ---------------- */
+
+/* Pour que la navbar ne cache pas une partie du contenu */
+/* Sur la page d'accueil */
+#homepage{
+    margin-top: 87px;
+}
+/* Sur la page d'inscription + connexion */
+#logpage{
+    margin-top: 104px;
+}
+/* Sur la page des personnages */
+#charapage{
+    margin-top: 87px;
+}
+
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
     #logpage{
         margin-top: 170px;
     }
-    /* Sur la page des personnages */
-    #charapage{
-        margin-top: 102px;
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    #logpage{
+        margin-top: 170px;
     }
 }

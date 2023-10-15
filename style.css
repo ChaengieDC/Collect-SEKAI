@@ -1,22 +1,44 @@
 /* Polices custom */
 @font-face{
     font-family: GeosansLight;
-    src: url("./typo/GeosansLight.ttf");
+    src: url("./fonts/GeosansLight.ttf");
 }
 @font-face{
     font-family: YurukaUB;
-    src: url("./typo/FOT-YurukaStd-UB.ttf");
+    src: url("./fonts/FOT-YurukaStd-UB.ttf");
 }
 @font-face{
     font-family: GoBOLD;
-    src: url("./typo/Gobold-Light.otf");
+    src: url("./fonts/Gobold-Light.otf");
 }
 
 
 /* Background des pages */
+html{
+    overflow-x: hidden;
+}
 body{
     background-image: url("./img/background.png");
     background-size: 100% auto;
+    overflow-x: hidden;
+}
+
+
+/* CSS en COMMUN */
+/* ------------- */
+/* ------------- */
+
+/* Bordure autour des champs lorsqu'on les sélectionne */
+/* > Pages d'INSCRIPTION + CONNEXION + SIDEBAR de filtrage */
+.log-input:focus, .filter-input:focus{
+    outline: 2px dashed #6e9bb359;
+}
+
+/* Changement des couleurs en hover des boutons */
+/* > Pages d'INSCRIPTION + CONNEXION + SIDEBAR de filtrage */
+.log-button:hover, .search-button:hover, .reset-button:hover{
+    background-color: #FFC915;
+    color: #252525;
 }
 
 
@@ -35,60 +57,29 @@ body{
 }
 .presentation{
     font-family: GeosansLight;
-    font-size: 12px;
+    font-size: 14px;
     color: #006196;
     margin-bottom: 15px;
 }
 .pres-sm{
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .container-carousel{
     background-color: #fafafa;
-    margin-bottom: 15px;
 }
 .card-name{
     font-family: YurukaUB;
-}
-
-/* Effet d'assombrissement des images du carousel si le curseur ne se trouve pas au-dessus */
-.carousel-item::after{
-    content: "";
-    background-color: rgba(0, 0, 0, 0.30);
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transition: all 1s;
-}
-/* Pour que le texte reste au-dessus de l'assombrissement */
-.carousel-caption{
-    font-family: GeosansLight;
-    z-index: 1;
-}
-
-/* Annulation de l'effet d'assombrissement si le curseur passe au-dessus des images */
-.carousel-item:hover::after{
-    background-color: transparent;
-}
-/* Pour que le texte soit + lisible lors du hover sur les images */
-.carousel-caption:hover{
-    font-family: GeosansLight;
-    font-weight: bolder;
-    color: #252525;
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    transition: all 0.2s;
 }
 
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
     .presentation{
-        font-size: 16px;
+        font-size: 18px;
     }
     .pres-sm{
-        font-size: 14px;
+        font-size: 16px;
     }
 
     /* Élargissement du margin entre les éléments */
@@ -97,19 +88,46 @@ body{
     }
     .presentation{
         margin-bottom: 20px;
-    }  
-    .container-carousel{
-        margin-bottom: 20px;
+    }
+
+    /* Effet d'assombrissement des images du carousel si le curseur ne se trouve pas au-dessus */
+    .carousel-item::after{
+        content: "";
+        background-color: rgba(0, 0, 0, 0.30);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: all 1s;
+    }
+    /* Pour que le texte reste au-dessus de l'assombrissement */
+    .carousel-caption{
+        font-family: GeosansLight;
+        z-index: 1;
+    }
+
+    /* Annulation de l'effet d'assombrissement si le curseur passe au-dessus des images */
+    .carousel-item:hover::after{
+        background-color: transparent;
+    }
+    /* Pour que le texte soit + lisible lors du hover sur les images */
+    .carousel-item:hover .carousel-caption{
+        font-family: GeosansLight;
+        font-weight: bolder;
+        color: #252525;
+        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        transition: all 0.2s;
     }
 }
 
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
     .presentation{
-        font-size: 19px;
+        font-size: 20px;
     }
     .pres-sm{
-        font-size: 17px;
+        font-size: 18px;
     }
 
     /* Élargissement du margin entre les éléments */
@@ -118,16 +136,43 @@ body{
     }
     .presentation{
         margin-bottom: 25px;
-    }  
-    .container-carousel{
-        margin-bottom: 25px;
+    }
+
+    /* Effet d'assombrissement des images du carousel si le curseur ne se trouve pas au-dessus */
+    .carousel-item::after{
+        content: "";
+        background-color: rgba(0, 0, 0, 0.30);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: all 1s;
+    }
+    /* Pour que le texte reste au-dessus de l'assombrissement */
+    .carousel-caption{
+        font-family: GeosansLight;
+        z-index: 1;
+    }
+
+    /* Annulation de l'effet d'assombrissement si le curseur passe au-dessus des images */
+    .carousel-item:hover::after{
+        background-color: transparent;
+    }
+    /* Pour que le texte soit + lisible lors du hover sur les images */
+    .carousel-item:hover .carousel-caption{
+        font-family: GeosansLight;
+        font-weight: bolder;
+        color: #252525;
+        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        transition: all 0.2s;
     }
 }
 
 
-/* CSS de la page d'INSCRIPTION + CONNEXION */
-/* ---------------------------------------- */
-/* ---------------------------------------- */
+/* CSS des pages d'INSCRIPTION + CONNEXION */
+/* --------------------------------------- */
+/* --------------------------------------- */
 
 .container-signup, .container-login{
     background-color: #fafafa;
@@ -136,11 +181,11 @@ body{
 
 form{
     font-family: GeosansLight;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #joinSEKAI{
-    font-size: 16px;
+    font-size: 19px;
     font-weight: bold;
     color: #004163;
     padding: 25px 0;
@@ -156,10 +201,6 @@ form{
     width: 100%;
     margin-bottom: 10px;
 }
-/* Bordure autour des champs lorsqu'on les sélectionne */
-.log-input:focus{
-    outline: 2px dashed #6e9bb359;
-}
 input[type="date"]{
     /* Pour que l'icône et la date se centrent en version mobile */
     flex-direction: column;
@@ -174,7 +215,7 @@ input[type="checkbox"]{
     color: #7A8C9F;
 }
 label{
-    font-size: 12px;
+    font-size: 14px;
     color: #7A8C9F;
     /* Pour aligner le label avec la checkbox */
     vertical-align: middle;
@@ -190,10 +231,6 @@ label{
     padding: 4px 22px;
     margin-top: 10px;
 }
-.log-button:hover{
-    background-color: #FFC915;
-    color: #252525;
-}
 
 .separateur{
     color: #7A8C9F;
@@ -203,7 +240,7 @@ label{
 }
 .redirect-link a{
     text-decoration: none;
-    font-size: 12px;
+    font-size: 14px;
     color: #7A8C9F;
 }
 .redirect-link a:hover{
@@ -226,7 +263,7 @@ label{
     }
 
     #joinSEKAI{
-        font-size: 20px;
+        font-size: 21px;
     }
 
     .log-input{
@@ -282,7 +319,7 @@ label{
     }
 
     .log-input{
-        font-size: 21px;
+        font-size: 20px;
         /* Pour aligner sur la gauche en responsive */
         text-align: left;
         padding: 0 15px;
@@ -297,24 +334,24 @@ label{
         flex-direction: row;
     }
     label{
-        font-size: 19px;
+        font-size: 18px;
         margin-left: 5px;
     }
 
     .log-button{
-        font-size: 21px;
+        font-size: 18px;
         padding: 8px 26px;
     }
 
     .separateur{
-        font-size: 19px;
+        font-size: 18px;
         margin: 0 2px;
     }
     .redirect-link{
         padding: 30px 0;
     }
     .redirect-link a{
-        font-size: 19px;
+        font-size: 18px;
     }
 }
 
@@ -325,10 +362,9 @@ label{
 
 .container-chara{
     background-color: #fafafa;
-    margin: 15px 0;
 }
 
-.groups-logo{
+.group-logo{
     margin: 30px 0;
 }
 
@@ -340,7 +376,7 @@ hr{
 .chara-name{
     font-family: YurukaUB;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    transform: rotate(-5deg);
+    transform: rotate(-3deg);
     margin-top: 15px;
     margin-bottom: 30px;
 }
@@ -363,6 +399,73 @@ hr{
     color: #00cdba;
 }
 
+/* Bouton pour afficher/masquer la sidebar */
+#toggleForm{
+    background-color: #F8F9FA;
+    border-top: 2px solid #6e9bb359;
+    border-bottom: 2px solid #6e9bb359;
+    border-left: 2px solid #6e9bb359;
+    border-radius: 0;
+    border-bottom-left-radius: 10px;
+    padding: 6px 10px;
+    position: fixed;
+    top: 87px;
+    right: -1px;
+}
+
+/* Styles de la zone de la sidebar */
+.sidebar form{
+    background-color: #F8F9FA;
+    border: 2px solid #6e9bb359;
+    position: fixed;
+    width: 235px;
+    top: 87px;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+}
+
+#titleMenu{
+    font-size: 19px;
+    font-weight: bold;
+    color: #004163;
+    padding: 15px 0;
+    margin: 0;
+}
+
+/* Styles des inputs */
+.sidebar form label{
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+.filter-input{
+    background-color: #F1F4F7;
+    color: #7A8C9F;
+    text-align: center;
+    border: 0;
+    outline: 1px solid #6e9bb359;
+    width: 70%;
+    margin-bottom: 20px;
+}
+
+.search-button, .reset-button{
+    font-family: GoBOLD;
+    font-weight: bold;
+    background-color: #72E4EA;
+    color: #252525;
+    border: none;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin: 0 2px;
+}
+.search-button{
+    padding: 4px 22px;
+}
+.reset-button{
+    padding: 4px 12px;
+}
+
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
@@ -375,10 +478,53 @@ hr{
         width: 215px;
         height: 275px;
     }
+    /* Effet de tremblement lors du passage du curseur sur l'image du personnage */
+    .col:hover{
+        animation: shake 2s;
+    }
+    @keyframes shake{
+        10%{ transform: scale(1.05) rotate(5deg); }
+        20%{ transform: scale(1.05) rotate(-5deg); }
+        30%{ transform: scale(1.05) rotate(5deg); }
+        40%{ transform: none; }
+    }
+
+    /* Augmentation de la taille du bouton pour afficher/masquer la sidebar */
+    #toggleForm{
+        padding: 8px 12px;
+    }
+
+    #titleMenu{
+        font-size: 21px;
+    }
+
+    .sidebar form label{
+        font-size: 18px;
+        margin-left: 13px;
+    }
+    .filter-input{
+        font-size: 18px;
+    }
+
+    .search-button, .reset-button{
+        font-size: 18px;
+        margin-top: 15px;
+        margin: 0 4px;
+    }
+    .search-button{
+        padding: 6px 24px;
+    }
+    .reset-button{
+        padding: 6px 14px;
+    }
 }
 
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
+    .container-chara{
+        width: 70%;
+    }
+
     .groups-logo{
         width: 240px;
         height: 100px; 
@@ -387,5 +533,66 @@ hr{
     .chara-pic{
         width: 235px;
         height: 300px;
+    }
+    /* Effet de tremblement lors du passage du curseur sur l'image du personnage */
+    .col:hover{
+        animation: shake 2s;
+    }
+    @keyframes shake{
+        10%{ transform: scale(1.05) rotate(5deg); }
+        20%{ transform: scale(1.05) rotate(-5deg); }
+        30%{ transform: scale(1.05) rotate(5deg); }
+        40%{ transform: none;}
+    }
+
+    /* Pour que la sidebar se glisse sous le footer */
+    .sidebar form{
+        z-index: 1;
+    }
+
+    #titleMenu{
+        font-size: 23px;
+    }
+
+    .sidebar form label{
+        font-size: 20px;
+        margin-left: 16px;
+    }
+    .filter-input{
+        font-size: 20px;
+    }
+
+    .search-button, .reset-button{
+        font-size: 20px;
+        margin-top: 20px;
+        margin: 0 6px;
+    }
+    .search-button{
+        padding: 8px 26px;
+    }
+    .reset-button{
+        padding: 8px 16px;
+    }
+}
+
+/* Tailles spécifiques pour éviter de surcharger sur les versions PC */
+@media screen and (min-width: 992px){
+    .container-chara{
+        margin: 0 5.5vw;
+    }
+
+    .sidebar form{
+        border: none;
+        width: 19vw;
+    }
+}
+@media screen and (min-width: 1298px){
+    .container-chara{
+        margin: 0 6.5vw;
+    }
+
+    .sidebar form{
+        border: none;
+        width: 17vw;
     }
 }
