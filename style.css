@@ -457,7 +457,8 @@ hr{
     border: none;
     border-radius: 3px;
     margin-top: 10px;
-    margin: 0 2px;
+    margin-right: 2px;
+    margin-left: 2px;
 }
 .search-button{
     padding: 4px 22px;
@@ -508,8 +509,8 @@ hr{
 
     .search-button, .reset-button{
         font-size: 18px;
-        margin-top: 15px;
-        margin: 0 4px;
+        margin-right: 4px;
+        margin-left: 4px;
     }
     .search-button{
         padding: 6px 24px;
@@ -523,6 +524,7 @@ hr{
 @media screen and (min-width: 992px){
     .container-chara{
         width: 70%;
+        margin: 0 5.5vw;
     }
 
     .groups-logo{
@@ -547,7 +549,47 @@ hr{
 
     /* Pour que la sidebar se glisse sous le footer */
     .sidebar form{
+        border: none;
+        width: 19vw;
         z-index: 1;
+    }
+
+    #titleMenu{
+        font-size: 21px;
+    }
+
+    .sidebar form label{
+        font-size: 18px;
+        margin-left: 16px;
+    }
+    .filter-input{
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .search-button, .reset-button{
+        font-size: 18px;
+        margin-top: 15px;
+        margin-right: 6px;
+        margin-left: 6px;
+    }
+    .search-button{
+        padding: 6px 24px;
+    }
+    .reset-button{
+        padding: 6px 24px;
+    }
+}
+
+/* Tailles spécifiques pour éviter de surcharger sur les versions PC */
+@media screen and (min-width: 1282px){
+    .container-chara{
+        margin: 0 6.5vw;
+    }
+
+    .sidebar form{
+        border: none;
+        width: 17vw;
     }
 
     #titleMenu{
@@ -556,43 +598,19 @@ hr{
 
     .sidebar form label{
         font-size: 20px;
-        margin-left: 16px;
     }
     .filter-input{
         font-size: 20px;
+        margin-bottom: 15px;
     }
 
     .search-button, .reset-button{
         font-size: 20px;
-        margin-top: 20px;
-        margin: 0 6px;
     }
     .search-button{
         padding: 8px 26px;
     }
     .reset-button{
         padding: 8px 16px;
-    }
-}
-
-/* Tailles spécifiques pour éviter de surcharger sur les versions PC */
-@media screen and (min-width: 992px){
-    .container-chara{
-        margin: 0 5.5vw;
-    }
-
-    .sidebar form{
-        border: none;
-        width: 19vw;
-    }
-}
-@media screen and (min-width: 1298px){
-    .container-chara{
-        margin: 0 6.5vw;
-    }
-
-    .sidebar form{
-        border: none;
-        width: 17vw;
     }
 }
