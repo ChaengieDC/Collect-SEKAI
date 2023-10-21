@@ -1,0 +1,22 @@
+{
+    "id": 4,
+    "characterId": 4,
+    "name": "Shiho Hinomori",
+    "group": "Leo/need",
+    "position": "Bassiste",
+    "introduction": "Shiho a besoin d'espace et n'aime pas les gens trop collants. Elle a tendance à être totalement absorbée par ses passions et ne se soucie pas de l'avis des autres à son égard.\n Elle était très proche des membres de son groupe jusqu'à ce qu'un événement vienne déchirer leur amitié.",
+    "gender": "Femme",
+    "birthday": "8 janvier",
+    "astrologicalSign": "Capricorne",
+    "height": "159 cm",
+    "school": "Miyamasuzaka Girls' Academy",
+    "schoolClass": "2ーB",
+    "committee": "Soins aux animaux",
+    "hobbies": "Jouer de la basse et se rendre à des concerts de groupes féminins",
+    "specialty": "La calligraphie",
+    "favoriteFood": "Les ramen et le steak Salisbury",
+    "hatedFood": "Le tofu",
+    "dislikes": "Sa soeur",
+    "color": "#BBDE22",
+    "voice": "Yuki Nakashima"
+}

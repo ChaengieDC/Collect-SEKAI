@@ -1,0 +1,22 @@
+{
+    "id": 3,
+    "characterId": 3,
+    "name": "Honami Mochizuki",
+    "group": "Leo/need",
+    "position": "Batteuse",
+    "introduction": "Honami excelle en sport et en études, et est également une personne gentille et attentionnée.\n Elle est amie avec les membres de son groupe depuis son enfance, mais s'est éloignée d'eux au cours des années de collège.",
+    "gender": "Femme",
+    "birthday": "27 octobre",
+    "astrologicalSign": "Scorpion",
+    "height": "166 cm",
+    "school": "Miyamasuzaka Girls' Academy",
+    "schoolClass": "2ーA",
+    "committee": "Embellissement",
+    "hobbies": "Promener son chien et le jardinage",
+    "specialty": "Le ménage et la natation",
+    "favoriteFood": "La tarte aux pommes",
+    "hatedFood": "Le fromage",
+    "dislikes": "Dessiner",
+    "color": "#EE6666",
+    "voice": "Reina Ueda"
+}

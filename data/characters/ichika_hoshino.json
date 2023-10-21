@@ -1,0 +1,22 @@
+{
+    "id": 1,
+    "characterId": 1,
+    "name": "Ichika Hoshino",
+    "group": "Leo/need",
+    "position": "Chanteuse et guitariste",
+    "introduction": "Ichika semble distante au premier abord, mais est en réalité amicale et attentionnée quand on apprend à la connaître.\n Elle connaît Saki, Honami et Shiho depuis qu'elles sont toutes petites, mais un certain événement les a éloigné.\n Ichika adore Miku.",
+    "gender": "Femme",
+    "birthday": "11 août",
+    "astrologicalSign": "Lion",
+    "height": "162 cm",
+    "school": "Miyamasuzaka Girls' Academy",
+    "schoolClass": "2ーA",
+    "committee": "Radiodiffusion",
+    "hobbies": "Écouter les chansons de Miku et admirer son cactus",
+    "specialty": "L'épluchage des pommes",
+    "favoriteFood": "Les yakisoba-pan (sandwich aux nouilles sautées)",
+    "hatedFood": "Les petit pois",
+    "dislikes": "Les manèges à sensations fortes",
+    "color": "#33AAEE",
+    "voice": "Ruriko Noguchi"
+}

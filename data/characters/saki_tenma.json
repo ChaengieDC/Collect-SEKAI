@@ -1,0 +1,22 @@
+{
+    "id": 2,
+    "characterId": 2,
+    "name": "Saki Tenma",
+    "group": "Leo/need",
+    "position": "Claviériste",
+    "introduction": "Toujours enjouée, Saki est la rigolote du groupe.\n Elle vient tout juste de retourner à l'école, après avoir raté la majorité de ses années de collège à cause de sa santé fragile. Elle avait hâte de profiter de la vie de lycéenne et de retrouver ses vieilles amies, mais elle constate que la situation est devenue.. compliquée.",
+    "gender": "Femme",
+    "birthday": "9 mai",
+    "astrologicalSign": "Taureau",
+    "height": "160 cm",
+    "school": "Miyamasuzaka Girls' Academy",
+    "schoolClass": "2ーB",
+    "committee": "Soft tennis",
+    "hobbies": "La mode, les vidéos de maquillage et faire de la broderie perlée",
+    "specialty": "Le coiffage et l'otedama (art de jonglage japonais)",
+    "favoriteFood": "Les casse-croûtes",
+    "hatedFood": "Le congee (porridge de riz)",
+    "dislikes": "Être seule",
+    "color": "#FFDD45",
+    "voice": "Karin Isobe"
+}

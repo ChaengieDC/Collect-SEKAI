@@ -17,19 +17,19 @@
         <div class="container-chara text-center">
             <img src="./img/bands/leoneed_logo.png" class="group-logo" alt="Logo Leo/need" width="150" height="63">
             <div class="row">
-                <div class="col">
+                <div class="col" onclick="openPopup('ichika_hoshino.json')">
                     <img src="./img/chara/ichika_frame.png" class="chara-pic" alt="Ichika Hoshino" width="195" height="250">
                     <h4 class="chara-name ln-color">Ichika Hoshino</h4>
                 </div>
-                <div class="col">
+                <div class="col prout" onclick="openPopup('saki_tenma.json')">
                     <img src="./img/chara/saki_frame.png" class="chara-pic" alt="Saki Tenma" width="195" height="250">
                     <h4 class="chara-name ln-color">Saki Tenma</h4>
                 </div>
-                <div class="col">
+                <div class="col" onclick="openPopup('honami_mochizuki.json')">
                     <img src="./img/chara/honami_frame.png" class="chara-pic" alt="Honami Mochizuki" width="195" height="250">
                     <h4 class="chara-name ln-color">Honami Mochizuki</h4>
                 </div>
-                <div class="col">
+                <div class="col" onclick="openPopup('shiho_hinomori.json')">
                     <img src="./img/chara/shiho_frame.png" class="chara-pic" alt="Shiho Hinomori" width="195" height="250">
                     <h4 class="chara-name ln-color">Shiho Hinomori</h4>
                 </div>
@@ -208,6 +208,104 @@
                     <i class="fa-solid fa-x" style="color: #252525;"></i>
                 </button>
             </form>
+        </div>
+    </div>
+
+    <div id="charapopup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <table>
+                <tr>
+                    <td></td>
+                    <th>Nom</th>
+                    <td id="chara-popup-name"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Groupe</th>
+                    <td id="chara-popup-group"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Rôle</th>
+                    <td id="chara-popup-position"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Présentation</th>
+                    <td id="chara-popup-introduction"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Genre</th>
+                    <td id="chara-popup-gender"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Anniversaire</th>
+                    <td id="chara-popup-birthday"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Signe astrologique</th>
+                    <td id="chara-popup-astrologicalSign"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Taille</th>
+                    <td id="chara-popup-height"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>École</th>
+                    <td id="chara-popup-school"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Classe</th>
+                    <td id="chara-popup-schoolClass"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Activité scolaire</th>
+                    <td id="chara-popup-committee"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Passe-temps</th>
+                    <td id="chara-popup-hobbies"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Spécialité</th>
+                    <td id="chara-popup-specialty"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Nourriture préférée</th>
+                    <td id="chara-popup-favoriteFood"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Nourriture détestée</th>
+                    <td id="chara-popup-hatedFood"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>N'aime pas</th>
+                    <td id="chara-popup-dislikes"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Couleur</th>
+                    <td id="chara-popup-color"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Voix</th>
+                    <td id="chara-popup-voice"></td>
+                </tr>
+            </table>
         </div>
     </div>
 
