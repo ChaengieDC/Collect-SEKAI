@@ -16,8 +16,8 @@ toggleButton.addEventListener("click", () =>{
 
 // Pour ouvrir le pop-up contenant les informations du personnage sélectionné
 function openPopup(characterJson){
-    const popup = document.querySelector("#charapopup");
-    popup.style.display = "block";
+    const popupContainer = document.querySelector("#charapopup");
+    popupContainer.style.display = "block";
 
     // Permet de récupérer les données json des personnages
     fetch("data/characters/" + characterJson)
@@ -50,8 +50,16 @@ function openPopup(characterJson){
 }
 
 // Pour fermer le pop-up
+// Via la croix
 const closeButton = document.querySelector(".close");
-const popup = document.querySelector("#charapopup");
+const popupContainer = document.querySelector("#charapopup");
 closeButton.addEventListener("click", () =>{
-    popup.style.display = "none";
+    popupContainer.style.display = "none";
+});
+// Via un click en dehors de ce dernier
+popupContainer.addEventListener("click", (e) =>{
+    const popup = document.querySelector(".popup-content");
+    if(!popup.contains(e.target)){
+        popupContainer.style.display = "none";
+    }
 });
