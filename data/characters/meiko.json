@@ -1,0 +1,13 @@
+{
+    "id": 25,
+    "name": "MEIKO",
+    "img": "./img/cards/card_748.png",
+    "introduction": "Une chanteuse virtuelle aux cheveux châtains coiffés en carré court.\n\n Sa tenue caractéristique est constituée d'un crop top rouge vif et d'une mini-jupe assortie.\n\n C'est une chanteuse exceptionnelle et équilibrée, à la voix chaude et féminine.",
+    "band": "VIRTUAL SINGER",
+    "position": "Vocaloid",
+    "gender": "Femme",
+    "birthday": "5 novembre\n Scorpion",
+    "height": "167",
+    "color": "#DE4444",
+    "voice": "Meiko Haigou"
+}

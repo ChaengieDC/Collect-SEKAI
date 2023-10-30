@@ -1,0 +1,22 @@
+{
+    "id": 12,
+    "name": "Toya Aoyagi",
+    "img": "./img/cards/card_735.png",
+    "introduction": "Toya est timide et taciturne.\n\n Son père, un musicien classique très strict, lui a fait suivre dès son plus jeune âge des cours de musique destinés aux enfants prodiges.\n\n Cette éducation précoce a porté ses fruits, mais afin de se rebeller contre son père, Toya est devenu un artiste de rue.",
+    "band": "Vivid BAD SQUAD",
+    "position": "Chanteur\n Danseur",
+    "gender": "Homme",
+    "birthday": "25 mai\n Gémeaux",
+    "height": "179",
+    "school": "Kamiyama High School\n 2ーB",
+    "committee": "Librairie",
+    "club": "Aucun",
+    "partTimeJob": "Aucun",
+    "hobbies": "Lire",
+    "specialty": "Le piano\n Le violon",
+    "favoriteFood": "Le café\n Les cookies",
+    "hatedFood": "Le calamar",
+    "dislikes": "Les endroits en hauteur (vertige)",
+    "color": "#0077DD",
+    "voice": "Kent Itou"
+}

@@ -1,0 +1,13 @@
+{
+    "id": 21,
+    "name": "Miku Hatsune",
+    "img": "./img/cards/card_744.png",
+    "introduction": "Une chanteuse virtuelle aux cheveux turquoise iconiques coiffés en longues couettes.\n\n Sa voix douce, vive et enjouée se prête à une grande variété de genres.\n\n C'est la plus populaire du monde des chanteurs virtuel, avec des fans de tout âge à travers le monde.",
+    "band": "VIRTUAL SINGER",
+    "position": "Vocaloid",
+    "gender": "Femme",
+    "birthday": "31 août\n Vierge",
+    "height": "158",
+    "color": "#33CCBA",
+    "voice": "Saki Fujita"
+}

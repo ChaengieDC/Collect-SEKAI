@@ -1,0 +1,22 @@
+{
+    "id": 16,
+    "name": "Rui Kamishiro",
+    "img": "./img/cards/card_739.png",
+    "introduction": "Voisin et ami d'enfance de Nene, Rui est un génie décontracté.\n\n Il veille méticuleusement à ce que chaque spectacle soit le meilleur possible, en mettant à profit son don pour la technologie et son inventivité. Il construit même les robots qu'il utilise sur scène.\n\n Son mode de pensée quelque peu unique lui vaut souvent d'être qualifié de bizarre.",
+    "band": "Wonderlands x Showtime",
+    "position": "Chanteur",
+    "gender": "Homme",
+    "birthday": "24 juin\n Cancer",
+    "height": "182",
+    "school": "Kamiyama High School\n 3ーC",
+    "committee": "Environnemental",
+    "club": "Aucun",
+    "partTimeJob": "Aucun",
+    "hobbies": "Préparer des spectacles\n Faire des sculptures de ballons",
+    "specialty": "Construire des choses",
+    "favoriteFood": "Les bonbons aux goûts de soda",
+    "hatedFood": "Les légumes",
+    "dislikes": "Faire le ménage\n Les tâches sans intérêt",
+    "color": "#BB88ED",
+    "voice": "Shunichi Toki"
+}
