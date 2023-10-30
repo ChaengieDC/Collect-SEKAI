@@ -1,5 +1,6 @@
 {
     "id": 7,
+    "charaFrame": ".img/chara/airi_frame.png",
     "name": "Airi Momoi",
     "img": "./img/cards/card_730.png",
     "introduction": "Airi était autrefois une personnalité de télévision, apparaissant dans de nombreuses émissions de variété.\n\n Elle est très sûre d'elle, au point d'en devenir parfois arrogante.\n\n Malgré sa passion et son investissement dans sa carrière d'idole naissante, il s'est passé quelque chose qui l'a poussée à quitter son agence de talents.",

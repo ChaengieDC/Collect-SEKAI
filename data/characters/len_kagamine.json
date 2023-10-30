@@ -1,5 +1,6 @@
 {
     "id": 23,
+    "charaFrame": ".img/chara/len_frame.png",
     "name": "Len Kagamine",
     "img": "./img/cards/card_746.png",
     "introduction": "Équivalent masculin de Rin Kagamine, il arbore des cheveux blonds courts attachés en une petite queue de cheval.\n\n Sa voix de jeune garçon est puissante et ferme, mais elle peut aussi exprimer une large gamme d'émotions.",

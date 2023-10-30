@@ -1,5 +1,6 @@
 {
     "id": 8,
+    "charaFrame": ".img/chara/shizuku_frame.png",
     "name": "Shizuku Hinomori",
     "img": "./img/cards/card_731.png",
     "introduction": "Shizuku est affiliée au groupe d'idoles Cheerful*Days.\n\n Son aura mystérieuse et mature fait son charme auprès de ses fans, mais lui vaut la jalousie des autres membres du groupe.\n\n Elle est camarade de classe avec Airi.",

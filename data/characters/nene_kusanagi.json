@@ -1,5 +1,6 @@
 {
     "id": 15,
+    "charaFrame": ".img/chara/nene_frame.png",
     "name": "Nene Kusanagi",
     "img": "./img/cards/card_738.png",
     "introduction": "Nene a rejoint le groupe sur la recommandation de Rui.\n\n Elle n'a pas la langue dans sa poche, mais possède une douce voix digne d'une future star du chant.\n\n Pour certaines raisons, elle refuse de se montrer devant Tsukasa et Emu, déployant à la place Robo-Nene pour monter sur scène à sa place.",

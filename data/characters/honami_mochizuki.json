@@ -1,5 +1,6 @@
 {
     "id": 3,
+    "charaFrame": ".img/chara/honami_frame.png",
     "name": "Honami Mochizuki",
     "img": "./img/cards/card_726.png",
     "introduction": "Honami excelle en sport et en études, et est également une personne gentille et attentionnée.\n\n Elle est amie avec les membres de son groupe depuis son enfance, mais s'est éloignée d'eux au cours des années de collège.",

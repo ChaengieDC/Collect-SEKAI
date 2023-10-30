@@ -1,5 +1,6 @@
 {
     "id": 5,
+    "charaFrame": ".img/chara/minori_frame.png",
     "name": "Minori Hanasato",
     "img": "./img/cards/card_728.png",
     "introduction": "Minori est une travailleuse acharnée et déterminée, deux traits particulièrement visibles dans la poursuite de sa carrière d'idole.\n\n Être une idole est devenu son rêve après avoir vu Haruka jouer dans le groupe ASRUN.\n\n Pour cela, Minori a participé à de nombreuses auditions, mais sans succès pour le moment.",

@@ -1,5 +1,6 @@
 {
     "id": 9,
+    "charaFrame": ".img/chara/kohane_frame.png",
     "name": "Kohane Azusawa",
     "img": "./img/cards/card_732.png",
     "introduction": "Kohane est très timide et manque de confiance en elle.\n\n Sa passion pour la musique est née lorsqu'elle a vu An improviser avec d'autres musiciens dans un café-concert.\n\n C'était sa première découverte du rap et de la musique à rythme élevé, complètement différent de ce qu'elle avait appris à l'école.",

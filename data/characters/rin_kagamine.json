@@ -1,5 +1,6 @@
 {
     "id": 22,
+    "charaFrame": ".img/chara/rin_frame.png",
     "name": "Rin Kagamine",
     "img": "./img/cards/card_745.png",
     "introduction": "Équivalent féminin de Len Kagamine, elle arbore des cheveux blonds attachés par un serre-tête avec un ruban.\n\n Sa charmante voix complète parfaitement son apparence mignonne et sa personnalité énergique.",

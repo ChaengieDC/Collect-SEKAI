@@ -1,5 +1,6 @@
 {
     "id": 2,
+    "charaFrame": ".img/chara/saki_frame.png",
     "name": "Saki Tenma",
     "img": "./img/cards/card_725.png",
     "introduction": "Toujours enjouée, Saki est la rigolote du groupe.\n\n Elle vient tout juste de retourner à l'école, après avoir raté la majorité de ses années de collège à cause de sa santé fragile.\n\n Elle avait hâte de profiter de la vie de lycéenne et de retrouver ses vieilles amies, mais elle constate que la situation est devenue.. compliquée.",

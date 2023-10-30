@@ -1,5 +1,6 @@
 {
     "id": 20,
+    "charaFrame": ".img/chara/mizuki_frame.png",
     "name": "Mizuki Akiyama",
     "img": "./img/cards/card_743.png",
     "introduction": "Mizuki est lunatique et obsédé(e) par tout ce qui est mignon.\n\n Tombé(e) amoureux/reuse d'une des chansons de Kanade trouvée au hasard sur Internet, Mizuki en a créé un clip qui a attiré son attention. C'est ainsi que Mizuki est devenu(e) l'animateur/trice du groupe.\n\n Bien qu'ils soient tous amis, Mizuki cache un grand secret auprès du groupe.",

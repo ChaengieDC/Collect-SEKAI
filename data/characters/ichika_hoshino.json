@@ -1,5 +1,6 @@
 {
     "id": 1,
+    "charaFrame": ".img/chara/ichika_frame.png",
     "name": "Ichika Hoshino",
     "img": "./img/cards/card_724.png",
     "introduction": "Ichika semble distante au premier abord, mais est en réalité amicale et attentionnée quand on apprend à la connaître.\n\n Elle est amie avec Saki, Honami et Shiho depuis qu'elles sont toutes petites, mais un certain événement les a éloigné.\n\n Ichika adore Miku.",

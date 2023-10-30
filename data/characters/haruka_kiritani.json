@@ -1,5 +1,6 @@
 {
     "id": 6,
+    "charaFrame": ".img/chara/haruka_frame.png",
     "name": "Haruka Kiritani",
     "img": "./img/cards/card_729.png",
     "introduction": "Haruka était membre du groupe d'idoles connu au niveau national: ASRUN.\n\n Son incroyable charisme l'a faite devenir la membre la plus populaire de son groupe, qui est malheureusement, aujourd'hui dissous.\n\n Elle est inscrite dans le même lycée que Minori.",

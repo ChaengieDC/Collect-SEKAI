@@ -1,5 +1,6 @@
 {
     "id": 26,
+    "charaFrame": ".img/chara/kaito_frame.png",
     "name": "KAITO",
     "img": "./img/cards/card_749.png",
     "introduction": "Un chanteur virtuel aux cheveux bleu foncé quelque peu rebelles, portant une très longue écharpe de la même couleur.\n\n Sa voix masculine est fraîche et naturelle, avec une large gamme vocale.",

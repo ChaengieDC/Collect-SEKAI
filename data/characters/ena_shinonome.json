@@ -1,5 +1,6 @@
 {
     "id": 19,
+    "charaFrame": ".img/chara/ena_frame.png",
     "name": "Ena Shinonome",
     "img": "./img/cards/card_742.png",
     "introduction": "Le besoin constant de reconnaissance d'Ena l'a rendue accro aux réseaux sociaux.\n\n Son père est un peintre célèbre ; quant à elle, elle poste ses propres œuvres en ligne.\n\n Kanade a découvert les réalisations d'Ena et l'a invité à rejoindre le groupe en tant qu'illustratrice.",

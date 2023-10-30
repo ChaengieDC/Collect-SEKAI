@@ -1,5 +1,6 @@
 {
     "id": 13,
+    "charaFrame": ".img/chara/tsukasa_frame.png",
     "name": "Tsukasa Tenma",
     "img": "./img/cards/card_736.png",
     "introduction": "Tsukasa a énormément de confiance en lui et aime être le centre de l'attention, même s'il se laisse facilement aller.\n\n Un spectacle auquel il a assisté lorsqu'il était enfant l'a tellement impressionné qu'il s'est fixé comme objectif ultime de devenir la plus grande star du monde.\n\n C'est un frère qui soutient beaucoup sa sœur à la santé fragile, Saki.",

@@ -1,5 +1,6 @@
 {
     "id": 14,
+    "charaFrame": ".img/chara/emu_frame.png",
     "name": "Emu Otori",
     "img": "./img/cards/card_737.png",
     "introduction": "Emu est extrêmement joyeuse et naïve.\n\n Son rêve était de protéger le parc de Phoenix Wonderland que son grand-père a laissé derrière lui, et pour cela, elle s'était préparée à éventuellement quitter Wonderlands x Showtime.\n\n Cependant, avec le soutien de ses grands frères et de ses amis, elle a choisi de continuer à s'entraîner.",
