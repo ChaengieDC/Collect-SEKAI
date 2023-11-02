@@ -372,6 +372,9 @@ label{
 hr{
     border-top: 1px solid #6e9bb38e !important;
 }
+hr:last-child{
+    display: none;
+}
 
 .chara-name{
     font-family: YurukaUB;
@@ -379,24 +382,6 @@ hr{
     transform: rotate(-3deg);
     margin-top: 15px;
     margin-bottom: 30px;
-}
-.ln-color{
-    color: #4455DD;
-}
-.mmj-color{
-    color: #6CCB20;
-}
-.vbs-color{
-    color: #EE1166;
-}
-.wxs-color{
-    color: #FF9900;
-}
-.niigo-color{
-    color: #884499;
-}
-.virtual-color{
-    color: #00cdba;
 }
 
 /* Bouton pour afficher/masquer la sidebar */
@@ -554,7 +539,7 @@ th{
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
-    .groups-logo{
+    .group-logo{
         width: 196px;
         height: 82px; 
     }
@@ -647,7 +632,7 @@ th{
         margin: 0 5.5vw;
     }
 
-    .groups-logo{
+    .group-logo{
         width: 240px;
         height: 100px;
     }
@@ -743,6 +728,11 @@ th{
 @media screen and (min-width: 1282px){
     .container-chara{
         margin: 0 6.5vw;
+    }
+    /* Pour que les membres du dernier groupe soit sur deux lignes sur une version PC */
+    .last-unit{
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .sidebar form{

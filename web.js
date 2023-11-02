@@ -14,8 +14,48 @@ toggleButton.addEventListener("click", () =>{
     }
 });
 
+
+// Fonction pour récupérer les données des personnages et générer leur code HTML respectif
+function generateCharactersHTML(){
+    fetch("http://localhost:3000/getAllUnitsWithMembers")
+        .then(response =>{
+            return response.json();
+        })
+        .then(data =>{
+            let charactersHTML = "";
+            data.forEach((unit, index) =>{
+                // isLastUnit = true SI l'index est celui de la dernière unité du tableau data
+                const isLastUnit = index === data.length - 1;
+                // SI (?) isLastUnit = true, alors unitClass appliquera la class "last-unit", SINON (:) elle sera vide
+                const unitClass = isLastUnit ? "last-unit" : "";
+                charactersHTML += 
+                    `<img src="${unit.logo}" class="group-logo" alt="Logo ${unit.name}" width="150" height="63"></img>
+                    <div class="row ${unitClass}">`;
+
+                unit.members.forEach(member =>{
+                    charactersHTML +=
+                        `<div class="col" onclick="openPopup(${member.id})">
+                            <img src="${member.charaFrame}" class="chara-pic" alt="${member.name}" width="195" height="250">
+                            <h4 class="chara-name" style="color: ${unit.color}">${member.name}</h4>
+                        </div>`;
+                });
+                charactersHTML +=
+                    `</div>
+                    <hr>`;
+            });
+            document.querySelector(".container-chara").innerHTML = charactersHTML;
+        })
+        .catch(error =>{
+            console.error(`Une erreur est survenue lors du chargement du code html: ${error}`);
+        });
+}
+// Appel de la fonction au chargement de la page
+document.addEventListener("DOMContentLoaded", () =>{
+    generateCharactersHTML();
+});
+
 // Pour ouvrir le pop-up contenant les informations du personnage sélectionné
-function openPopup(characterJson){
+function openPopup(characterID){
     const popupContainer = document.querySelector("#charapopup");
     popupContainer.style.display = "block";
 
@@ -28,42 +68,43 @@ function openPopup(characterJson){
     popupContainer.scrollTop = 0;
 
     // Permet de récupérer les données json des personnages
-    fetch("data/characters/" + characterJson)
+    fetch("http://localhost:3000/getCharacterByID/" + characterID)
         .then(response =>{
             return response.json();
         })
-        .then(characterData =>{
-            document.querySelector("#chara-popup-name").innerText = characterData.name;
+        .then(data =>{
+            const character = data[0];
+            document.querySelector("#chara-popup-name").innerText = character.name;
 
-            document.querySelector("#chara-popup-img").src = characterData.img;
-            document.querySelector("#chara-popup-img").alt = characterData.name;
+            document.querySelector("#chara-popup-img").src = character.img;
+            document.querySelector("#chara-popup-img").alt = character.name;
 
-            document.querySelector("#chara-popup-introduction").innerText = characterData.introduction;
-            document.querySelector("#chara-popup-band").innerText = characterData.band;
-            document.querySelector("#chara-popup-position").innerText = characterData.position;
-            document.querySelector("#chara-popup-gender").innerText = characterData.gender;
-            document.querySelector("#chara-popup-birthday").innerText = characterData.birthday;
-            document.querySelector("#chara-popup-height").innerText = characterData.height + " cm";
+            document.querySelector("#chara-popup-introduction").innerText = character.introduction;
+            document.querySelector("#chara-popup-unit").innerText = character.unitName;
+            document.querySelector("#chara-popup-position").innerText = character.position;
+            document.querySelector("#chara-popup-gender").innerText = character.gender;
+            document.querySelector("#chara-popup-birthday").innerText = character.birthday;
+            document.querySelector("#chara-popup-height").innerText = character.height + " cm";
 
             // Boucle pour ajouter certaines informations seulement si elles sont définies, et les cacher si elles ne le sont pas
             for(const property of ["school", "committee", "club", "partTimeJob", "hobbies", "specialty", "favoriteFood", "hatedFood", "dislikes"]){
                 const element = document.querySelector(`#chara-popup-${property}`);
-                element.innerText = characterData[property];
-                if(!characterData[property]){
+                element.innerText = character[property];
+                if(!character[property]){
                     element.parentNode.style.display = "none";
                 } else{
                     element.parentNode.style.display = "";
                 }
             }
 
-            document.querySelector("#chara-popup-color").innerText = characterData.color;
+            document.querySelector("#chara-popup-color").innerText = character.color;
             // Pour la couleur du personnage en question
-            document.querySelector("#chara-popup-color").style.color = characterData.color;
+            document.querySelector("#chara-popup-color").style.color = character.color;
 
-            document.querySelector("#chara-popup-voice").innerText = characterData.voice;
+            document.querySelector("#chara-popup-voice").innerText = character.voice;
         })
         .catch(error =>{
-            console.error(`Une erreur est survenue lors du chargement du JSON: ${error}`);
+            console.error(`Une erreur est survenue lors du chargement du pop-up: ${error}`);
         });
 }
 
