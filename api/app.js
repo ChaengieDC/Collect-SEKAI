@@ -47,6 +47,27 @@ app.get('/getCharacterByID/:characterID', async (req, res) =>{
     }
 });
 
+// Requête GET pour filtrer les personnages
+app.get('/filterCharacters', async (req, res) =>{
+    try{
+        const searchTerm = req.query.searchBar;
+        const selectedUnit = req.query.unit;
+        const selectedSchool = req.query.school;
+        const selectedGender = req.query.gender;
+        const selectedAstrologicalSign = req.query.astrologicalSign;
+
+        if(searchTerm || selectedUnit || selectedSchool || selectedGender || selectedAstrologicalSign){
+            const filteredCharacters = await dbservice.filterCharacters(searchTerm, selectedUnit, selectedSchool, selectedGender, selectedAstrologicalSign);
+            res.json(filteredCharacters);
+        } else{
+            res.status(400).json(`Paramètres manquants dans la requête GET: ${error}`);
+        }
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération des personnages: ${error}`);
+    }
+});
+
 
 app.listen(3000, () =>{
     console.log("App is running...");

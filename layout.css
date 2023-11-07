@@ -11,7 +11,7 @@
     width: 100%;
     top: 0;
     /* Pour que la navbar passe au-dessus des autres éléments */
-    z-index: 4;
+    z-index: 2;
 }
 
 .nav-link, .dropdown-item{
@@ -98,14 +98,9 @@
 
 footer{
     border-top: 1px solid #C0D3DD;
-    /* Positionnement du footer en bas de l'écran */
-    position: relative;
-    width: 100%;
-    /* Pour que le footer passe au-dessus des autres éléments */
-    z-index: 2;
 }
 
-/* Sur version mobile, pour réduire l'espacement entre les deux éléments */
+/* Sur version mobile (très réduite), pour réduire l'espacement entre les deux éléments */
 .footer-item:first-child{
     margin-bottom: -2vh;
 }

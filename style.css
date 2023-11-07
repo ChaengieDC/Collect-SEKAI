@@ -20,7 +20,7 @@ html{
 body{
     background-image: url("./img/background.png");
     background-size: 100% auto;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 
@@ -176,7 +176,7 @@ body{
 
 .container-signup, .container-login{
     background-color: #fafafa;
-    margin: 15px 0;
+    margin: 20vh 0;
 }
 
 form{
@@ -229,7 +229,7 @@ label{
     border: none;
     border-radius: 3px;
     padding: 4px 22px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .separateur{
@@ -253,17 +253,13 @@ label{
 @media (min-width: 576px) and (max-width: 991px){
     .container-signup, .container-login{
         border-radius: 15px;
-        margin: 7vh 0;
-    }
-    .container-signup{
-        width: 50vw !important;
-    }
-    .container-login{
-        width: 43vw !important;
+        width: 60vw !important;
+        margin: 15vh 0;
     }
 
     #joinSEKAI{
         font-size: 21px;
+        padding: 35px 0;
     }
 
     .log-input{
@@ -288,11 +284,15 @@ label{
     .log-button{
         font-size: 18px;
         padding: 6px 24px;
+        margin-top: 25px;
     }
 
     .separateur{
         font-size: 16px;
         margin: 0 2px;
+    }
+    .redirect-link{
+        padding: 25px 0;
     }
     .redirect-link a{
         font-size: 16px;
@@ -303,8 +303,6 @@ label{
 @media screen and (min-width: 992px){
     .container-signup, .container-login{
         border-radius: 15px;
-        /* Pour prendre un peu + d'espace de la page */
-        margin-bottom: 83px;
     }
     .container-signup{
         width: 37vw !important;
@@ -323,7 +321,7 @@ label{
         /* Pour aligner sur la gauche en responsive */
         text-align: left;
         padding: 0 15px;
-        margin-bottom: 25px;
+        margin-bottom: 15px;
     }
     /* Permet d'aligner à gauche de l'input date, la checkbox et le label */
     .birthdateCheck{
@@ -341,6 +339,7 @@ label{
     .log-button{
         font-size: 18px;
         padding: 8px 26px;
+        margin-top: 35px;
     }
 
     .separateur{
@@ -348,7 +347,7 @@ label{
         margin: 0 2px;
     }
     .redirect-link{
-        padding: 30px 0;
+        padding: 35px 0;
     }
     .redirect-link a{
         font-size: 18px;
@@ -362,6 +361,9 @@ label{
 
 .container-chara{
     background-color: #fafafa;
+    height: auto;
+    min-height: 100vh;
+    padding: 0 30px;
 }
 
 .group-logo{
@@ -407,7 +409,6 @@ hr:last-child{
     top: 87px;
     right: 0;
     bottom: 0;
-    z-index: 3;
 }
 
 #titleMenu{
@@ -461,7 +462,7 @@ hr:last-child{
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 5;
+    z-index: 3;
     overflow: auto;
 }
 
@@ -536,6 +537,13 @@ th{
     font-weight: bold;
 }
 
+.no-result p{
+    font-family: GeosansLight;
+    font-size: 25px;
+    color: #252525;
+    padding-top: 30px;
+}
+
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
@@ -547,16 +555,6 @@ th{
     .chara-pic{
         width: 215px;
         height: 275px;
-    }
-    /* Effet de tremblement lors du passage du curseur sur l'image du personnage */
-    .col:hover{
-        animation: shake 2s;
-    }
-    @keyframes shake{
-        10%{ transform: scale(1.05) rotate(5deg); }
-        20%{ transform: scale(1.05) rotate(-5deg); }
-        30%{ transform: scale(1.05) rotate(5deg); }
-        40%{ transform: none; }
     }
 
     /* Augmentation de la taille du bouton pour afficher/masquer la sidebar */
@@ -623,12 +621,17 @@ th{
     .popup-info{
         padding: 20px 0;
     }
+
+    .no-result p{
+        font-size: 30px;
+    }
 }
 
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
     .container-chara{
         width: 70%;
+        padding-bottom: 30px;
         margin: 0 5.5vw;
     }
 
@@ -641,22 +644,10 @@ th{
         width: 235px;
         height: 300px;
     }
-    /* Effet de tremblement lors du passage du curseur sur l'image du personnage */
-    .col:hover{
-        animation: shake 2s;
-    }
-    @keyframes shake{
-        10%{ transform: scale(1.05) rotate(5deg); }
-        20%{ transform: scale(1.05) rotate(-5deg); }
-        30%{ transform: scale(1.05) rotate(5deg); }
-        40%{ transform: none;}
-    }
 
-    /* Pour que la sidebar se glisse sous le footer */
     .sidebar form{
         border: none;
         width: 19vw;
-        z-index: 1;
     }
 
     #titleMenu{
@@ -722,6 +713,10 @@ th{
     .popup-info{
         padding: 25px 0;
     }
+
+    .no-result p{
+        font-size: 35px;
+    }
 }
 
 /* Tailles spécifiques pour éviter de surcharger sur les versions PC */
@@ -729,10 +724,16 @@ th{
     .container-chara{
         margin: 0 6.5vw;
     }
-    /* Pour que les membres du dernier groupe soit sur deux lignes sur une version PC */
-    .last-unit{
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr);
+
+    /* Effet de tremblement lors du passage du curseur sur l'image du personnage */
+    .col:hover{
+        animation: shake 2s;
+    }
+    @keyframes shake{
+        10%{ transform: scale(1.05) rotate(5deg); }
+        20%{ transform: scale(1.05) rotate(-5deg); }
+        30%{ transform: scale(1.05) rotate(5deg); }
+        40%{ transform: none;}
     }
 
     .sidebar form{
@@ -770,5 +771,34 @@ th{
     /* Styles des informations du pop-up */
     #chara-popup-img{
         border-bottom: 20px solid #e4f2fa;
+    }
+}
+
+/* Tailles spécifiques pour l'affichage en GRID */
+/* Sur l'affichage initial */
+@media (min-width: 932px) and (max-width: 991px), screen and (min-width: 1282px){
+    .last-unit{
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Sur l'affichage après filtrage */
+@media (min-width: 414px) and (max-width: 692px), (min-width: 992px) and (max-width: 1075px){
+    .characters-grid{
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 693px) and (max-width: 931px), (min-width: 1076px) and (max-width: 1445px){
+    .characters-grid{
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (min-width: 1446px){
+    .characters-grid{
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
     }
 }

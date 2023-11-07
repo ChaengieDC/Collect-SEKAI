@@ -20,7 +20,7 @@ connection.connect((err) =>{
 
 // Fonction pour insérer un personnage dans la BDD
 async function postCharacter(characterData){
-    const query = "INSERT INTO Characters (charaFrame, name, img, introduction, position, gender, birthday, height, school, committee, club, partTimeJob, hobbies, specialty, favoriteFood, hatedFood, dislikes, color, voice, id_unit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const query = "INSERT INTO Characters (charaFrame, name, img, introduction, position, gender, birthday, astrologicalSign, height, school, committee, club, partTimeJob, hobbies, specialty, favoriteFood, hatedFood, dislikes, color, voice, id_unit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     const values = [
         characterData.charaFrame,
@@ -30,8 +30,10 @@ async function postCharacter(characterData){
         characterData.position,
         characterData.gender,
         characterData.birthday,
+        characterData.astrologicalSign,
         characterData.height,
         characterData.school,
+        characterData.schoolClass,
         characterData.committee,
         characterData.club,
         characterData.partTimeJob,
@@ -153,5 +155,86 @@ async function getCharacterByID(characterID){
     }
 }
 
+// Fonction pour filtrer les personnages
+async function filterCharacters(searchTerm, selectedUnit, selectedSchool, selectedGender, selectedAstrologicalSign){
+    let whereClause = "1 = 1";
 
-module.exports = { postCharacter, getAllUnitsWithMembers, getCharacterByID };
+    if(searchTerm){
+        whereClause +=
+            ` AND (
+                Units.name LIKE ? OR
+                Characters.name LIKE CONCAT('%', ?, '%') OR
+                Characters.position LIKE CONCAT('%', ?, '%') OR
+                Characters.gender LIKE ? OR
+                Characters.birthday LIKE CONCAT('%', ?, '%') OR
+                Characters.astrologicalSign LIKE CONCAT('%', ?, '%') OR
+                Characters.height LIKE CONCAT('%', ?, '%') OR
+                Characters.school LIKE CONCAT('%', ?, '%') OR
+                Characters.committee LIKE CONCAT('%', ?, '%') OR
+                Characters.club LIKE CONCAT('%', ?, '%') OR
+                Characters.partTimeJob LIKE CONCAT('%', ?, '%') OR
+                Characters.hobbies LIKE CONCAT('%', ?, '%') OR
+                Characters.specialty LIKE CONCAT('%', ?, '%') OR
+                Characters.favoriteFood LIKE CONCAT('%', ?, '%') OR
+                Characters.hatedFood LIKE CONCAT('%', ?, '%') OR
+                Characters.dislikes LIKE CONCAT('%', ?, '%') OR
+                Characters.voice LIKE CONCAT('%', ?, '%')
+            )`;
+    }
+    if(selectedUnit){
+        whereClause += " AND Units.id = ?";
+    }
+    if(selectedSchool){
+        whereClause += " AND Characters.school = ?";
+    }
+    if(selectedGender){
+        whereClause += " AND Characters.gender = ?";
+    }
+    if(selectedAstrologicalSign){
+        whereClause += " AND Characters.astrologicalSign = ?";
+    }
+
+    const query =
+        `SELECT Units.id AS unitID, Units.name AS unitName, Units.color AS unitColor, Characters.*
+        FROM Units
+        LEFT JOIN Characters ON Units.id = Characters.id_unit
+        WHERE ${whereClause}`;
+
+    const sqlParams = [];
+
+    if(searchTerm){
+        for (let i = 0; i < 17; i++){
+            sqlParams.push(searchTerm);
+        }
+    }
+    if(selectedUnit){
+        sqlParams.push(selectedUnit);
+    }
+    if(selectedSchool){
+        sqlParams.push(selectedSchool);
+    }
+    if(selectedGender){
+        sqlParams.push(selectedGender);
+    }
+    if(selectedAstrologicalSign){
+        sqlParams.push(selectedAstrologicalSign);
+    }
+
+    try{
+        const filteredCharacters = await new Promise((resolve, reject) =>{
+            connection.query(query, sqlParams, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return filteredCharacters;
+    } catch(error){
+        throw error;
+    }
+}
+
+
+module.exports = { postCharacter, getAllUnitsWithMembers, getCharacterByID, filterCharacters };

@@ -39,4 +39,6 @@ function loadContent(file, targetElement){
 const headerElement = document.querySelector("header");
 loadContent("nav.html", headerElement);
 const footerElement = document.querySelector("footer");
-loadContent("footer.html", footerElement);
+if(footerElement){
+    loadContent("footer.html", footerElement);
+};

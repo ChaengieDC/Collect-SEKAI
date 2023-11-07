@@ -24,59 +24,59 @@
             <i class="fa-solid fa-magnifying-glass search-icon" style="color: #6e9bb3;"></i>
         </button>
         <div class="sidebar">
-            <form action="" method="GET" class="d-lg-block d-none text-center">
+            <form action="http://localhost:3000/filterCharacters" method="GET" class="d-lg-block d-none text-center">
                 <p id="titleMenu">Menu</p>
                 <div class="label-control text-start">
                     <label for="searchBar">Terme</label><br>
                 </div>
                 <input type="text" class="filter-input" id="searchBar" name="searchBar"><br>
                 <div class="label-control text-start">
-                    <label for="group">Groupe</label><br>
+                    <label for="unit">Groupe</label><br>
                 </div>
-                <select class="filter-input" id="group" name="group">
-                    <option value="" selected="selected">///</option>
-                    <option value="0">Leo/need</option>
-                    <option value="1">MORE MORE JUMP!</option>
-                    <option value="2">Vivid BAD SQUAD</option>
-                    <option value="3">Wonderlands x Showtime</option>
-                    <option value="4">25-ji, Nightcord de.</option>
-                    <option value="4">VIRTUAL SINGER</option>
+                <select class="filter-input" id="unit" name="unit">
+                    <option value="" selected="selected">&nbsp;</option>
+                    <option value="1">Leo/need</option>
+                    <option value="2">MORE MORE JUMP!</option>
+                    <option value="3">Vivid BAD SQUAD</option>
+                    <option value="4">Wonderlands x Showtime</option>
+                    <option value="5">25-ji, Nightcord de.</option>
+                    <option value="6">VIRTUAL SINGER</option>
                 </select><br>
                 <div class="label-control text-start">
                     <label for="school">École</label><br>
                 </div>
                 <select class="filter-input" id="school" name="school">
-                    <option value="" selected="selected">///</option>
-                    <option value="0">Kamiyama High School</option>
-                    <option value="1">Miyamasuzaka Girls' Academy</option>
-                    <option value="2">Online High School</option>
+                    <option value="" selected="selected">&nbsp;</option>
+                    <option value="Kamiyama High School">Kamiyama High School</option>
+                    <option value="Miyamasuzaka Girls' Academy">Miyamasuzaka Girls' Academy</option>
+                    <option value="Online High School">Online High School</option>
                 </select><br>
                 <div class="label-control text-start">
                     <label for="gender">Genre</label><br>
                 </div>
                 <select class="filter-input" id="gender" name="gender">
-                    <option value="" selected="selected">///</option>
-                    <option value="0">Femme</option>
-                    <option value="1">Homme</option>
-                    <option value="2">Autre</option>
+                    <option value="" selected="selected">&nbsp;</option>
+                    <option value="Femme">Femme</option>
+                    <option value="Homme">Homme</option>
+                    <option value="Inconnu">Autre</option>
                 </select><br>
                 <div class="label-control text-start">
                     <label for="astrologicalSign">Signe astrologique</label><br>
                 </div>
                 <select class="filter-input" id="astrologicalSign" name="astrologicalSign">
-                    <option value="" selected="selected">///</option>
-                    <option value="0">Verseau</option>
-                    <option value="1">Poissons</option>
-                    <option value="2">Bélier</option>
-                    <option value="3">Taureau</option>
-                    <option value="4">Gémeaux</option>
-                    <option value="5">Cancer</option>
-                    <option value="6">Lion</option>
-                    <option value="7">Vierge</option>
-                    <option value="8">Balance</option>
-                    <option value="9">Scorpion</option>
-                    <option value="10">Sagittaire</option>
-                    <option value="11">Capricorne</option>
+                    <option value="" selected="selected">&nbsp;</option>
+                    <option value="Verseau">Verseau</option>
+                    <option value="Poissons">Poissons</option>
+                    <option value="Bélier">Bélier</option>
+                    <option value="Taureau">Taureau</option>
+                    <option value="Gémeaux">Gémeaux</option>
+                    <option value="Cancer">Cancer</option>
+                    <option value="Lion">Lion</option>
+                    <option value="Vierge">Vierge</option>
+                    <option value="Balance">Balance</option>
+                    <option value="Scorpion">Scorpion</option>
+                    <option value="Sagittaire">Sagittaire</option>
+                    <option value="Capricorne">Capricorne</option>
                 </select><br>
                 <button type="submit" value="Submit" class="search-button">Rechercher</button>
                 <button type="reset" value="Reset" class="reset-button">
@@ -182,8 +182,6 @@
         </div>
     </div>
 
-    <!-- Appel du footer -->
-    <footer></footer>
     <script src="layout.js"></script>
     <script src="web.js"></script>
 </body>
