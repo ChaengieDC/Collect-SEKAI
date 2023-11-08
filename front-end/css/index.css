@@ -1,0 +1,126 @@
+/* CSS de la page d'ACCUEIL */
+/* ------------------------ */
+/* ------------------------ */
+
+#banniere{
+    width: 100%;
+    height: auto;
+}
+
+.container-bienvenue{
+    background-color: #fafafa;
+    margin-top: 15px;
+}
+.presentation{
+    font-family: GeosansLight;
+    font-size: 14px;
+    color: #006196;
+    margin-bottom: 15px;
+}
+.pres-sm{
+    font-size: 12px;
+}
+
+.container-carousel{
+    background-color: #fafafa;
+}
+.card-name{
+    font-family: YurukaUB;
+}
+
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .presentation{
+        font-size: 18px;
+    }
+    .pres-sm{
+        font-size: 16px;
+    }
+
+    /* Élargissement du margin entre les éléments */
+    .container-bienvenue{
+        margin-top: 20px;
+    }
+    .presentation{
+        margin-bottom: 20px;
+    }
+
+    /* Effet d'assombrissement des images du carousel si le curseur ne se trouve pas au-dessus */
+    .carousel-item::after{
+        content: "";
+        background-color: rgba(0, 0, 0, 0.30);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: all 1s;
+    }
+    /* Pour que le texte reste au-dessus de l'assombrissement */
+    .carousel-caption{
+        font-family: GeosansLight;
+        z-index: 1;
+    }
+
+    /* Annulation de l'effet d'assombrissement si le curseur passe au-dessus des images */
+    .carousel-item:hover::after{
+        background-color: transparent;
+    }
+    /* Pour que le texte soit + lisible lors du hover sur les images */
+    .carousel-item:hover .carousel-caption{
+        font-family: GeosansLight;
+        font-weight: bolder;
+        color: #252525;
+        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        transition: all 0.2s;
+    }
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    .presentation{
+        font-size: 20px;
+    }
+    .pres-sm{
+        font-size: 18px;
+    }
+
+    /* Élargissement du margin entre les éléments */
+    .container-bienvenue{
+        margin-top: 25px;
+    }
+    .presentation{
+        margin-bottom: 25px;
+    }
+
+    /* Effet d'assombrissement des images du carousel si le curseur ne se trouve pas au-dessus */
+    .carousel-item::after{
+        content: "";
+        background-color: rgba(0, 0, 0, 0.30);
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: all 1s;
+    }
+    /* Pour que le texte reste au-dessus de l'assombrissement */
+    .carousel-caption{
+        font-family: GeosansLight;
+        z-index: 1;
+    }
+
+    /* Annulation de l'effet d'assombrissement si le curseur passe au-dessus des images */
+    .carousel-item:hover::after{
+        background-color: transparent;
+    }
+    /* Pour que le texte soit + lisible lors du hover sur les images */
+    .carousel-item:hover .carousel-caption{
+        font-family: GeosansLight;
+        font-weight: bolder;
+        color: #252525;
+        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        transition: all 0.2s;
+    }
+}

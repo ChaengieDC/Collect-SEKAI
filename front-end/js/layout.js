@@ -5,7 +5,7 @@
 function loadCSS(){
     const cssLayout = document.createElement("link");
     cssLayout.rel = "stylesheet";
-    cssLayout.href = "layout.css";
+    cssLayout.href = "../css/layout.css";
     document.head.appendChild(cssLayout);
 }
 
@@ -37,8 +37,8 @@ function loadContent(file, targetElement){
         });
 }
 const headerElement = document.querySelector("header");
-loadContent("nav.html", headerElement);
+loadContent("./nav.html", headerElement);
 const footerElement = document.querySelector("footer");
 if(footerElement){
-    loadContent("footer.html", footerElement);
+    loadContent("./footer.html", footerElement);
 };

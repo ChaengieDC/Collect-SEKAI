@@ -1,0 +1,53 @@
+/* Polices custom */
+@font-face{
+    font-family: GeosansLight;
+    src: url("../../data/fonts/GeosansLight.ttf");
+}
+@font-face{
+    font-family: YurukaUB;
+    src: url("../../data/fonts/FOT-YurukaStd-UB.ttf");
+}
+@font-face{
+    font-family: GoBOLD;
+    src: url("../../data/fonts/Gobold-Light.otf");
+}
+
+
+/* Background des pages */
+html{
+    overflow-x: hidden;
+}
+body{
+    background-image: url("../../data/img/background.png");
+    background-size: 100% auto;
+    overflow: hidden;
+}
+
+
+/* CSS en COMMUN */
+/* ------------- */
+/* ------------- */
+
+/* > Pages d'INSCRIPTION + CONNEXION + SIDEBAR de filtrage */
+form{
+    font-family: GeosansLight;
+    font-size: 16px;
+}
+
+/* > Pages d'INSCRIPTION + CONNEXION + SIDEBAR de filtrage */
+label{
+    color: #7A8C9F;
+}
+
+/* Bordure autour des champs lorsqu'on les sélectionne */
+/* > Pages d'INSCRIPTION + CONNEXION + SIDEBAR de filtrage */
+.log-input:focus, .filter-input:focus{
+    outline: 2px dashed #6e9bb359;
+}
+
+/* Changement des couleurs en hover des boutons */
+/* > Pages d'INSCRIPTION + CONNEXION + SIDEBAR de filtrage */
+.log-button:hover, .search-button:hover, .reset-button:hover{
+    background-color: #FFC915;
+    color: #252525;
+}
