@@ -380,7 +380,6 @@ th{
     }
 
     .sidebar form{
-        border: none;
         width: 17vw;
     }
 
@@ -417,7 +416,7 @@ th{
     }
 }
 
-/* Tailles spécifiques pour l'affichage en GRID */
+/* Tailles spécifiques pour l'affichage des personnages en GRID */
 /* Sur l'affichage initial */
 @media (min-width: 932px) and (max-width: 991px), screen and (min-width: 1282px){
     .last-unit{
@@ -427,21 +426,32 @@ th{
 }
 
 /* Sur l'affichage après filtrage */
-@media (min-width: 414px) and (max-width: 692px), (min-width: 992px) and (max-width: 1075px){
+@media (min-width: 474px) and (max-width: 752px), (min-width: 992px) and (max-width: 1161px){
     .characters-grid{
         display: grid !important;
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media (min-width: 693px) and (max-width: 931px), (min-width: 1076px) and (max-width: 1445px){
+@media (min-width: 753px) and (max-width: 991px), (min-width: 1162px) and (max-width: 1531px){
     .characters-grid{
         display: grid !important;
         grid-template-columns: repeat(3, 1fr);
     }
 }
-@media screen and (min-width: 1446px){
+@media screen and (min-width: 1532px){
     .characters-grid{
         display: grid !important;
         grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Taille spécifique pour le défilement de la sidebar */
+@media (max-height: 605px){
+    .sidebar form{
+        overflow-y: auto;
+    }
+    
+    .reset-button{
+        margin-bottom: 15px;
     }
 }

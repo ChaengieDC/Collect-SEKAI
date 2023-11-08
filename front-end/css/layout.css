@@ -2,11 +2,9 @@
 /* ---------------- */
 /* ---------------- */
 
-.navbar{
-    border-bottom: 2px solid #C0D3DD;
-}
 /* Positionnement de la navbar en haut de l'écran peu importe le défilement */
 .navbar-sticky{
+    border-bottom: 2px solid #C0D3DD;
     position: fixed;
     width: 100%;
     top: 0;
@@ -88,6 +86,14 @@
         bottom: -18px;
         left: 0;
         opacity: 1;
+    }
+}
+
+/* Taille spécifique pour le défilement de la sidebar */
+@media (max-height: 400px){
+    .navbar-sticky{
+        max-height: 80vh;
+        overflow-y: auto;
     }
 }
 
