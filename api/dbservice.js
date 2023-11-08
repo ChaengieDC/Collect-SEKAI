@@ -159,6 +159,7 @@ async function getCharacterByID(characterID){
 async function filterCharacters(searchTerm, selectedUnit, selectedSchool, selectedGender, selectedAstrologicalSign){
     let whereClause = "1 = 1";
 
+    // SI une information est fournie, ALORS on ajoute la clause à la requête
     if(searchTerm){
         whereClause +=
             ` AND (
@@ -202,8 +203,10 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
 
     const sqlParams = [];
 
+    // Ainsi SI l'information est fournie, on push également le paramètre dans la requête, qui va remplacer les ? des clauses
+    // Ex: SI selectedUnit est fourni en tant que "Leo/need", ALORS la clause WHERE prendra: AND Units.id = Leo/need
     if(searchTerm){
-        for (let i = 0; i < 17; i++){
+        for (let i=0; i<17; i++){
             sqlParams.push(searchTerm);
         }
     }
