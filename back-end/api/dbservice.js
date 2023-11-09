@@ -63,6 +63,66 @@ async function postCharacter(characterData){
     }
 }
 
+// Fonction pour insérer un personnage dans la BDD
+async function postCard(cardData){
+    const query = "INSERT INTO Cards (id, title, quote, voicedQuote, card, trainedCard, attribute, attributeIcon, rarity, rarityStars, skillName, id_chara) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    const values = [
+        cardData.id,
+        cardData.title,
+        cardData.quote,
+        cardData.voicedQuote,
+        cardData.card,
+        cardData.trainedCard,
+        cardData.attribute,
+        cardData.attributeIcon,
+        cardData.rarity,
+        cardData.rarityStars,
+        cardData.skillName,
+        cardData.id_chara
+    ];
+
+    try{
+        const result = await new Promise((resolve, reject) =>{
+            connection.query(query, values, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
+
+
+// Fonction pour récupérer les cartes ✰4
+async function get4StarsCards(){
+    const query = 
+        `SELECT Cards.*, Characters.name as charaName
+        FROM Cards
+        JOIN Characters ON Cards.id_character = Characters.id
+        WHERE Cards.rarity = '✰4'`;
+
+    try{
+        const card = await new Promise((resolve, reject) =>{
+            connection.query(query, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return card;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour récupérer les groupes avec leurs membres respectifs depuis la BDD
 async function getAllUnitsWithMembers(){
     const query =
@@ -240,4 +300,4 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
 }
 
 
-module.exports = { postCharacter, getAllUnitsWithMembers, getCharacterByID, filterCharacters };
+module.exports = { postCharacter, postCard, get4StarsCards, getAllUnitsWithMembers, getCharacterByID, filterCharacters };

@@ -1,15 +1,15 @@
 /* Polices custom */
 @font-face{
     font-family: GeosansLight;
-    src: url("../../data/fonts/GeosansLight.ttf");
+    src: url("../../data/font/GeosansLight.ttf");
 }
 @font-face{
     font-family: YurukaUB;
-    src: url("../../data/fonts/FOT-YurukaStd-UB.ttf");
+    src: url("../../data/font/FOT-YurukaStd-UB.ttf");
 }
 @font-face{
     font-family: GoBOLD;
-    src: url("../../data/fonts/Gobold-Light.otf");
+    src: url("../../data/font/Gobold-Light.otf");
 }
 
 

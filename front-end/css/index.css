@@ -94,6 +94,11 @@
         margin-bottom: 25px;
     }
 
+    .carousel-inner{
+        display: block;
+        max-width: 80%;
+        margin: 0 auto;
+    }
     /* Effet d'assombrissement des images du carousel si le curseur ne se trouve pas au-dessus */
     .carousel-item::after{
         content: "";
@@ -122,5 +127,11 @@
         color: #252525;
         text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
         transition: all 0.2s;
+    }
+    .carousel-control-prev{
+        left: 10% !important;
+    }
+    .carousel-control-next{
+        right: 10% !important;
     }
 }
