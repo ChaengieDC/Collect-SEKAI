@@ -157,7 +157,7 @@ document.querySelector("form").addEventListener("submit", function (event){
             return response.json();
         })
         .then(data =>{
-            // Mettez à jour l'affichage avec les personnages filtrés
+            // Pour update l'affichage avec les personnages filtrés
             updateCharacterList(data);
             // Remettre la page en haut lors de la réorganisation des personnages
             window.scrollTo(0, 0);

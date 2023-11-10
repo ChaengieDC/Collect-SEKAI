@@ -63,7 +63,7 @@ async function postCharacter(characterData){
     }
 }
 
-// Fonction pour insérer un personnage dans la BDD
+// Fonction pour insérer une carte dans la BDD
 async function postCard(cardData){
     const query = "INSERT INTO Cards (id, title, quote, voicedQuote, card, trainedCard, attribute, attributeIcon, rarity, rarityStars, skillName, id_chara) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -217,9 +217,11 @@ async function getCharacterByID(characterID){
 
 // Fonction pour filtrer les personnages
 async function filterCharacters(searchTerm, selectedUnit, selectedSchool, selectedGender, selectedAstrologicalSign){
+    const sqlParams = [];
     let whereClause = "1 = 1";
 
     // SI une information est fournie, ALORS on ajoute la clause à la requête
+    // On push également le paramètre dans la requête, qui va remplacer les ? des clauses par la suite
     if(searchTerm){
         whereClause +=
             ` AND (
@@ -241,18 +243,25 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
                 Characters.dislikes LIKE CONCAT('%', ?, '%') OR
                 Characters.voice LIKE CONCAT('%', ?, '%')
             )`;
+        for (let i=0; i<17; i++){
+            sqlParams.push(searchTerm);
+        }
     }
     if(selectedUnit){
         whereClause += " AND Units.id = ?";
+        sqlParams.push(selectedUnit);
     }
     if(selectedSchool){
         whereClause += " AND Characters.school = ?";
+        sqlParams.push(selectedSchool);
     }
     if(selectedGender){
         whereClause += " AND Characters.gender = ?";
+        sqlParams.push(selectedGender);
     }
     if(selectedAstrologicalSign){
         whereClause += " AND Characters.astrologicalSign = ?";
+        sqlParams.push(selectedAstrologicalSign);
     }
 
     const query =
@@ -260,28 +269,6 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
         FROM Units
         LEFT JOIN Characters ON Units.id = Characters.id_unit
         WHERE ${whereClause}`;
-
-    const sqlParams = [];
-
-    // Ainsi SI l'information est fournie, on push également le paramètre dans la requête, qui va remplacer les ? des clauses
-    // Ex: SI selectedUnit est fourni en tant que "Leo/need", ALORS la clause WHERE prendra: AND Units.id = Leo/need
-    if(searchTerm){
-        for (let i=0; i<17; i++){
-            sqlParams.push(searchTerm);
-        }
-    }
-    if(selectedUnit){
-        sqlParams.push(selectedUnit);
-    }
-    if(selectedSchool){
-        sqlParams.push(selectedSchool);
-    }
-    if(selectedGender){
-        sqlParams.push(selectedGender);
-    }
-    if(selectedAstrologicalSign){
-        sqlParams.push(selectedAstrologicalSign);
-    }
 
     try{
         const filteredCharacters = await new Promise((resolve, reject) =>{
