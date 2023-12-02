@@ -65,7 +65,7 @@ async function postCharacter(characterData){
 
 // Fonction pour insérer une carte dans la BDD
 async function postCard(cardData){
-    const query = "INSERT INTO Cards (id, title, quote, voicedQuote, card, trainedCard, attribute, attributeIcon, rarity, rarityStars, skillName, id_chara) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const query = "INSERT INTO Cards (id, title, quote, voicedQuote, card, trainedCard, attribute, attributeIcon, rarity, rarityStars, skillName, id_character) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     const values = [
         cardData.id,
@@ -79,7 +79,7 @@ async function postCard(cardData){
         cardData.rarity,
         cardData.rarityStars,
         cardData.skillName,
-        cardData.id_chara
+        cardData.id_character
     ];
 
     try{
@@ -104,7 +104,7 @@ async function get4StarsCards(){
     const query = 
         `SELECT Cards.*, Characters.name as charaName
         FROM Cards
-        JOIN Characters ON Cards.id_character = Characters.id
+        INNER JOIN Characters ON Cards.id_character = Characters.id
         WHERE Cards.rarity = '✰4'`;
 
     try{
@@ -128,7 +128,7 @@ async function getAllUnitsWithMembers(){
     const query =
         `SELECT Units.id AS unitID, Units.logo, Units.name AS unitName, Units.color AS unitColor, Characters.*
         FROM Units
-        LEFT JOIN Characters ON Units.id = Characters.id_unit`;
+        INNER JOIN Characters ON Units.id = Characters.id_unit`;
 
     try{
         const units = await new Promise((resolve, reject) =>{
@@ -196,7 +196,7 @@ async function getCharacterByID(characterID){
     const query = 
         `SELECT Characters.*, Units.name AS unitName
         FROM Characters
-        JOIN Units ON Characters.id_unit = Units.id
+        INNER JOIN Units ON Characters.id_unit = Units.id
         WHERE Characters.id = ?`;
 
     try{
@@ -267,7 +267,7 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
     const query =
         `SELECT Units.id AS unitID, Units.name AS unitName, Units.color AS unitColor, Characters.*
         FROM Units
-        LEFT JOIN Characters ON Units.id = Characters.id_unit
+        INNER JOIN Characters ON Units.id = Characters.id_unit
         WHERE ${whereClause}`;
 
     try{
