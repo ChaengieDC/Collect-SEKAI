@@ -9,7 +9,7 @@
     padding: 0 30px;
 }
 
-.group-logo{
+.unit-logo{
     margin: 30px 0;
 }
 
@@ -190,7 +190,7 @@ th{
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
-    .group-logo{
+    .unit-logo{
         width: 196px;
         height: 82px; 
     }
@@ -278,7 +278,7 @@ th{
         margin: 0 5.5vw;
     }
 
-    .group-logo{
+    .unit-logo{
         width: 240px;
         height: 100px;
     }

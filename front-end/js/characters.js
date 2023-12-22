@@ -9,28 +9,48 @@ function generateCharactersHTML(){
         })
         .then(data =>{
             const lastUnit = data[data.length - 1];
-            let charactersHTML = "";
 
             data.forEach(unit =>{
                 // SI le groupe en question est le dernier groupe ALORS on lui donne la classe last-unit, SINON rien
                 const unitClass = unit === lastUnit ? "last-unit" : "";
-                charactersHTML += 
-                    `<img src="${unit.logo}" class="group-logo" alt="Logo ${unit.name}" width="150" height="63"></img>
-                    <div class="row ${unitClass}">`;
+
+                const unitLogo = document.createElement("img");
+                unitLogo.src = unit.logo;
+                unitLogo.className = "unit-logo";
+                unitLogo.alt = `Logo ${unit.name}`;
+                unitLogo.width = 150;
+                unitLogo.height = 63;
+
+                const unitsRow = document.createElement("div");
+                unitsRow.className = `row ${unitClass}`;
 
                 unit.members.forEach(member =>{
-                    charactersHTML +=
-                        `<div class="col" onclick="openPopup(${member.id})">
-                            <img src="${member.charaFrame}" class="chara-pic" alt="${member.name}" width="195" height="250">
-                            <h4 class="chara-name" style="color: ${unit.color};">${member.name}</h4>
-                        </div>`;
+                    const membersCol = document.createElement("div");
+                    membersCol.className = "col";
+                    membersCol.onclick = () => openPopup(member.id);
+
+                    const charaPic = document.createElement("img");
+                    charaPic.src = member.charaFrame;
+                    charaPic.className = "chara-pic";
+                    charaPic.alt = member.name;
+                    charaPic.width = 195;
+                    charaPic.height = 250;
+
+                    const charaName = document.createElement("h4");
+                    charaName.className = "chara-name";
+                    charaName.style.color = unit.color;
+                    charaName.textContent = member.name;
+
+                    membersCol.appendChild(charaPic);
+                    membersCol.appendChild(charaName);
+                    unitsRow.appendChild(membersCol);
                 });
 
-                charactersHTML +=
-                    `</div>
-                    <hr>`;
+                const containerChara = document.querySelector(".container-chara");
+                containerChara.appendChild(unitLogo);
+                containerChara.appendChild(unitsRow);
+                containerChara.appendChild(document.createElement("hr"));
             });
-            document.querySelector(".container-chara").innerHTML = charactersHTML;
         })
         .catch(error =>{
             console.error(`Une erreur est survenue lors du chargement du code html: ${error}`);
@@ -168,27 +188,52 @@ document.querySelector("form").addEventListener("submit", function (event){
 });
 // Fonction pour réorganiser la liste des personnages
 function updateCharacterList(data){
-    document.querySelector(".container-chara").style.paddingBottom = "30px";
-    let charactersHTML = "";
-    
-    if(data.length === 0){
-        charactersHTML +=
-            `<div class="no-result">
-                <p>Pas de résultat.</p>
-            </div`;
-    } else{
-        charactersHTML += `<div class="row characters-grid">`;
-        
-        data.forEach(member =>{
-            charactersHTML +=
-                `<div class="col" onclick="openPopup(${member.id})" style="margin-top: 30px;">
-                    <img src="${member.charaFrame}" class="chara-pic" alt="${member.name}" width="195" height="250">
-                    <h4 class="chara-name" style="color: ${member.unitColor}; margin-bottom: 0;">${member.name}</h4>
-                </div>`;
-        });
+    const containerChara = document.querySelector(".container-chara");
+    containerChara.style.paddingBottom = "30px";
 
-        charactersHTML += `</div>`;
+    // Boucle qui supprime le contenu du container pour l'overwrite par la suite
+    while(containerChara.firstChild){
+        containerChara.removeChild(containerChara.firstChild);
     }
 
-    document.querySelector(".container-chara").innerHTML = charactersHTML;
+    if(data.length === 0){
+        const noResult = document.createElement("div");
+        noResult.className = "no-result";
+
+        const textResult = document.createElement("p");
+        textResult.textContent = "Pas de résultat."
+
+        noResult.appendChild(textResult);
+
+        containerChara.appendChild(noResult);
+    } else{
+        const charaRow = document.createElement("div");
+        charaRow.className = "row characters-grid"
+
+        data.forEach(member =>{
+            const membersCol = document.createElement("div");
+            membersCol.className = "col";
+            membersCol.onclick = () => openPopup(member.id);
+            membersCol.style.marginTop = "30px";
+
+            const charaPic = document.createElement("img");
+            charaPic.src = member.charaFrame;
+            charaPic.className = "chara-pic";
+            charaPic.alt = member.name;
+            charaPic.width = 195;
+            charaPic.height = 250;
+
+            const charaName = document.createElement("h4");
+            charaName.className = "chara-name";
+            charaName.style.color = member.unitColor;
+            charaName.style.marginBottom = 0;
+            charaName.textContent = member.name;
+
+            membersCol.appendChild(charaPic);
+            membersCol.appendChild(charaName);
+            charaRow.appendChild(membersCol);
+        });
+
+        containerChara.appendChild(charaRow);
+    }
 }
