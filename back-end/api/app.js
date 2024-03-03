@@ -43,7 +43,7 @@ app.get('/get4StarsCards', async(req, res) =>{
         res.json(cards);
     } catch(error){
         console.error(error);
-        res.status(500).send(`Erreur lors de la récupération des cartess: ${error}`);
+        res.status(500).send(`Erreur lors de la récupération des cartes: ${error}`);
     }
 });
 
