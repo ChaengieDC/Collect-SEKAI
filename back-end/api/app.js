@@ -91,6 +91,17 @@ app.get('/filterCharacters', async(req, res) =>{
     }
 });
 
+// Requête GET pour récupérer toutes les cartes
+app.get('/getAllCards', async(req, res) =>{
+    try{
+        const cards = await dbservice.getAllCards();
+        res.json(cards);
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération des cartes: ${error}`);
+    }
+});
+
 
 app.listen(3000, () =>{
     console.log("App is running...");

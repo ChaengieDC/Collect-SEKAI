@@ -9,7 +9,7 @@
     width: 100%;
     top: 0;
     /* Pour que la navbar passe au-dessus des autres éléments */
-    z-index: 2;
+    z-index: 4;
 }
 
 .nav-link, .dropdown-item{
@@ -170,8 +170,8 @@ footer{
 #logpage{
     margin-top: 104px;
 }
-/* Sur la page des personnages */
-#charapage{
+/* Sur la page des personnages + cartes */
+#charapage, #cardpage{
     margin-top: 87px;
 }
 

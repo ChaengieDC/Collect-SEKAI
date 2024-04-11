@@ -1,0 +1,185 @@
+/* CSS de la page des CARTES */
+/* ------------------------- */
+/* ------------------------- */
+
+.container-card{
+    background-color: #fafafa;
+    height: auto;
+    min-height: 100vh;
+    padding: 0 30px;
+}
+
+.card-wrapper{
+    position: relative;
+}
+
+.attribute{
+    position: absolute;
+    z-index: 2;
+    /* Décalage pour placer le contenu en haut à droite de la carte */
+    transform: translateX(950%) translateY(25%);
+}
+.rarity-wrapper{
+    position: absolute;
+    /* Pour placer le contenu en bas de la carte */
+    top: 86%;
+    left: 50%;
+    z-index: 2;
+    /* Décalage pour centrer le contenu */
+    transform: translate(-50%, -50%);
+}
+
+.card-untrained, .card-trained{
+    border-radius: 10px;
+}
+.card-untrained{
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+.card-trained{
+    position: absolute;
+    z-index: 0;
+    /* Décalage pour placer la version trained sous la version untrained, de biais */
+    transform: translate(-100%) rotate(2deg);
+}
+/* Légère animation pour interchanger les deux versions d'une carte au passage de la souris */
+.card-wrapper.has-trained-card:hover .card-untrained{
+    position: absolute;
+    z-index: 0;
+    transform: rotate(2deg);
+}
+.card-wrapper.has-trained-card:hover .card-trained{
+    position: relative;
+    z-index: 1;
+    transform: none;
+}
+
+.addcard-button{
+    font-family: GoBOLD;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #FFC915;
+    color: #252525;
+    border: none;
+    border-radius: 3px;
+    padding: 4px 22px;
+    margin-top: 1.5vh;
+}
+.addcard-button:hover{
+    background-color: #72E4EA;
+}
+
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .attribute{
+        width: 40px;
+        height: 40px;
+        /* Décalage pour placer le contenu en haut à droite de la carte */
+        transform: translateX(1090%) translateY(23%);
+    }
+    .rarity-wrapper{
+        /* Pour placer le contenu en bas de la carte */
+        top: 89.5%;
+    }
+    .rarity-wrapper img{
+        width: 40px;
+        height: 40px; 
+    }
+
+    .card-untrained, .card-trained{
+        width: 485px;
+        height: 277px; 
+    }
+
+    .addcard-button{
+        font-size: 18px;
+        padding: 6px 24px;
+    }
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    .container-card{
+        width: 70%;
+        padding-bottom: 30px;
+        margin: 0 5.5vw;
+    }
+
+    .attribute{
+        width: 45px;
+        height: 45px;
+        /* Décalage pour placer le contenu en haut à droite de la carte */
+        transform: translateX(1100%) translateY(23%);
+    }
+    .rarity-wrapper{
+        /* Pour placer le contenu en bas de la carte */
+        top: 89.5%;
+    }
+    .rarity-wrapper img{
+        width: 45px;
+        height: 45px; 
+    }
+
+    .card-untrained, .card-trained{
+        width: 550px;
+        height: 314px; 
+    }
+
+    .addcard-button{
+        font-size: 20px;
+        padding: 6px 24px;
+    }
+}
+
+/* Tailles spécifiques pour éviter de surcharger sur les versions PC */
+@media screen and (min-width: 1282px){
+    .container-card{
+        margin: 0 6.5vw;
+    }
+}
+
+/* Tailles spécifiques pour éviter de surcharger sur les versions MOBILES */
+@media (min-width: 360px) and (max-width: 429px){
+    .attribute{
+        width: 25px;
+        height: 25px;
+        /* Décalage pour placer le contenu en haut à droite de la carte */
+        transform: translateX(975%) translateY(26%);
+    }
+    .rarity-wrapper{
+        /* Pour placer le contenu en bas de la carte */
+        top: 87.5%;
+    }
+    .rarity-wrapper img{
+        width: 25px;
+        height: 25px; 
+    }
+
+    .card-untrained, .card-trained{
+        width: 275px;
+        height: 157px; 
+    }
+}
+@media (min-width: 430px) and (max-width: 575px){
+    .attribute{
+        width: 30px;
+        height: 30px;
+        /* Décalage pour placer le contenu en haut à droite de la carte */
+        transform: translateX(1023%) translateY(27%);
+    }
+    .rarity-wrapper{
+        /* Pour placer le contenu en bas de la carte */
+        top: 88%;
+    }
+    .rarity-wrapper img{
+        width: 30px;
+        height: 30px; 
+    }
+
+    .card-untrained, .card-trained{
+        width: 345px;
+        height: 191px; 
+    }
+}

@@ -108,7 +108,7 @@ async function get4StarsCards(){
         WHERE Cards.rarity = '✰4'`;
 
     try{
-        const card = await new Promise((resolve, reject) =>{
+        const cards = await new Promise((resolve, reject) =>{
             connection.query(query, (error, results) =>{
                 if(error){
                     reject(error);
@@ -117,7 +117,7 @@ async function get4StarsCards(){
                 }
             });
         });
-        return card;
+        return cards;
     } catch(error){
         throw error;
     }
@@ -286,5 +286,29 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
     }
 }
 
+// Fonction pour récupérer les cartes ✰4
+async function getAllCards(){
+    const query = 
+        `SELECT Cards.*, Characters.name as charaName, Units.name as unitName
+        FROM Cards
+        INNER JOIN Characters ON Cards.id_character = Characters.id
+        INNER JOIN Units ON Characters.id_unit = Units.id;`;
 
-module.exports = { postCharacter, postCard, get4StarsCards, getAllUnitsWithMembers, getCharacterByID, filterCharacters };
+    try{
+        const cards = await new Promise((resolve, reject) =>{
+            connection.query(query, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return cards;
+    } catch(error){
+        throw error;
+    }
+}
+
+
+module.exports = { postCharacter, postCard, get4StarsCards, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllCards };
