@@ -1,3 +1,7 @@
+/* CSS en COMMUN */
+/* ------------- */
+/* ------------- */
+
 /* Polices custom */
 @font-face{
     font-family: GeosansLight;
@@ -12,7 +16,6 @@
     src: url("../../data/font/Gobold-Light.otf");
 }
 
-
 /* Background des pages */
 html{
     overflow-x: hidden;
@@ -22,11 +25,6 @@ body{
     background-size: 100% auto;
     overflow: hidden;
 }
-
-
-/* CSS en COMMUN */
-/* ------------- */
-/* ------------- */
 
 /* > Pages d'INSCRIPTION + CONNEXION + SIDEBAR de filtrage */
 form{
@@ -233,5 +231,132 @@ label{
     
     .reset-button{
         margin-bottom: 15px;
+    }
+}
+
+
+/* CSS du POP-UP */
+/* ------------- */
+/* ------------- */
+
+/* Fond noir légèrement transparent pour faire un effet d'"arrière-plan" pour le pop-up */
+#popup{
+    display: none;
+    background-color: rgba(0,0,0,0.7);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    overflow: auto;
+}
+
+/* Affichage du container pop-up */
+.popup-content{
+    background-color: #fff;
+    border: 1px solid #888;
+    width: 100%;
+    padding: 0 15px;
+    margin: 10% auto;
+}
+
+/* Bouton pour fermer le pop-up */
+.close{
+    font-size: 22px;
+    font-weight: bold;
+    color: #6e9bb3;
+    position: absolute;
+    line-height: 0.95;
+    margin: 15px 0;
+}
+.close:hover{
+    color: #252525;
+    /* Pour afficher un curseur "main" sur la croix (comme il s'agit à la base d'un texte) */
+    cursor: pointer;
+}
+
+table{
+    font-family: GeosansLight;
+    font-size: 16px;
+    color: #7A8C9F;
+    width: 100%;
+}
+tr{
+    border-top: 1px solid #6e9bb38e !important;
+    margin: 15px 0;
+}
+
+.popup-icons{
+    text-align: left;
+}
+th{
+    color: #004163;
+}
+.popup-info{
+    text-align: right;
+    padding: 15px 0;
+}
+
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    /* Affichage du container pop-up */
+    .popup-content{
+        padding: 0 20px;
+    }
+
+    /* Bouton pour fermer le pop-up */
+    .close{
+        font-size: 24px;
+        line-height: 1;
+        margin: 20px 0;
+    }
+
+    table{
+        font-size: 18px;
+    }
+    tr{
+        margin: 20px 0;
+    }
+
+    .popup-info{
+        padding: 20px 0;
+    }
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    /* Affichage du container pop-up */
+    .popup-content{
+        width: 50%;
+        padding: 0 25px;
+        margin: 5% auto;
+    }
+
+    /* Bouton pour fermer le pop-up */
+    .close{
+        font-size: 26px;
+        line-height: 1.10;
+        margin: 25px 0;
+    }
+
+    table{
+        font-size: 20px;
+    }
+    tr{
+        margin: 25px 0;
+    }
+
+    .popup-info{
+        padding: 25px 0;
+    }
+}
+
+/* Tailles spécifiques pour éviter de surcharger sur les versions PC */
+@media screen and (min-width: 1282px){
+    /* Affichage du container pop-up */
+    .popup-content{
+        width: 40%;
     }
 }

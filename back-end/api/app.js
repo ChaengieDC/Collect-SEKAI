@@ -36,17 +36,6 @@ app.post('/postCard', async(req, res) =>{
 });
 
 
-// Requête GET pour récupérer les cartes ✰4
-app.get('/get4StarsCards', async(req, res) =>{
-    try{
-        const cards = await dbservice.get4StarsCards();
-        res.json(cards);
-    } catch(error){
-        console.error(error);
-        res.status(500).send(`Erreur lors de la récupération des cartes: ${error}`);
-    }
-});
-
 // Requête GET pour récupérer les groupes avec leurs membres respectifs depuis la BDD
 app.get('/getAllUnitsWithMembers', async(req, res) =>{
     try{
@@ -99,6 +88,29 @@ app.get('/getAllCards', async(req, res) =>{
     } catch(error){
         console.error(error);
         res.status(500).send(`Erreur lors de la récupération des cartes: ${error}`);
+    }
+});
+
+// Requête GET pour récupérer les cartes ✰4
+app.get('/get4StarsCards', async(req, res) =>{
+    try{
+        const cards = await dbservice.get4StarsCards();
+        res.json(cards);
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération des cartes: ${error}`);
+    }
+});
+
+// Requête GET pour récupérer une carte via son ID
+app.get('/getCardByID/:cardID', async(req, res) =>{
+    const cardID = req.params.cardID;
+    try{
+        const card = await dbservice.getCardByID(cardID);
+        res.json(card);
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération de la carte: ${error}`);
     }
 });
 

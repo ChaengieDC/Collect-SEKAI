@@ -99,30 +99,6 @@ async function postCard(cardData){
 }
 
 
-// Fonction pour récupérer les cartes ✰4
-async function get4StarsCards(){
-    const query = 
-        `SELECT Cards.*, Characters.name as charaName
-        FROM Cards
-        INNER JOIN Characters ON Cards.id_character = Characters.id
-        WHERE Cards.rarity = '✰4'`;
-
-    try{
-        const cards = await new Promise((resolve, reject) =>{
-            connection.query(query, (error, results) =>{
-                if(error){
-                    reject(error);
-                } else{
-                    resolve(results);
-                }
-            });
-        });
-        return cards;
-    } catch(error){
-        throw error;
-    }
-}
-
 // Fonction pour récupérer les groupes avec leurs membres respectifs depuis la BDD
 async function getAllUnitsWithMembers(){
     const query =
@@ -286,7 +262,7 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
     }
 }
 
-// Fonction pour récupérer les cartes ✰4
+// Fonction pour récupérer toutes les cartes
 async function getAllCards(){
     const query = 
         `SELECT Cards.*, Characters.name as charaName, Units.name as unitName
@@ -310,5 +286,53 @@ async function getAllCards(){
     }
 }
 
+// Fonction pour récupérer les cartes ✰4
+async function get4StarsCards(){
+    const query = 
+        `SELECT Cards.*, Characters.name as charaName
+        FROM Cards
+        INNER JOIN Characters ON Cards.id_character = Characters.id
+        WHERE Cards.rarity = '✰4'`;
 
-module.exports = { postCharacter, postCard, get4StarsCards, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllCards };
+    try{
+        const cards = await new Promise((resolve, reject) =>{
+            connection.query(query, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return cards;
+    } catch(error){
+        throw error;
+    }
+}
+
+// Fonction pour récupérer une carte via son ID
+async function getCardByID(cardID){
+    const query = 
+        `SELECT Cards.*, Characters.name as charaName
+        FROM Cards
+        INNER JOIN Characters ON Cards.id_character = Characters.id
+        WHERE Cards.id = ?`;
+
+    try{
+        const card = await new Promise((resolve, reject) =>{
+            connection.query(query, cardID, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return card;
+    } catch(error){
+        throw error;
+    }
+}
+
+
+module.exports = { postCharacter, postCard, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllCards, get4StarsCards, getCardByID };

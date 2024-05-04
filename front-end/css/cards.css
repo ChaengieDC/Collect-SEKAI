@@ -54,6 +54,10 @@
     z-index: 1;
     transform: none;
 }
+/* Effet de pointeur sur les cartes */
+.card-wrapper img:hover{
+    cursor: pointer;
+}
 
 .addcard-button{
     font-family: GoBOLD;
@@ -68,6 +72,52 @@
 }
 .addcard-button:hover{
     background-color: #72E4EA;
+}
+
+/* Styles des informations du pop-up */
+#card-popup-title{
+    font-family: GeosansLight;
+    font-size: 19px;
+    font-weight: bold;
+    color: #004163;
+    margin: 15px 0;
+}
+
+.swap-card{
+    background-color: #fff;
+    border: none;
+    border-bottom-left-radius: 15%;
+    padding-right: 0;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    position: absolute;
+    right: 0;
+}
+.swap-card i{
+    font-size: 30px;
+    color: #004163;
+    transition: all 0.4s ease;
+}
+.swap-card:hover i{
+    transform: rotate(180deg);
+    opacity: 30%;
+}
+#card-popup-img{
+    border-bottom: 10px solid #e4f2fa;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#card-popup-quote{
+    font-family: GeosansLight;
+    font-size: 16px;
+    color: #252525;
+    line-height: 125%;
+    padding-bottom: 0.75vh;
+    margin: 0;
+}
+#card-popup-voicedQuote{
+    margin-bottom: 15px;
 }
 
 
@@ -96,6 +146,37 @@
     .addcard-button{
         font-size: 18px;
         padding: 6px 24px;
+    }
+
+    /* Styles des informations du pop-up */
+    #card-popup-title{
+        font-size: 21px;
+        margin: 20px 0;
+    }
+
+    .swap-card{
+        padding-bottom: 1%;
+        padding-left: 1.25%;
+    }
+    .swap-card i{
+        font-size: 45px;
+    }
+    #card-popup-img{
+        border-bottom: 15px solid #e4f2fa;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    #card-popup-quote{
+        font-size: 18px;
+    }
+    #card-popup-voicedQuote{
+        margin-bottom: 20px;
+    }
+
+    #card-popup-rarity img, #card-popup-attribute{
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -131,12 +212,47 @@
         font-size: 20px;
         padding: 6px 24px;
     }
+
+    /* Styles des informations du pop-up */
+    #card-popup-title{
+        font-size: 23px;
+        margin: 25px 0;
+    }
+    .swap-card{
+        padding-bottom: 1.75%;
+        padding-left: 2.25%;
+    }
+    .swap-card i{
+        font-size: 40px;
+    }
+    #card-popup-img{
+        border-bottom: 15px solid #e4f2fa;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    #card-popup-quote{
+        font-size: 20px;
+    }
+    #card-popup-voicedQuote{
+        margin-bottom: 25px;
+    }
+
+    #card-popup-rarity img, #card-popup-attribute{
+        width: 35px;
+        height: 35px;
+    }
 }
 
 /* Tailles spécifiques pour éviter de surcharger sur les versions PC */
 @media screen and (min-width: 1282px){
     .container-card{
         margin: 0 6.5vw;
+    }
+
+    /* Styles des informations du pop-up */
+    #card-popup-img{
+        border-bottom: 20px solid #e4f2fa;
     }
 }
 

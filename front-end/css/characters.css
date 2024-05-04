@@ -21,49 +21,16 @@ hr:last-child{
     display: none;
 }
 
+/* Effet de pointeur sur les personnages */
+.chara-pic:hover{
+    cursor: pointer;
+}
 .chara-name{
     font-family: YurukaUB;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     transform: rotate(-3deg);
     margin-top: 15px;
     margin-bottom: 30px;
-}
-
-/* Fond noir légèrement transparent pour faire un effet d'"arrière-plan" pour le pop-up */
-#charapopup{
-    display: none;
-    background-color: rgba(0,0,0,0.7);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 4;
-    overflow: auto;
-}
-
-/* Affichage du container pop-up */
-.popup-content{
-    background-color: #fff;
-    border: 1px solid #888;
-    width: 100%;
-    padding: 0 15px;
-    margin: 10% auto;
-}
-
-/* Bouton pour fermer le pop-up */
-.close{
-    font-size: 22px;
-    font-weight: bold;
-    color: #6e9bb3;
-    float: right;
-    line-height: 0.95;
-    margin: 15px 0;
-}
-.close:hover{
-    color: #252525;
-    /* Pour afficher un curseur "main" sur la croix (comme il s'agit à la base d'un texte) */
-    cursor: pointer;
 }
 
 /* Styles des informations du pop-up */
@@ -74,39 +41,19 @@ hr:last-child{
     color: #004163;
     margin: 15px 0;
 }
+
 #chara-popup-img{
     border-bottom: 10px solid #e4f2fa;
     width: 100%;
 }
+
 #chara-popup-introduction{
+    font-family: GeosansLight;
+    font-size: 16px;
     color: #252525;
     line-height: 125%;
     padding: 15px 0;
-}
-#chara-popup-introduction, table{
-    font-family: GeosansLight;
-    font-size: 16px;
     margin: 0;
-}
-
-table{
-    width: 100%;
-    color: #7A8C9F;
-}
-tr{
-    border-top: 1px solid #6e9bb38e !important;
-    margin: 15px 0;
-}
-
-.popup-icons{
-    text-align: left;
-}
-th{
-    color: #004163;
-}
-.popup-info{
-    text-align: right;
-    padding: 15px 0;
 }
 
 #chara-popup-color{
@@ -133,40 +80,20 @@ th{
         height: 275px;
     }
 
-    /* Affichage du container pop-up */
-    .popup-content{
-        padding: 0 20px;
-    }
-
-    /* Bouton pour fermer le pop-up */
-    .close{
-        font-size: 24px;
-        line-height: 1;
-        margin: 20px 0;
-    }
-
     /* Styles des informations du pop-up */
     #chara-popup-name{
         font-size: 21px;
         margin: 20px 0;
     }
+
     #chara-popup-img{
         border-bottom: 15px solid #e4f2fa;
         width: 100%;
     }
+
     #chara-popup-introduction{
-        padding: 20px 5%;;
-    }
-    #chara-popup-introduction, table{
         font-size: 18px;
-    }
-
-    tr{
-        margin: 20px 0;
-    }
-
-    .popup-info{
-        padding: 20px 0;
+        padding: 20px 5%;;
     }
 
     .no-result p{
@@ -192,42 +119,20 @@ th{
         height: 300px;
     }
 
-    /* Affichage du container pop-up */
-    .popup-content{
-        width: 50%;
-        padding: 0 25px;
-        margin: 5% auto;
-    }
-
-    /* Bouton pour fermer le pop-up */
-    .close{
-        font-size: 26px;
-        line-height: 1.10;
-        margin: 25px 0;
-    }
-
     /* Styles des informations du pop-up */
     #chara-popup-name{
         font-size: 23px;
         margin: 25px 0;
     }
+
     #chara-popup-img{
         border-bottom: 15px solid #e4f2fa;
         width: 100%;
     }
-    #chara-popup-introduction{
-        padding: 25px 10%;
-    }
-    #chara-popup-introduction, table{
-        font-size: 20px;
-    }
-    
-    tr{
-        margin: 25px 0;
-    }
 
-    .popup-info{
-        padding: 25px 0;
+    #chara-popup-introduction{
+        font-size: 20px;
+        padding: 25px 10%;
     }
 
     .no-result p{
@@ -250,11 +155,6 @@ th{
         20%{ transform: scale(1.05) rotate(-5deg); }
         30%{ transform: scale(1.05) rotate(5deg); }
         40%{ transform: none; }
-    }
-
-    /* Affichage du container pop-up */
-    .popup-content{
-        width: 40%;
     }
 
     /* Styles des informations du pop-up */

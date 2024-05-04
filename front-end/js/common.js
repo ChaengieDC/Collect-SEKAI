@@ -19,3 +19,28 @@ const resetButton = document.querySelector(".reset-button");
 resetButton.addEventListener("click", () =>{
     location.reload();
 });
+
+
+/* JS du POP-UP */
+/* ------------ */
+/* ------------ */
+
+// Pour fermer le pop-up
+// Via la croix
+const closeButton = document.querySelector(".close");
+const popupContainer = document.querySelector("#popup");
+const htmlScroll = document.querySelector("html");
+closeButton.addEventListener("click", () =>{
+    popupContainer.style.display = "none";
+    htmlScroll.style.overflow = "";
+    document.body.style.overflow = "";
+});
+// Via un clic en dehors de ce dernier
+popupContainer.addEventListener("click", (e) =>{
+    const popup = document.querySelector(".popup-content");
+    if(!popup.contains(e.target)){
+        popupContainer.style.display = "none";
+        htmlScroll.style.overflow = "";
+        document.body.style.overflow = "";
+    }
+});

@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 
 // Pour ouvrir le pop-up contenant les informations du personnage sélectionné
 function openPopup(characterID){
-    const popupContainer = document.querySelector("#charapopup");
+    const popupContainer = document.querySelector("#popup");
     popupContainer.style.display = "block";
 
     // Pour empêcher de scroll sur la page en arrière-plan
@@ -87,6 +87,7 @@ function openPopup(characterID){
             document.querySelector("#chara-popup-img").alt = character.name;
 
             document.querySelector("#chara-popup-introduction").innerText = character.introduction;
+            
             document.querySelector("#chara-popup-unit").innerText = character.unitName;
             document.querySelector("#chara-popup-position").innerText = character.position;
             document.querySelector("#chara-popup-gender").innerText = character.gender;
@@ -98,14 +99,15 @@ function openPopup(characterID){
                 document.querySelector("#chara-popup-school").parentNode.style.display = "none";
             } else{
                 document.querySelector("#chara-popup-school").innerText = character.school + "\n" + character.schoolClass;
+                document.querySelector("#chara-popup-school").parentNode.style.display = "";
             }
             // Boucle pour alléger le code
             for(const property of ["committee", "club", "partTimeJob", "hobbies", "specialty", "favoriteFood", "hatedFood", "dislikes"]){
                 const element = document.querySelector(`#chara-popup-${property}`);
-                element.innerText = character[property];
                 if(!character[property]){
                     element.parentNode.style.display = "none";
                 } else{
+                    element.innerText = character[property];
                     element.parentNode.style.display = "";
                 }
             }
@@ -120,26 +122,6 @@ function openPopup(characterID){
             console.error(`Une erreur est survenue lors du chargement du pop-up: ${error}`);
         });
 }
-
-// Pour fermer le pop-up
-// Via la croix
-const closeButton = document.querySelector(".close");
-const popupContainer = document.querySelector("#charapopup");
-const htmlScroll = document.querySelector("html");
-closeButton.addEventListener("click", () =>{
-    popupContainer.style.display = "none";
-    htmlScroll.style.overflow = "";
-    document.body.style.overflow = "";
-});
-// Via un clic en dehors de ce dernier
-popupContainer.addEventListener("click", (e) =>{
-    const popup = document.querySelector(".popup-content");
-    if(!popup.contains(e.target)){
-        popupContainer.style.display = "none";
-        htmlScroll.style.overflow = "";
-        document.body.style.overflow = "";
-    }
-});
 
 
 // Envoi du formulaire de filtrage (requête GET) au clic de l'utilisateur
