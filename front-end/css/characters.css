@@ -60,13 +60,6 @@ hr:last-child{
     font-weight: bold;
 }
 
-.no-result p{
-    font-family: GeosansLight;
-    font-size: 25px;
-    color: #252525;
-    padding-top: 30px;
-}
-
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
@@ -94,10 +87,6 @@ hr:last-child{
     #chara-popup-introduction{
         font-size: 18px;
         padding: 20px 5%;;
-    }
-
-    .no-result p{
-        font-size: 30px;
     }
 }
 
@@ -134,10 +123,6 @@ hr:last-child{
         font-size: 20px;
         padding: 25px 10%;
     }
-
-    .no-result p{
-        font-size: 35px;
-    }
 }
 
 /* Tailles spécifiques pour éviter de surcharger sur les versions PC */
@@ -147,7 +132,7 @@ hr:last-child{
     }
 
     /* Effet de tremblement lors du passage du curseur sur l'image du personnage */
-    .col:hover{
+    .chara-wrapper:hover{
         animation: shake 2s;
     }
     @keyframes shake{
@@ -169,24 +154,5 @@ hr:last-child{
     .last-unit{
         display: grid !important;
         grid-template-columns: repeat(3, 1fr);
-    }
-}
-/* Sur l'affichage après filtrage */
-@media (min-width: 474px) and (max-width: 752px), (min-width: 992px) and (max-width: 1161px){
-    .characters-grid{
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media (min-width: 753px) and (max-width: 991px), (min-width: 1162px) and (max-width: 1531px){
-    .characters-grid{
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-@media screen and (min-width: 1532px){
-    .characters-grid{
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr);
     }
 }

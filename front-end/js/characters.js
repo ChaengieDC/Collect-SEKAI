@@ -27,7 +27,10 @@ function generateCharactersHTML(){
                 unit.members.forEach(member =>{
                     const membersCol = document.createElement("div");
                     membersCol.className = "col";
-                    membersCol.onclick = () => openPopup(member.id);
+
+                    const charaWrapper = document.createElement("div");
+                    charaWrapper.className = "chara-wrapper";
+                    charaWrapper.style.display = "inline-block";
 
                     const charaPic = document.createElement("img");
                     charaPic.src = member.charaFrame;
@@ -35,14 +38,16 @@ function generateCharactersHTML(){
                     charaPic.alt = member.name;
                     charaPic.width = 195;
                     charaPic.height = 250;
+                    charaPic.onclick = () => openPopup(member.id);
 
                     const charaName = document.createElement("h4");
                     charaName.className = "chara-name";
                     charaName.style.color = unit.color;
                     charaName.textContent = member.name;
 
-                    membersCol.appendChild(charaPic);
-                    membersCol.appendChild(charaName);
+                    charaWrapper.appendChild(charaPic);
+                    charaWrapper.appendChild(charaName);
+                    membersCol.appendChild(charaWrapper);
                     unitsRow.appendChild(membersCol);
                 });
 
@@ -154,7 +159,7 @@ function updateCharacterList(data){
     const containerChara = document.querySelector(".container-chara");
     containerChara.style.paddingBottom = "30px";
 
-    // Boucle qui supprime le contenu du container pour l'overwrite par la suite
+    // Boucle qui retire tous les éléments à chaque ouverture du pop-up pour éviter une duplication
     while(containerChara.firstChild){
         containerChara.removeChild(containerChara.firstChild);
     }
@@ -167,7 +172,6 @@ function updateCharacterList(data){
         textResult.textContent = "Pas de résultat."
 
         noResult.appendChild(textResult);
-
         containerChara.appendChild(noResult);
     } else{
         const charaRow = document.createElement("div");
@@ -176,8 +180,11 @@ function updateCharacterList(data){
         data.forEach(member =>{
             const membersCol = document.createElement("div");
             membersCol.className = "col";
-            membersCol.onclick = () => openPopup(member.id);
             membersCol.style.marginTop = "30px";
+
+            const charaWrapper = document.createElement("div");
+            charaWrapper.className = "chara-wrapper";
+            charaWrapper.style.display = "inline-block";
 
             const charaPic = document.createElement("img");
             charaPic.src = member.charaFrame;
@@ -185,6 +192,7 @@ function updateCharacterList(data){
             charaPic.alt = member.name;
             charaPic.width = 195;
             charaPic.height = 250;
+            charaPic.onclick = () => openPopup(member.id);
 
             const charaName = document.createElement("h4");
             charaName.className = "chara-name";
@@ -192,8 +200,9 @@ function updateCharacterList(data){
             charaName.style.marginBottom = 0;
             charaName.textContent = member.name;
 
-            membersCol.appendChild(charaPic);
-            membersCol.appendChild(charaName);
+            charaWrapper.appendChild(charaPic);
+            charaWrapper.appendChild(charaName);
+            membersCol.appendChild(charaWrapper);
             charaRow.appendChild(membersCol);
         });
 

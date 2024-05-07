@@ -201,8 +201,8 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
     if(searchTerm){
         whereClause +=
             ` AND (
-                Units.name LIKE ? OR
                 Characters.name LIKE CONCAT('%', ?, '%') OR
+                Units.name LIKE CONCAT('%', ?, '%') OR
                 Characters.position LIKE CONCAT('%', ?, '%') OR
                 Characters.gender LIKE ? OR
                 Characters.birthday LIKE CONCAT('%', ?, '%') OR
@@ -241,9 +241,9 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
     }
 
     const query =
-        `SELECT Units.id AS unitID, Units.name AS unitName, Units.color AS unitColor, Characters.*
-        FROM Units
-        INNER JOIN Characters ON Units.id = Characters.id_unit
+        `SELECT Characters.*, Units.color AS unitColor
+        FROM Characters
+        INNER JOIN Units ON Characters.id_unit = Units.id
         WHERE ${whereClause}`;
 
     try{
@@ -334,5 +334,67 @@ async function getCardByID(cardID){
     }
 }
 
+// Fonction pour filtrer les personnages
+async function filterCards(searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute){
+    const sqlParams = [];
+    let whereClause = "1 = 1";
 
-module.exports = { postCharacter, postCard, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllCards, get4StarsCards, getCardByID };
+    // SI une information est fournie, ALORS on ajoute la clause à la requête
+    // On push également le paramètre dans la requête, qui va remplacer les ? des clauses par la suite
+    if(searchTerm){
+        whereClause +=
+            ` AND (
+                Cards.title LIKE CONCAT('%', ?, '%') OR
+                Cards.quote LIKE CONCAT('%', ?, '%') OR
+                Characters.name LIKE CONCAT('%', ?, '%') OR
+                Units.name LIKE CONCAT('%', ?, '%') OR
+                Cards.rarity LIKE CONCAT('%', ?, '%') OR
+                Cards.attribute LIKE CONCAT('%', ?, '%') OR
+                Cards.skillName LIKE CONCAT('%', ?, '%')
+            )`;
+        for (let i=0; i<7; i++){
+            sqlParams.push(searchTerm);
+        }
+    }
+    if(selectedCharacter){
+        whereClause += " AND Characters.id = ?";
+        sqlParams.push(selectedCharacter);
+    }
+    if(selectedUnit){
+        whereClause += " AND Units.id = ?";
+        sqlParams.push(selectedUnit);
+    }
+    if(selectedRarity){
+        whereClause += " AND Cards.rarity = ?";
+        sqlParams.push(selectedRarity);
+    }
+    if(selectedAttribute){
+        whereClause += " AND Cards.attribute = ?";
+        sqlParams.push(selectedAttribute);
+    }
+
+    const query =
+        `SELECT Cards.*
+        FROM Cards
+        INNER JOIN Characters ON Cards.id_character = Characters.id
+        INNER JOIN Units ON Characters.id_unit = Units.id
+        WHERE ${whereClause}`;
+
+    try{
+        const filteredCards = await new Promise((resolve, reject) =>{
+            connection.query(query, sqlParams, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return filteredCards;
+    } catch(error){
+        throw error;
+    }
+}
+
+
+module.exports = { postCharacter, postCard, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllCards, get4StarsCards, getCardByID, filterCards };

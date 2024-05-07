@@ -18,10 +18,14 @@ function generateCardsHTML(){
                 const cardCol = document.createElement("div");
                 cardCol.className = "col";
                 cardCol.style.marginTop = "40px";
-                cardCol.onclick = () => openPopup(card.id);
+
+                const cardElements = document.createElement("div");
+                cardElements.className = "card-elements";
 
                 const cardWrapper = document.createElement("div");
                 cardWrapper.className = "card-wrapper";
+                cardWrapper.style.display = "inline-block";
+                cardWrapper.onclick = () => openPopup(card.id);
 
                 const cardAttribute = document.createElement("img");
                 cardAttribute.src = card.attributeIcon;
@@ -61,8 +65,8 @@ function generateCardsHTML(){
 
                 const cardTrained = document.createElement("img");
                 if(card.trainedCard){
-                    cardWrapper.classList.add("has-trained-card");
-
+                    cardElements.classList.add("has-trained-card");
+    
                     cardTrained.src = card.trainedCard;
                     cardTrained.className = "card-trained";
                     cardTrained.alt = card.charaName;
@@ -79,12 +83,13 @@ function generateCardsHTML(){
                 cardWrapper.appendChild(cardAttribute);
                 cardWrapper.appendChild(rarityWrapper);
                 cardWrapper.appendChild(cardUntrained);
-
+    
                 if(card.trainedCard){
                     cardWrapper.appendChild(cardTrained);
                 }
-
-                cardCol.appendChild(cardWrapper);
+    
+                cardElements.appendChild(cardWrapper);
+                cardCol.appendChild(cardElements);
                 cardCol.appendChild(addToCollection);
                 cardsRow.appendChild(cardCol);
             });
@@ -195,4 +200,140 @@ function openPopup(cardID){
         .catch(error =>{
             console.error(`Une erreur est survenue lors du chargement du pop-up: ${error}`);
         });
+}
+
+
+// Envoi du formulaire de filtrage (requête GET) au clic de l'utilisateur
+document.querySelector("form").addEventListener("submit", function (event){
+    event.preventDefault(); // Empêche la soumission par défaut du formulaire
+    const formData = new FormData(this);
+    const searchTerm = formData.get("searchBar");
+    const selectedCharacter = formData.get("character");
+    const selectedUnit = formData.get("unit");
+    const selectedRarity = formData.get("rarity");
+    const selectedAttribute = formData.get("attribute");
+    const url = form.action;
+    // Envoi d'une requête au serveur pour récupérer les cartes filtrées
+    fetch(`${url}?searchBar=${searchTerm}&character=${selectedCharacter}&unit=${selectedUnit}&rarity=${selectedRarity}&attribute=${selectedAttribute}`)
+        .then(response =>{
+            return response.json();
+        })
+        .then(data =>{
+            // Pour update l'affichage avec les cartes filtrées
+            updateCardList(data);
+            // Remettre la page en haut lors de la réorganisation des cartes
+            window.scrollTo(0, 0);
+        })
+        .catch(error =>{
+            console.error(`Une erreur est survenue lors du filtrage des cartes: ${error}`);
+        });
+});
+// Fonction pour réorganiser la liste des personnages
+function updateCardList(data){
+    const containerCard = document.querySelector(".container-card");
+    containerCard.style.paddingBottom = "30px";
+
+    // Boucle qui retire tous les éléments à chaque ouverture du pop-up pour éviter une duplication
+    while(containerCard.firstChild){
+        containerCard.removeChild(containerCard.firstChild);
+    }
+
+    if(data.length === 0){
+        const noResult = document.createElement("div");
+        noResult.className = "no-result";
+
+        const textResult = document.createElement("p");
+        textResult.textContent = "Pas de résultat."
+
+        noResult.appendChild(textResult);
+        containerCard.appendChild(noResult);
+    } else{
+        // Tri des données par ID de façon décroissante (les plus récentes en haut)
+        data.sort((a, b) => b.id - a.id);
+
+        const cardsRow = document.createElement("div");
+        cardsRow.className = `row cards-grid`;
+
+        data.forEach(card =>{
+            const cardCol = document.createElement("div");
+            cardCol.className = "col";
+            cardCol.style.marginTop = "40px";
+
+            const cardElements = document.createElement("div");
+            cardElements.className = "card-elements";
+
+            const cardWrapper = document.createElement("div");
+            cardWrapper.className = "card-wrapper";
+            cardWrapper.style.display = "inline-block";
+            cardWrapper.onclick = () => openPopup(card.id);
+
+            const cardAttribute = document.createElement("img");
+            cardAttribute.src = card.attributeIcon;
+            cardAttribute.className = "attribute";
+            cardAttribute.alt = card.attribute;
+            cardAttribute.width = 20;
+            cardAttribute.height = 20;
+
+            const rarityWrapper = document.createElement("div");
+            rarityWrapper.className = "rarity-wrapper";
+
+            // Ajoute la rareté selon les caractéristiques de la carte
+            let nbStars = 1;
+            if(card.rarity == "✰4"){
+                nbStars = 4;
+            } else if(card.rarity == "✰3"){
+                nbStars = 3;
+            } else if(card.rarity == "✰2"){
+                nbStars = 2;
+            }
+            for(let i=0; i<nbStars; i++){
+                const rarityStar = document.createElement("img");
+                rarityStar.src = card.rarityStars;
+                rarityStar.alt = card.rarity;
+                rarityStar.width = 20;
+                rarityStar.height = 20;
+            
+                rarityWrapper.appendChild(rarityStar);
+            }
+
+            const cardUntrained = document.createElement("img");
+            cardUntrained.src = card.card;
+            cardUntrained.className = "card-untrained";
+            cardUntrained.alt = card.charaName;
+            cardUntrained.width = 215;
+            cardUntrained.height = 123;
+
+            const cardTrained = document.createElement("img");
+            if(card.trainedCard){
+                cardElements.classList.add("has-trained-card");
+
+                cardTrained.src = card.trainedCard;
+                cardTrained.className = "card-trained";
+                cardTrained.alt = card.charaName;
+                cardTrained.width = 215;
+                cardTrained.height = 123;
+            }
+
+            const addToCollection = document.createElement("button");
+            addToCollection.type = "submit";
+            addToCollection.value = "submit";
+            addToCollection.className = "addcard-button";
+            addToCollection.textContent = "+ Ajouter à ma collection";
+
+            cardWrapper.appendChild(cardAttribute);
+            cardWrapper.appendChild(rarityWrapper);
+            cardWrapper.appendChild(cardUntrained);
+
+            if(card.trainedCard){
+                cardWrapper.appendChild(cardTrained);
+            }
+
+            cardElements.appendChild(cardWrapper);
+            cardCol.appendChild(cardElements);
+            cardCol.appendChild(addToCollection);
+            cardsRow.appendChild(cardCol);
+        });
+
+        containerCard.appendChild(cardsRow);
+    }
 }

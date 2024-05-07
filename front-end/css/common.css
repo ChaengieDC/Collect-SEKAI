@@ -127,6 +127,13 @@ label{
     padding: 4px 12px;
 }
 
+.no-result p{
+    font-family: GeosansLight;
+    font-size: 25px;
+    color: #252525;
+    padding-top: 30px;
+}
+
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
@@ -157,6 +164,10 @@ label{
     }
     .reset-button{
         padding: 6px 14px;
+    }
+
+    .no-result p{
+        font-size: 30px;
     }
 }
 
@@ -191,6 +202,10 @@ label{
     }
     .reset-button{
         padding: 6px 24px;
+    }
+
+    .no-result p{
+        font-size: 35px;
     }
 }
 

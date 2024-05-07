@@ -9,7 +9,7 @@
     padding: 0 30px;
 }
 
-.card-wrapper{
+.card-elements{
     position: relative;
 }
 
@@ -29,6 +29,10 @@
     transform: translate(-50%, -50%);
 }
 
+/* Effet de pointeur sur les cartes */
+.card-wrapper:hover{
+    cursor: pointer;
+}
 .card-untrained, .card-trained{
     border-radius: 10px;
 }
@@ -44,19 +48,15 @@
     transform: translate(-100%) rotate(2deg);
 }
 /* Légère animation pour interchanger les deux versions d'une carte au passage de la souris */
-.card-wrapper.has-trained-card:hover .card-untrained{
+.has-trained-card .card-wrapper:hover .card-untrained{
     position: absolute;
     z-index: 0;
     transform: rotate(2deg);
 }
-.card-wrapper.has-trained-card:hover .card-trained{
+.has-trained-card .card-wrapper:hover .card-trained{
     position: relative;
     z-index: 1;
     transform: none;
-}
-/* Effet de pointeur sur les cartes */
-.card-wrapper img:hover{
-    cursor: pointer;
 }
 
 .addcard-button{

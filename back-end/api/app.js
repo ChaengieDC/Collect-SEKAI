@@ -114,6 +114,27 @@ app.get('/getCardByID/:cardID', async(req, res) =>{
     }
 });
 
+// Requête GET pour filtrer les cartes
+app.get('/filterCards', async(req, res) =>{
+    try{
+        const searchTerm = req.query.searchBar;
+        const selectedCharacter = req.query.character;
+        const selectedUnit = req.query.unit;
+        const selectedRarity = req.query.rarity;
+        const selectedAttribute = req.query.attribute;
+
+        if(searchTerm || selectedCharacter || selectedUnit || selectedRarity || selectedAttribute){
+            const filteredCards = await dbservice.filterCards(searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute);
+            res.json(filteredCards);
+        } else{
+            res.status(400).json(`Paramètres manquants dans la requête GET: ${error}`);
+        }
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération des cartes: ${error}`);
+    }
+});
+
 
 app.listen(3000, () =>{
     console.log("App is running...");
