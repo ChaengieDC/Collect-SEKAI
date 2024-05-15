@@ -206,6 +206,7 @@ function openPopup(cardID){
 // Envoi du formulaire de filtrage (requête GET) au clic de l'utilisateur
 document.querySelector("form").addEventListener("submit", function (event){
     event.preventDefault(); // Empêche la soumission par défaut du formulaire
+    
     const formData = new FormData(this);
     const searchTerm = formData.get("searchBar");
     const selectedCharacter = formData.get("character");

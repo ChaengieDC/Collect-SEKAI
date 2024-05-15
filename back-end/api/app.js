@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const cors = require('cors');
 const express = require('express');
 
@@ -8,6 +9,80 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+
+// Requêtes de type POST
+// Requête POST pour inscrire un utilisateur dans la BDD
+app.post('/createUser', async(req, res) =>{
+    const userRegister = req.body;
+
+    try{
+        const userSearch = await dbservice.getUserByNickname(userRegister.nickname);
+        if(userSearch){
+            res.json({ success: false, errorType: "nickname" });
+            return;
+        }
+
+        const emailSearch = await dbservice.getUserByEmail(userRegister.email);
+        if(emailSearch){
+            res.json({ success: false, errorType: "email" });
+            return;
+        }
+
+        if(userRegister.password !== userRegister.confirmPassword){
+            res.json({ success: false, errorType: "password" });
+            return;
+        }
+
+        // Hachage du mot de passe
+        // 10 étant le nombre de fois que le hachage va avoir lieu, un bon compromis entre sécurité et performances
+        const hashedPassword = await bcrypt.hash(userRegister.password, 10);
+
+        // SI la checkbox est coché ALORS true, SINON false
+        const birthdayValue = userRegister.checkboxDate === "on" ? true : false;
+
+        // Objet avec les données de l'utilisateur à enregistrer dans la BDD
+        const userData = {
+            nickname: userRegister.nickname,
+            email: userRegister.email,
+            password: hashedPassword,
+            birthdate: userRegister.birthdate,
+            displayBirthday: birthdayValue
+        };
+
+        await dbservice.createUser(userData);
+        res.json({ success: true });
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de l\'inscription: ${error}`);
+    }
+});
+
+// Requête POST pour connecter un utilisateur
+app.post("/loginUser", async(req, res) =>{
+    const userLogin = req.body;
+
+    try{
+        const userSearch = await dbservice.getUserByNickname(userLogin.nickname);
+        if(!userSearch || userSearch.length === 0){
+            res.json({ success: false });
+            return;
+        }
+
+        // Si l'utilisateur existe, on vérifie si les mots de passe correspondent
+        const hashedPassword = userSearch[0].password;
+        const passwordMatch = await bcrypt.compare(userLogin.password, hashedPassword);
+
+        if(!passwordMatch){
+            res.json({ success: false });
+            return;
+        }
+
+        res.json({ success: true });
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la connexion: ${error}`);
+    }
+});
 
 // Requête POST pour insérer un personnage dans la BDD
 app.post('/postCharacter', async(req, res) =>{
@@ -36,6 +111,7 @@ app.post('/postCard', async(req, res) =>{
 });
 
 
+// Requêtes de type GET
 // Requête GET pour récupérer les groupes avec leurs membres respectifs depuis la BDD
 app.get('/getAllUnitsWithMembers', async(req, res) =>{
     try{

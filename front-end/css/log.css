@@ -43,6 +43,17 @@ label{
     vertical-align: middle;
 }
 
+/* Messages d'erreur */
+.error-margin{
+    margin-bottom: 0 !important;
+}
+.error-text{
+    display: none;
+    font-size: 13px;
+    color: #FF3737;
+    margin-bottom: 10px;
+}
+
 .log-button{
     font-family: GoBOLD;
     font-weight: bold;
@@ -103,6 +114,11 @@ label{
         margin-left: 5px;
     }
 
+    .error-text{
+        font-size: 15px;
+        text-align: left;
+    }
+
     .log-button{
         font-size: 18px;
         padding: 6px 24px;
@@ -156,6 +172,12 @@ label{
     label{
         font-size: 18px;
         margin-left: 5px;
+    }
+
+    .error-text{
+        font-size: 17px;
+        text-align: left;
+        margin-bottom: 15px;
     }
 
     .log-button{

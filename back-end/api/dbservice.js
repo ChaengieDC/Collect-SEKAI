@@ -18,6 +18,35 @@ connection.connect((err) =>{
 });
 
 
+// Fonctions de type POST
+// Fonction pour inscrire un utilisateur dans la BDD
+async function createUser(userData){
+    const query = "INSERT INTO Users (nickname, email, password, birthdate, displayBirthday) VALUES (?, ?, ?, ?, ?)";
+
+    const values = [
+        userData.nickname,
+        userData.email,
+        userData.password,
+        userData.birthdate,
+        userData.displayBirthday
+    ];
+
+    try{
+        const result = await new Promise((resolve, reject) =>{
+            connection.query(query, values, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour insérer un personnage dans la BDD
 async function postCharacter(characterData){
     const query = "INSERT INTO Characters (charaFrame, name, img, introduction, position, gender, birthday, astrologicalSign, height, school, committee, club, partTimeJob, hobbies, specialty, favoriteFood, hatedFood, dislikes, color, voice, id_unit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -99,6 +128,53 @@ async function postCard(cardData){
 }
 
 
+// Fonctions de type GET
+// Fonction pour récupérer un utilisateur via son pseudo
+async function getUserByNickname(nickname){
+    const query = 
+        `SELECT *
+        FROM Users
+        WHERE nickname = ?`;
+
+    try{
+        const userSearch = await new Promise((resolve, reject) =>{
+            connection.query(query, [nickname], (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return userSearch.length > 0 ? userSearch : null;
+    } catch(error){
+        throw error;
+    }
+}
+
+// Fonction pour récupérer un utilisateur via son e-mail
+async function getUserByEmail(email){
+    const query = 
+        `SELECT *
+        FROM Users
+        WHERE email = ?`;
+
+    try{
+        const userSearch = await new Promise((resolve, reject) =>{
+            connection.query(query, [email], (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return userSearch.length > 0 ? userSearch : null;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour récupérer les groupes avec leurs membres respectifs depuis la BDD
 async function getAllUnitsWithMembers(){
     const query =
@@ -177,7 +253,7 @@ async function getCharacterByID(characterID){
 
     try{
         const character = await new Promise((resolve, reject) =>{
-            connection.query(query, characterID, (error, results) =>{
+            connection.query(query, [characterID], (error, results) =>{
                 if(error){
                     reject(error);
                 } else{
@@ -320,7 +396,7 @@ async function getCardByID(cardID){
 
     try{
         const card = await new Promise((resolve, reject) =>{
-            connection.query(query, cardID, (error, results) =>{
+            connection.query(query, [cardID], (error, results) =>{
                 if(error){
                     reject(error);
                 } else{
@@ -397,4 +473,4 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
 }
 
 
-module.exports = { postCharacter, postCard, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllCards, get4StarsCards, getCardByID, filterCards };
+module.exports = { createUser, postCharacter, postCard, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllCards, get4StarsCards, getCardByID, filterCards };
