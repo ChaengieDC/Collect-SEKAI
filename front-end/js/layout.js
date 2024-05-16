@@ -5,7 +5,7 @@
 function loadCSS(){
     const cssLayout = document.createElement("link");
     cssLayout.rel = "stylesheet";
-    cssLayout.href = "../css/layout.css";
+    cssLayout.href = "/css/layout.css";
     document.head.appendChild(cssLayout);
 }
 
@@ -37,8 +37,30 @@ function loadContent(file, targetElement){
         });
 }
 const headerElement = document.querySelector("header");
-loadContent("./nav.html", headerElement);
+loadContent("/nav.html", headerElement);
 const footerElement = document.querySelector("footer");
 if(footerElement){
-    loadContent("./footer.html", footerElement);
+    loadContent("/footer.html", footerElement);
 };
+
+// Modification des éléments selon si un utilisateur est connecté ou non
+fetch("/checkSession")
+    .then(response =>{
+        return response.json();
+    })
+    .then(connectionState =>{
+        if(connectionState.success === true){
+            // Modification du menu "Utilisateur" en "{Pseudo}"
+            document.querySelector("#navbarFourthDropdownMenuLink").innerText = connectionState.nickname;
+
+            document.querySelector("#loginLink").style.display = "none";
+            document.querySelector("#registerLink").style.display = "none";
+        } else{
+            document.querySelector("#profileLink").style.display = "none";
+            document.querySelector("#settingsLink").style.display = "none";
+            document.querySelector("#logoutLink").style.display = "none";
+        }
+    })
+    .catch(error =>{
+        console.error(`Une erreur est survenue lors de la récupération de l'état d'authentification: ${error}`);
+    });

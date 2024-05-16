@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/log.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/log.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link rel="icon" href="../../data/img/icons/favicon.png">
+    <link rel="icon" href="/img/icons/favicon.ico">
     <title>S'inscrire || Collect SEKAI</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
                 <p class="error-text" id="nicknameError">Ce pseudo est déjà utilisé.</p>
                 <input type="email" placeholder="E-mail" class="log-input" id="email" name="email" required><br>
                 <p class="error-text" id="emailError">Cet e-mail est déjà utilisé.</p>
-                <input type="password" placeholder="Mot de passe" class="log-input" id="password" name="password" required><br>
+                <input type="password" placeholder="Mot de passe" minlength="8" class="log-input" id="password" name="password" required><br>
                 <input type="password" placeholder="Confirmation du mot de passe" class="log-input" id="confirmPassword" name="confirmPassword" required><br>
                 <p class="error-text" id="passwordError">Les mots de passe ne correspondent pas.</p>
                 <input type="date" class="log-input" id="birthdate" name="birthdate" required>
@@ -32,13 +32,13 @@
                 </div>
                 <button type="submit" value="Submit" class="log-button">S'inscrire</button><br>
                 <div class="redirect-link">
-                    <a href="./login.html">Se connecter</a>
+                    <a href="/login.html">Se connecter</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <script src="../js/layout.js"></script>
-    <script src="../js/signup.js"></script>
+    <script src="/js/layout.js"></script>
+    <script src="/js/signup.js"></script>
 </body>
 </html>

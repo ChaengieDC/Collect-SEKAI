@@ -3,7 +3,7 @@
 
 // Fonction pour récupérer les données des personnages et générer leur code HTML respectif
 function generateCardsHTML(){
-    fetch("http://localhost:3000/getAllCards")
+    fetch("/getAllCards")
         .then(response =>{
             return response.json();
         })
@@ -28,7 +28,7 @@ function generateCardsHTML(){
                 cardWrapper.onclick = () => openPopup(card.id);
 
                 const cardAttribute = document.createElement("img");
-                cardAttribute.src = card.attributeIcon;
+                cardAttribute.src = "/img/icons/" + card.attributeIcon;
                 cardAttribute.className = "attribute";
                 cardAttribute.alt = card.attribute;
                 cardAttribute.width = 20;
@@ -48,7 +48,7 @@ function generateCardsHTML(){
                 }
                 for(let i=0; i<nbStars; i++){
                     const rarityStar = document.createElement("img");
-                    rarityStar.src = card.rarityStars;
+                    rarityStar.src = "/img/icons/" + card.rarityStars;
                     rarityStar.alt = card.rarity;
                     rarityStar.width = 20;
                     rarityStar.height = 20;
@@ -57,7 +57,7 @@ function generateCardsHTML(){
                 }
 
                 const cardUntrained = document.createElement("img");
-                cardUntrained.src = card.card;
+                cardUntrained.src = "/img/cards/" + card.card;
                 cardUntrained.className = "card-untrained";
                 cardUntrained.alt = card.charaName;
                 cardUntrained.width = 215;
@@ -67,7 +67,7 @@ function generateCardsHTML(){
                 if(card.trainedCard){
                     cardElements.classList.add("has-trained-card");
     
-                    cardTrained.src = card.trainedCard;
+                    cardTrained.src = "/img/cards/" + card.trainedCard;
                     cardTrained.className = "card-trained";
                     cardTrained.alt = card.charaName;
                     cardTrained.width = 215;
@@ -120,7 +120,7 @@ function openPopup(cardID){
     popupContainer.scrollTop = 0;
 
     // Permet de récupérer les données json des personnages
-    fetch("http://localhost:3000/getCardByID/" + cardID)
+    fetch("/getCardByID/" + cardID)
         .then(response =>{
             return response.json();
         })
@@ -138,16 +138,16 @@ function openPopup(cardID){
                 let imageState = 1;
                 document.querySelector(".swap-card").addEventListener("click", () =>{
                     if(imageState == 1){
-                        document.querySelector("#card-popup-img").src = card.trainedCard;
+                        document.querySelector("#card-popup-img").src = "/img/cards/" + card.trainedCard;
                         imageState = 2;
                     } else{
-                        document.querySelector("#card-popup-img").src = card.card;
+                        document.querySelector("#card-popup-img").src = "/img/cards/" + card.card;
                         imageState = 1;
                     }
                 });
             }
 
-            document.querySelector("#card-popup-img").src = card.card;
+            document.querySelector("#card-popup-img").src = "/img/cards/" + card.card;
             document.querySelector("#card-popup-img").alt = card.title;
 
             // Pour ajouter certaines informations seulement si elles sont définies, et les cacher si elles ne le sont pas
@@ -157,7 +157,7 @@ function openPopup(cardID){
             } else{
                 document.querySelector("#card-popup-quote").innerText = `"` + card.quote + `"`;
                 document.querySelector("#card-popup-quote").style.display = "";
-                document.querySelector("#card-popup-voicedQuote").src = card.voicedQuote;
+                document.querySelector("#card-popup-voicedQuote").src = "/sound/" + card.voicedQuote;
                 document.querySelector("#card-popup-voicedQuote").style.display = "";
             }
 
@@ -180,7 +180,7 @@ function openPopup(cardID){
             }
             for(let i=0; i<nbStars; i++){
                 const rarityStar = document.createElement("img");
-                rarityStar.src = card.rarityStars;
+                rarityStar.src = "/img/icons/" + card.rarityStars;
                 rarityStar.alt = card.rarity;
                 rarityStar.width = 25;
                 rarityStar.height = 25;
@@ -188,7 +188,7 @@ function openPopup(cardID){
                 popupRarity.appendChild(rarityStar);
             }
 
-            document.querySelector("#card-popup-attribute").src = card.attributeIcon;
+            document.querySelector("#card-popup-attribute").src = "/img/icons/" + card.attributeIcon;
             document.querySelector("#card-popup-attribute").alt = card.attribute;
             document.querySelector("#card-popup-attribute").width = 25;
             document.querySelector("#card-popup-attribute").height = 25;
@@ -269,7 +269,7 @@ function updateCardList(data){
             cardWrapper.onclick = () => openPopup(card.id);
 
             const cardAttribute = document.createElement("img");
-            cardAttribute.src = card.attributeIcon;
+            cardAttribute.src = "/img/icons/" + card.attributeIcon;
             cardAttribute.className = "attribute";
             cardAttribute.alt = card.attribute;
             cardAttribute.width = 20;
@@ -289,7 +289,7 @@ function updateCardList(data){
             }
             for(let i=0; i<nbStars; i++){
                 const rarityStar = document.createElement("img");
-                rarityStar.src = card.rarityStars;
+                rarityStar.src = "/img/icons/" + card.rarityStars;
                 rarityStar.alt = card.rarity;
                 rarityStar.width = 20;
                 rarityStar.height = 20;
@@ -298,7 +298,7 @@ function updateCardList(data){
             }
 
             const cardUntrained = document.createElement("img");
-            cardUntrained.src = card.card;
+            cardUntrained.src = "/img/cards/" + card.card;
             cardUntrained.className = "card-untrained";
             cardUntrained.alt = card.charaName;
             cardUntrained.width = 215;
@@ -308,7 +308,7 @@ function updateCardList(data){
             if(card.trainedCard){
                 cardElements.classList.add("has-trained-card");
 
-                cardTrained.src = card.trainedCard;
+                cardTrained.src = "/img/cards/" + card.trainedCard;
                 cardTrained.className = "card-trained";
                 cardTrained.alt = card.charaName;
                 cardTrained.width = 215;

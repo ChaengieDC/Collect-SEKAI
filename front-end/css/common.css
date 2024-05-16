@@ -5,15 +5,15 @@
 /* Polices custom */
 @font-face{
     font-family: GeosansLight;
-    src: url("../../data/font/GeosansLight.ttf");
+    src: url("/font/GeosansLight.ttf");
 }
 @font-face{
     font-family: YurukaUB;
-    src: url("../../data/font/FOT-YurukaStd-UB.ttf");
+    src: url("/font/FOT-YurukaStd-UB.ttf");
 }
 @font-face{
     font-family: GoBOLD;
-    src: url("../../data/font/Gobold-Light.otf");
+    src: url("/font/Gobold-Light.otf");
 }
 
 /* Background des pages */
@@ -21,7 +21,7 @@ html{
     overflow-x: hidden;
 }
 body{
-    background-image: url("../../data/img/background.png");
+    background-image: url("/img/background.png");
     background-size: 100% auto;
     overflow: hidden;
 }

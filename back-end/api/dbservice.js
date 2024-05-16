@@ -1,3 +1,7 @@
+// DBSERVICE.JS = Requêtes MySQL
+/* -------------------------- */
+
+// Configuration de la BDD
 const dotenv = require('dotenv');
 const mysql = require('mysql');
 

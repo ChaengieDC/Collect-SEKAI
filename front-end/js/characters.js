@@ -3,7 +3,7 @@
 
 // Fonction pour récupérer les données des personnages et générer leur code HTML respectif
 function generateCharactersHTML(){
-    fetch("http://localhost:3000/getAllUnitsWithMembers")
+    fetch("/getAllUnitsWithMembers")
         .then(response =>{
             return response.json();
         })
@@ -15,7 +15,7 @@ function generateCharactersHTML(){
                 const unitClass = unit === lastUnit ? "last-unit" : "";
 
                 const unitLogo = document.createElement("img");
-                unitLogo.src = unit.logo;
+                unitLogo.src = "/img/units/" + unit.logo;
                 unitLogo.className = "unit-logo";
                 unitLogo.alt = `Logo ${unit.name}`;
                 unitLogo.width = 150;
@@ -33,7 +33,7 @@ function generateCharactersHTML(){
                     charaWrapper.style.display = "inline-block";
 
                     const charaPic = document.createElement("img");
-                    charaPic.src = member.charaFrame;
+                    charaPic.src = "/img/chara/" + member.charaFrame;
                     charaPic.className = "chara-pic";
                     charaPic.alt = member.name;
                     charaPic.width = 195;
@@ -80,7 +80,7 @@ function openPopup(characterID){
     popupContainer.scrollTop = 0;
 
     // Permet de récupérer les données json des personnages
-    fetch("http://localhost:3000/getCharacterByID/" + characterID)
+    fetch("/getCharacterByID/" + characterID)
         .then(response =>{
             return response.json();
         })
@@ -88,7 +88,7 @@ function openPopup(characterID){
             const character = data[0];
             document.querySelector("#chara-popup-name").innerText = character.name;
 
-            document.querySelector("#chara-popup-img").src = character.img;
+            document.querySelector("#chara-popup-img").src = "/img/cards/" + character.img;
             document.querySelector("#chara-popup-img").alt = character.name;
 
             document.querySelector("#chara-popup-introduction").innerText = character.introduction;
@@ -188,7 +188,7 @@ function updateCharacterList(data){
             charaWrapper.style.display = "inline-block";
 
             const charaPic = document.createElement("img");
-            charaPic.src = member.charaFrame;
+            charaPic.src = "/img/chara/" + member.charaFrame;
             charaPic.className = "chara-pic";
             charaPic.alt = member.name;
             charaPic.width = 195;

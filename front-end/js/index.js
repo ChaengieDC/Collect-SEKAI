@@ -3,7 +3,7 @@
 
 // Fonction pour récupérer les trois dernières cartes ✰4 et générer leur code HTML respectif
 function generateLast4StarsCardsHTML(){
-    fetch("http://localhost:3000/get4StarsCards")
+    fetch("/get4StarsCards")
         .then(response =>{
             return response.json();
         })
@@ -22,7 +22,7 @@ function generateLast4StarsCardsHTML(){
                 carouselItem.className = `carousel-item ${cardClass}`;
 
                 const carouselImg = document.createElement("img");
-                carouselImg.src = card.trainedCard;
+                carouselImg.src = "/img/cards/" + card.trainedCard;
                 carouselImg.className = "d-block w-100";
                 carouselImg.alt = `${card.charaName} - ${card.title}`;
 

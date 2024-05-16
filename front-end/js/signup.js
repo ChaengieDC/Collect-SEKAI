@@ -19,11 +19,9 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
     const birthdate = document.getElementById("birthdate").value;
     const checkboxDate = document.getElementById("checkboxDate").checked ? "on" : "off";
 
-    fetch("http://localhost:3000/createUser", {
+    fetch("/createUser", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nickname, email, password, confirmPassword, birthdate, checkboxDate })
         })
         .then(response =>{
@@ -45,7 +43,7 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
                     document.querySelector("#confirmPassword").classList.add("error-margin");
                 }
             } else {
-                window.location.href = "http://127.0.0.1:5500/front-end/html/login.html";
+                window.location.href = "/login.html";
             }
         })
         .catch(error =>{

@@ -1,13 +1,37 @@
+// APP.JS = Routes & Requêtes POST/GET
+/* -------------------------------- */
+
+// Configuration du serveur Express
 const bcrypt = require('bcrypt');
 const cors = require('cors');
+const dotenv = require('dotenv');
 const express = require('express');
+const session = require('express-session');
+const path = require('path');
 
+dotenv.config();
 const app = express();
 const dbservice = require('./dbservice')
+const middleware = require('./middleware');
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false, maxAge: 30 * 24 * 60 * 60 * 1000 }
+}));
+
+app.use(middleware.authenticationRedirect, express.static(path.join(__dirname, '../../front-end/html')));
+app.use('/css', express.static(path.join(__dirname, '../../front-end/css')));
+app.use('/js', express.static(path.join(__dirname, '../../front-end/js')));
+
+app.use('/font', express.static(path.join(__dirname, '../../data/font')));
+app.use('/img', express.static(path.join(__dirname, '../../data/img')));
+app.use('/sound', express.static(path.join(__dirname, '../../data/sound')));
 
 
 // Requêtes de type POST
@@ -77,6 +101,12 @@ app.post("/loginUser", async(req, res) =>{
             return;
         }
 
+        // Enregistrmeent d'une session utilisateur
+        req.session.user = {
+            id: userSearch[0].id,
+            nickname: userSearch[0].nickname,
+        };
+
         res.json({ success: true });
     } catch(error){
         console.error(error);
@@ -112,6 +142,33 @@ app.post('/postCard', async(req, res) =>{
 
 
 // Requêtes de type GET
+// Requête GET pour vérifier si un utilisateur est bien connecté
+app.get('/checkSession', async(req, res) =>{
+    try{
+        if(req.session.user){
+            const nickname = req.session.user.nickname;
+            res.json({ success: true, nickname: nickname });
+        } else{
+            res.json({ success: false });
+        }
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de l'accès à la session: ${error}`);
+    }
+});
+
+// Requête GET pour déconnecter un utilisateur
+app.get('/logoutUser', async(req, res) =>{
+    try{
+        req.session.destroy((error) =>{
+            res.redirect("/index.html");
+        })
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la déconnexion: ${error}`);
+    }
+});
+
 // Requête GET pour récupérer les groupes avec leurs membres respectifs depuis la BDD
 app.get('/getAllUnitsWithMembers', async(req, res) =>{
     try{
