@@ -161,7 +161,7 @@ app.get('/checkSession', async(req, res) =>{
 app.get('/logoutUser', async(req, res) =>{
     try{
         req.session.destroy((error) =>{
-            res.redirect("/index.html");
+            res.redirect("/");
         })
     } catch(error){
         console.error(error);

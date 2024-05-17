@@ -24,7 +24,7 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
                 document.querySelector("#loginError").style.display = "block";
                 document.querySelector("#password").classList.add("error-margin");
             } else{
-                window.location.href = "/index.html";
+                window.location.href = "/";
             }
         })
         .catch(error =>{
