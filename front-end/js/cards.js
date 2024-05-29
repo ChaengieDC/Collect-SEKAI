@@ -157,7 +157,7 @@ function openPopup(cardID){
             } else{
                 document.querySelector("#card-popup-quote").innerText = `"` + card.quote + `"`;
                 document.querySelector("#card-popup-quote").style.display = "";
-                document.querySelector("#card-popup-voicedQuote").src = "/sound/" + card.voicedQuote;
+                document.querySelector("#card-popup-voicedQuote").src = "/sound/quotes/" + card.voicedQuote;
                 document.querySelector("#card-popup-voicedQuote").style.display = "";
             }
 

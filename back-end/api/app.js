@@ -127,6 +127,19 @@ app.post('/postCharacter', async(req, res) =>{
     }
 });
 
+// Requête POST pour insérer une chanson dans la BDD
+app.post('/postSong', async(req, res) =>{
+    const songData = req.body;
+
+    try{
+        await dbservice.postSong(songData);
+        res.send("Données insérées avec succès.");
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de l\'insertion des données: ${error}`);
+    }
+});
+
 // Requête POST pour insérer une carte dans la BDD
 app.post('/postCard', async(req, res) =>{
     const cardData = req.body;
@@ -210,6 +223,29 @@ app.get('/filterCharacters', async(req, res) =>{
     } catch(error){
         console.error(error);
         res.status(500).send(`Erreur lors de la récupération des personnages: ${error}`);
+    }
+});
+
+// Requête GET pour récupérer toutes les chansons
+app.get('/getAllSongs', async(req, res) =>{
+    try{
+        const songs = await dbservice.getAllSongs();
+        res.json(songs);
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération des chansons: ${error}`);
+    }
+});
+
+// Requête GET pour récupérer une chanson via son ID
+app.get('/getSongByID/:songID', async(req, res) =>{
+    const songID = req.params.songID;
+    try{
+        const song = await dbservice.getSongByID(songID);
+        res.json(song);
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération de la chanson: ${error}`);
     }
 });
 

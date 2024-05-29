@@ -25,8 +25,8 @@ function generateCharactersHTML(){
                 unitsRow.className = `row ${unitClass}`;
 
                 unit.members.forEach(member =>{
-                    const membersCol = document.createElement("div");
-                    membersCol.className = "col";
+                    const memberCol = document.createElement("div");
+                    memberCol.className = "col";
 
                     const charaWrapper = document.createElement("div");
                     charaWrapper.className = "chara-wrapper";
@@ -47,8 +47,8 @@ function generateCharactersHTML(){
 
                     charaWrapper.appendChild(charaPic);
                     charaWrapper.appendChild(charaName);
-                    membersCol.appendChild(charaWrapper);
-                    unitsRow.appendChild(membersCol);
+                    memberCol.appendChild(charaWrapper);
+                    unitsRow.appendChild(memberCol);
                 });
 
                 const containerChara = document.querySelector(".container-chara");
@@ -179,9 +179,9 @@ function updateCharacterList(data){
         charaRow.className = "row characters-grid"
 
         data.forEach(member =>{
-            const membersCol = document.createElement("div");
-            membersCol.className = "col";
-            membersCol.style.marginTop = "30px";
+            const memberCol = document.createElement("div");
+            memberCol.className = "col";
+            memberCol.style.marginTop = "30px";
 
             const charaWrapper = document.createElement("div");
             charaWrapper.className = "chara-wrapper";
@@ -203,8 +203,8 @@ function updateCharacterList(data){
 
             charaWrapper.appendChild(charaPic);
             charaWrapper.appendChild(charaName);
-            membersCol.appendChild(charaWrapper);
-            charaRow.appendChild(membersCol);
+            memberCol.appendChild(charaWrapper);
+            charaRow.appendChild(memberCol);
         });
 
         containerChara.appendChild(charaRow);

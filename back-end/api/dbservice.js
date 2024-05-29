@@ -96,6 +96,57 @@ async function postCharacter(characterData){
     }
 }
 
+// Fonction pour insérer une chanson dans la BDD
+async function postSong(songData){
+    const query =
+        `INSERT INTO Songs (id, title, cover, songAudio, type, easyLevel, easyNotes, normalLevel, normalNotes, hardLevel, hardNotes, expertLevel, expertNotes, masterLevel, masterNotes, appendLevel, appendNotes, 
+            bpm, arranger, composer, lyricist, mv, mv2dLink, mv3dLink, id_unit)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    const values = [
+        songData.id,
+        songData.title,
+        songData.cover,
+        songData.songAudio,
+        songData.type,
+        songData.easyLevel,
+        songData.easyNotes,
+        songData.normalLevel,
+        songData.normalNotes,
+        songData.hardLevel,
+        songData.hardNotes,
+        songData.expertLevel,
+        songData.expertNotes,
+        songData.masterLevel,
+        songData.masterNotes,
+        songData.appendLevel,
+        songData.appendNotes,
+        songData.bpm,
+        songData.arranger,
+        songData.composer,
+        songData.lyricist,
+        songData.mv,
+        songData.mv2dLink,
+        songData.mv3dLink,
+        songData.id_unit
+    ];
+
+    try{
+        const result = await new Promise((resolve, reject) =>{
+            connection.query(query, values, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour insérer une carte dans la BDD
 async function postCard(cardData){
     const query = "INSERT INTO Cards (id, title, quote, voicedQuote, card, trainedCard, attribute, attributeIcon, rarity, rarityStars, skillName, id_character) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -342,6 +393,52 @@ async function filterCharacters(searchTerm, selectedUnit, selectedSchool, select
     }
 }
 
+// Fonction pour récupérer toutes les chansons
+async function getAllSongs(){
+    const query = 
+        `SELECT *
+        FROM Songs`;
+
+    try{
+        const songs = await new Promise((resolve, reject) =>{
+            connection.query(query, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return songs;
+    } catch(error){
+        throw error;
+    }
+}
+
+// Fonction pour récupérer une chanson via son ID
+async function getSongByID(songID){
+    const query = 
+        `SELECT Songs.*, Units.logo as unitLogo, Units.name as unitName
+        FROM Songs
+        INNER JOIN Units ON Songs.id_unit = Units.id
+        WHERE Songs.id = ?`;
+
+    try{
+        const song = await new Promise((resolve, reject) =>{
+            connection.query(query, [songID], (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return song;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour récupérer toutes les cartes
 async function getAllCards(){
     const query = 
@@ -477,4 +574,4 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
 }
 
 
-module.exports = { createUser, postCharacter, postCard, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllCards, get4StarsCards, getCardByID, filterCards };
+module.exports = { createUser, postCharacter, postSong, postCard, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, getAllCards, get4StarsCards, getCardByID, filterCards };

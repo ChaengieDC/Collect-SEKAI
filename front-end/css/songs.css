@@ -1,0 +1,174 @@
+/* CSS de la page des CHANSONS */
+/* --------------------------- */
+/* --------------------------- */
+
+.container-song{
+    background-color: #fafafa;
+    height: auto;
+    min-height: 100vh;
+    padding: 0 30px;
+}
+
+/* Effet de pointeur sur les chansons */
+.song-cover:hover{
+    cursor: pointer;
+}
+
+/* Styles des informations du pop-up */
+#song-popup-title{
+    font-family: GeosansLight;
+    font-size: 19px;
+    font-weight: bold;
+    color: #004163;
+    margin: 15px 0;
+}
+
+#song-popup-cover{
+    border-bottom: 10px solid #e4f2fa;
+    width: 65%;
+    margin-bottom: 15px;
+}
+
+#song-popup-unit{
+    width: 35%;
+    padding-bottom: 0.75vh;
+}
+#song-popup-songAudio{
+    margin-bottom: 15px;
+}
+
+.difficulty-icons{
+    margin-bottom: 6px;
+}
+
+#mv2d-selector, #mv3d-selector{
+    background: transparent;
+    color: #004163;
+    border: none;
+    border-bottom: 3px solid #6e9bb38e;
+    padding-top: 15px;
+    margin-bottom: 0.75vh;
+}
+#mv2d-selector:hover, #mv3d-selector:hover{
+    opacity: 70%;
+}
+
+#mv-container{
+    border-top: none !important;
+}
+#mv-container td{
+    padding-bottom: 15px;
+}
+.iframe-container{
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; 
+}
+.iframe-container iframe{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .song-cover{
+        width: 300px;
+        height: 300px;
+    }
+
+    /* Styles des informations du pop-up */
+    #song-popup-title{
+        font-size: 21px;
+        margin: 20px 0;
+    }
+
+    #song-popup-cover{
+        border-bottom: 15px solid #e4f2fa;
+        width: 50%;
+        margin-bottom: 20px;
+    }
+
+    #song-popup-unit{
+        width: 20%;
+    }
+    #song-popup-songAudio{
+        margin-bottom: 20px;
+    }
+
+    .difficulty-icons{
+        width: 19px;
+        height: 19px;
+        margin-bottom: 5px;
+    }
+
+    #mv2d-selector, #mv3d-selector{
+        padding-top: 20px;
+    }
+
+    #mv-container td{
+        padding-bottom: 20px;
+    }
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    .container-song{
+        width: 70%;
+        padding-bottom: 30px;
+        margin: 0 5.5vw;
+    }
+
+    .song-cover{
+        width: 350px;
+        height: 350px;
+    }
+
+    /* Styles des informations du pop-up */
+    #song-popup-title{
+        font-size: 23px;
+        margin: 25px 0;
+    }
+
+    #song-popup-cover{
+        border-bottom: 15px solid #e4f2fa;
+        width: 57.5%;
+        margin-bottom: 25px;
+    }
+
+    #song-popup-unit{
+        width: 25%;
+    }
+    #song-popup-songAudio{
+        margin-bottom: 27.5px;
+    }
+
+    .difficulty-icons{
+        width: 21px;
+        height: 21px;
+    }
+
+    #mv2d-selector, #mv3d-selector{
+        padding-top: 25px;
+    }
+    
+    #mv-container td{
+        padding-bottom: 25px;
+    }
+}
+
+/* Tailles spécifiques pour éviter de surcharger sur les versions PC */
+@media screen and (min-width: 1282px){
+    .container-song{
+        margin: 0 6.5vw;
+    }
+
+    /* Styles des informations du pop-up */
+    #song-popup-cover{
+        border-bottom: 20px solid #e4f2fa;
+    }
+}

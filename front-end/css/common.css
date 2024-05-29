@@ -303,7 +303,8 @@ tr{
 }
 
 .popup-icons{
-    text-align: left;
+    text-align: center;
+    width: 10%;
 }
 th{
     color: #004163;

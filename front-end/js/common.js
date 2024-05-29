@@ -25,6 +25,43 @@ resetButton.addEventListener("click", () =>{
 /* ------------ */
 /* ------------ */
 
+// Fonction d'arrêt de l'audio
+function stopAudio(){
+    // Pour les chansons
+    const songAudio = document.querySelector("#song-popup-songAudio");
+    if(songAudio){
+        songAudio.pause();
+        songAudio.currentTime = 0;
+    }
+
+    // Pour les citations des cartes
+    const voicedQuote = document.querySelector("#card-popup-voicedQuote");
+    if(voicedQuote){
+        voicedQuote.pause();
+        voicedQuote.currentTime = 0;
+    }
+}
+
+// Fonction de réinitialisation des clips
+function resetMVs(){
+    const mv2dButton = document.querySelector("#mv2d-selector");
+    const mv3dButton = document.querySelector("#mv3d-selector");
+    const mv2dVideo = document.querySelector("#mv2d-video");
+    const mv3dVideo = document.querySelector("#mv3d-video");
+
+    document.querySelector("#mv-selectors").style.display = "";
+    mv2dButton.style.display = "none";
+    mv2dButton.disabled = false;
+    mv3dButton.style.display = "none";
+    mv3dButton.disabled = false;
+
+    document.querySelector("#mv-container").style.display = "";
+    mv2dVideo.style.display = "none";
+    mv2dVideo.src = "";
+    mv3dVideo.style.display = "none";
+    mv3dVideo.src = "";
+}
+
 // Pour fermer le pop-up
 // Via la croix
 const closeButton = document.querySelector(".close");
@@ -34,6 +71,15 @@ closeButton.addEventListener("click", () =>{
     popupContainer.style.display = "none";
     htmlScroll.style.overflow = "";
     document.body.style.overflow = "";
+
+    // Arrêt de l'audio à la fermeture du pop-up
+    if(window.location.pathname === "/songs.html" || window.location.pathname === "/cards.html"){
+        stopAudio();     
+    }
+    // Réinitialisation des clips
+    if(window.location.pathname === "/songs.html"){
+        resetMVs();
+    }
 });
 // Via un clic en dehors de ce dernier
 popupContainer.addEventListener("click", (e) =>{
@@ -42,5 +88,14 @@ popupContainer.addEventListener("click", (e) =>{
         popupContainer.style.display = "none";
         htmlScroll.style.overflow = "";
         document.body.style.overflow = "";
+
+        // Arrêt de l'audio à la fermeture du pop-up
+        if(window.location.pathname === "/songs.html" || window.location.pathname === "/cards.html"){
+            stopAudio();     
+        }
+        // Réinitialisation des clips
+        if(window.location.pathname === "/songs.html"){
+            resetMVs();
+        }
     }
 });
