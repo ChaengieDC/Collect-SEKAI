@@ -104,19 +104,23 @@ function openPopup(songID){
                     mv3dButton.style.display = "inline-block";
     
                     mv2dVideo.style.display = "inline-block";
-                    mv2dVideo.src = song.mv2dLink;
+                    mv2dVideo.src = song.mv2dLink + "&enablejsapi=1";
     
                     mv2dButton.addEventListener("click", () =>{
                         mv3dVideo.style.display = "none";
+                        // Message vers l'API de YouTube pour arrêter la vidéo
+                        mv3dVideo.contentWindow.postMessage('{"event":"command","func":"stopVideo"}', 'https://www.youtube.com');
     
                         mv2dVideo.style.display = "inline-block";
-                        mv2dVideo.src = song.mv2dLink;
+                        mv2dVideo.src = song.mv2dLink + "&enablejsapi=1";
                     });
                     mv3dButton.addEventListener("click", () =>{
                         mv2dVideo.style.display = "none";
+                        // Message vers l'API de YouTube pour arrêter la vidéo
+                        mv2dVideo.contentWindow.postMessage('{"event":"command","func":"stopVideo"}', 'https://www.youtube.com');
     
                         mv3dVideo.style.display = "inline-block";
-                        mv3dVideo.src = song.mv3dLink;
+                        mv3dVideo.src = song.mv3dLink + "&enablejsapi=1";
                     });
                 } else if(song.mv.includes("Clip 2D")){
                     mv2dButton.style.display = "inline-block";

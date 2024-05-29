@@ -37,10 +37,6 @@
     margin-bottom: 15px;
 }
 
-.difficulty-icons{
-    margin-bottom: 6px;
-}
-
 #mv2d-selector, #mv3d-selector{
     background: transparent;
     color: #004163;
@@ -103,7 +99,6 @@
     .difficulty-icons{
         width: 19px;
         height: 19px;
-        margin-bottom: 5px;
     }
 
     #mv2d-selector, #mv3d-selector{
