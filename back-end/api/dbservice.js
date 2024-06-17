@@ -439,6 +439,63 @@ async function getSongByID(songID){
     }
 }
 
+// Fonction pour filtrer les chansons
+async function filterSongs(searchTerm, selectedUnit, selectedType, selectedVideo){
+    const sqlParams = [];
+    let whereClause = "1 = 1";
+
+    // SI une information est fournie, ALORS on ajoute la clause à la requête
+    // On push également le paramètre dans la requête, qui va remplacer les ? des clauses par la suite
+    if(searchTerm){
+        whereClause +=
+            ` AND (
+                Songs.title LIKE CONCAT('%', ?, '%') OR
+                Songs.type LIKE CONCAT('%', ?, '%') OR
+                Songs.arranger LIKE CONCAT('%', ?, '%') OR
+                Songs.composer LIKE CONCAT('%', ?, '%') OR
+                Songs.lyricist LIKE CONCAT('%', ?, '%') OR
+                Songs.mv LIKE CONCAT('%', ?, '%') OR
+                Units.name LIKE CONCAT('%', ?, '%')
+            )`;
+        for (let i=0; i<7; i++){
+            sqlParams.push(searchTerm);
+        }
+    }
+    if(selectedUnit){
+        whereClause += " AND Units.id = ?";
+        sqlParams.push(selectedUnit);
+    }
+    if(selectedType){
+        whereClause += " AND Songs.type = ?";
+        sqlParams.push(selectedType);
+    }
+    if(selectedVideo){
+        whereClause += " AND Songs.mv LIKE ?";
+        sqlParams.push(selectedVideo);
+    }
+
+    const query =
+        `SELECT Songs.*
+        FROM Songs
+        INNER JOIN Units ON Songs.id_unit = Units.id
+        WHERE ${whereClause}`;
+
+    try{
+        const filteredSongs = await new Promise((resolve, reject) =>{
+            connection.query(query, sqlParams, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return filteredSongs;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour récupérer toutes les cartes
 async function getAllCards(){
     const query = 
@@ -511,7 +568,7 @@ async function getCardByID(cardID){
     }
 }
 
-// Fonction pour filtrer les personnages
+// Fonction pour filtrer les cartes
 async function filterCards(searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute){
     const sqlParams = [];
     let whereClause = "1 = 1";
@@ -574,4 +631,4 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
 }
 
 
-module.exports = { createUser, postCharacter, postSong, postCard, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, getAllCards, get4StarsCards, getCardByID, filterCards };
+module.exports = { createUser, postCharacter, postSong, postCard, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, getAllCards, get4StarsCards, getCardByID, filterCards };

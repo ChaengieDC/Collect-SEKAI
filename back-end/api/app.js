@@ -249,6 +249,26 @@ app.get('/getSongByID/:songID', async(req, res) =>{
     }
 });
 
+// Requête GET pour filtrer les chansons
+app.get('/filterSongs', async(req, res) =>{
+    try{
+        const searchTerm = req.query.searchBar;
+        const selectedUnit = req.query.unit;
+        const selectedType = req.query.type;
+        const selectedVideo = req.query.mv;
+
+        if(searchTerm || selectedUnit || selectedType || selectedVideo){
+            const filteredSongs = await dbservice.filterSongs(searchTerm, selectedUnit, selectedType, selectedVideo);
+            res.json(filteredSongs);
+        } else{
+            res.status(400).json(`Paramètres manquants dans la requête GET: ${error}`);
+        }
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération des chansons: ${error}`);
+    }
+});
+
 // Requête GET pour récupérer toutes les cartes
 app.get('/getAllCards', async(req, res) =>{
     try{

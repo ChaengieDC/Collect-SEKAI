@@ -229,12 +229,12 @@ document.querySelector("form").addEventListener("submit", function (event){
             console.error(`Une erreur est survenue lors du filtrage des cartes: ${error}`);
         });
 });
-// Fonction pour réorganiser la liste des personnages
+// Fonction pour réorganiser la liste des cartes
 function updateCardList(data){
     const containerCard = document.querySelector(".container-card");
     containerCard.style.paddingBottom = "30px";
 
-    // Boucle qui retire tous les éléments à chaque ouverture du pop-up pour éviter une duplication
+    // Boucle qui retire tous les éléments à chaque recherche pour éviter une duplication
     while(containerCard.firstChild){
         containerCard.removeChild(containerCard.firstChild);
     }

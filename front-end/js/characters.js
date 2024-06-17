@@ -160,7 +160,7 @@ function updateCharacterList(data){
     const containerChara = document.querySelector(".container-chara");
     containerChara.style.paddingBottom = "30px";
 
-    // Boucle qui retire tous les éléments à chaque ouverture du pop-up pour éviter une duplication
+    // Boucle qui retire tous les éléments à chaque recherche pour éviter une duplication
     while(containerChara.firstChild){
         containerChara.removeChild(containerChara.firstChild);
     }

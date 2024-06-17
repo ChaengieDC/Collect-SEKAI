@@ -144,3 +144,76 @@ function openPopup(songID){
             console.error(`Une erreur est survenue lors du chargement du pop-up: ${error}`);
         });
 }
+
+
+// Envoi du formulaire de filtrage (requête GET) au clic de l'utilisateur
+document.querySelector("form").addEventListener("submit", function (event){
+    event.preventDefault(); // Empêche la soumission par défaut du formulaire
+    
+    const formData = new FormData(this);
+    const searchTerm = formData.get("searchBar");
+    const selectedUnit = formData.get("unit");
+    const selectedType = formData.get("type");
+    const selectedVideo = formData.get("mv");
+    const url = form.action;
+    // Envoi d'une requête au serveur pour récupérer les chansons filtrées
+    fetch(`${url}?searchBar=${searchTerm}&unit=${selectedUnit}&type=${selectedType}&mv=${selectedVideo}`)
+        .then(response =>{
+            return response.json();
+        })
+        .then(data =>{
+            // Pour update l'affichage avec les chansons filtrées
+            updateSongList(data);
+            // Remettre la page en haut lors de la réorganisation des chansons
+            window.scrollTo(0, 0);
+        })
+        .catch(error =>{
+            console.error(`Une erreur est survenue lors du filtrage des chansons: ${error}`);
+        });
+});
+// Fonction pour réorganiser la liste des chansons
+function updateSongList(data){
+    const containerSong = document.querySelector(".container-song");
+    containerSong.style.paddingBottom = "30px";
+
+    // Boucle qui retire tous les éléments à chaque recherche pour éviter une duplication
+    while(containerSong.firstChild){
+        containerSong.removeChild(containerSong.firstChild);
+    }
+
+    if(data.length === 0){
+        const noResult = document.createElement("div");
+        noResult.className = "no-result";
+
+        const textResult = document.createElement("p");
+        textResult.textContent = "Pas de résultat."
+
+        noResult.appendChild(textResult);
+        containerSong.appendChild(noResult);
+    } else{
+        // Tri des données par ID de façon décroissante (les plus récentes en haut)
+        data.sort((a, b) => b.id - a.id);
+
+        const songsRow = document.createElement("div");
+        songsRow.className = `row cards-grid`;
+
+        data.forEach(song =>{
+            const songCol = document.createElement("div");
+            songCol.className = "col";
+            songCol.style.marginTop = "40px";
+
+            const songCover = document.createElement("img");
+            songCover.src = "/img/covers/" + song.cover;
+            songCover.className = "song-cover";
+            songCover.alt = song.title;
+            songCover.width = 250;
+            songCover.height = 250;
+            songCover.onclick = () => openPopup(song.id);
+
+            songCol.appendChild(songCover);
+            songsRow.appendChild(songCol);
+        });
+
+        containerSong.appendChild(songsRow);
+    }
+}
