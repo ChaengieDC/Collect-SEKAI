@@ -51,10 +51,13 @@ fetch("/checkSession")
     .then(connectionState =>{
         if(connectionState.success === true){
             // Modification du menu "Utilisateur" en "{Pseudo}"
-            document.querySelector("#navbarFourthDropdownMenuLink").innerText = connectionState.nickname;
+            document.querySelector("#navbarFourthDropdownMenuLink").innerText = connectionState.nickname + " ";
 
             document.querySelector("#loginLink").style.display = "none";
             document.querySelector("#registerLink").style.display = "none";
+
+            // Redirection vers le bon profil utilisateur
+            document.querySelector("#profileLink").href = `/profile/${connectionState.id}/${connectionState.nickname}`;
         } else{
             document.querySelector("#profileLink").style.display = "none";
             document.querySelector("#settingsLink").style.display = "none";

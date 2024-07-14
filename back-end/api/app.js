@@ -159,8 +159,9 @@ app.post('/postCard', async(req, res) =>{
 app.get('/checkSession', async(req, res) =>{
     try{
         if(req.session.user){
+            const id = req.session.user.id;
             const nickname = req.session.user.nickname;
-            res.json({ success: true, nickname: nickname });
+            res.json({ success: true, id: id, nickname: nickname });
         } else{
             res.json({ success: false });
         }
@@ -168,6 +169,11 @@ app.get('/checkSession', async(req, res) =>{
         console.error(error);
         res.status(500).send(`Erreur lors de l'accès à la session: ${error}`);
     }
+});
+
+// Requête GET pour rediriger vers le bon profil utilisateur
+app.get('/profile/:id/:username', async(req, res) =>{
+    res.sendFile(path.join(__dirname, '../../front-end/html/profile.html'));
 });
 
 // Requête GET pour déconnecter un utilisateur
@@ -179,6 +185,18 @@ app.get('/logoutUser', async(req, res) =>{
     } catch(error){
         console.error(error);
         res.status(500).send(`Erreur lors de la déconnexion: ${error}`);
+    }
+});
+
+// Requête GET pour récupérer un utilisateur via son ID
+app.get('/getUserByID/:userID', async(req, res) =>{
+    const userID = req.params.userID;
+    try{
+        const user = await dbservice.getUserByID(userID);
+        res.json(user);
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération de l'utilisateur: ${error}`);
     }
 });
 

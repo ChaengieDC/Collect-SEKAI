@@ -184,6 +184,29 @@ async function postCard(cardData){
 
 
 // Fonctions de type GET
+// Fonction pour récupérer un utilisateur via son ID
+async function getUserByID(userID){
+    const query = 
+        `SELECT *
+        FROM Users
+        WHERE id = ?`;
+
+    try{
+        const user = await new Promise((resolve, reject) =>{
+            connection.query(query, [userID], (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return user;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour récupérer un utilisateur via son pseudo
 async function getUserByNickname(nickname){
     const query = 
@@ -631,4 +654,4 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
 }
 
 
-module.exports = { createUser, postCharacter, postSong, postCard, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, getAllCards, get4StarsCards, getCardByID, filterCards };
+module.exports = { createUser, postCharacter, postSong, postCard, getUserByID, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, getAllCards, get4StarsCards, getCardByID, filterCards };
