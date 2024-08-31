@@ -6,7 +6,9 @@
     background-color: #fafafa;
     height: auto;
     min-height: 100vh;
-    padding: 0 30px;
+    padding-right: 30px;
+    padding-bottom: 40px;
+    padding-left: 30px;
 }
 
 .card-elements{
@@ -183,7 +185,6 @@
 @media screen and (min-width: 992px){
     .container-card{
         width: 70%;
-        padding-bottom: 30px;
         margin: 0 5.5vw;
     }
 

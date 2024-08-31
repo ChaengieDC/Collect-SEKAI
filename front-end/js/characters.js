@@ -27,6 +27,7 @@ function generateCharactersHTML(){
                 unit.members.forEach(member =>{
                     const memberCol = document.createElement("div");
                     memberCol.className = "col";
+                    memberCol.style.marginTop = "30px";
 
                     const charaWrapper = document.createElement("div");
                     charaWrapper.className = "chara-wrapper";
@@ -198,7 +199,6 @@ function updateCharacterList(data){
             const charaName = document.createElement("h4");
             charaName.className = "chara-name";
             charaName.style.color = member.unitColor;
-            charaName.style.marginBottom = 0;
             charaName.textContent = member.name;
 
             charaWrapper.appendChild(charaPic);

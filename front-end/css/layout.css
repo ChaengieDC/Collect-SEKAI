@@ -162,17 +162,11 @@ footer{
 /* ---------------- */
 
 /* Pour que la navbar ne cache pas une partie du contenu */
-/* Sur la page d'accueil */
-#homepage{
+#homepage, #charapage, #songpage, #cardpage, #profilepage{
     margin-top: 87px;
 }
-/* Sur la page d'inscription + connexion */
 #logpage{
     margin-top: 104px;
-}
-/* Sur la page des personnages, chansons + cartes */
-#charapage, #songpage, #cardpage{
-    margin-top: 87px;
 }
 
 

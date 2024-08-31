@@ -17,7 +17,7 @@ function generateSongsHTML(){
             data.forEach(song =>{
                 const songCol = document.createElement("div");
                 songCol.className = "col";
-                songCol.style.marginTop = "40px";
+                songCol.style.marginTop = "30px";
 
                 const songCover = document.createElement("img");
                 songCover.src = "/img/covers/" + song.cover;
@@ -174,7 +174,6 @@ document.querySelector("form").addEventListener("submit", function (event){
 // Fonction pour réorganiser la liste des chansons
 function updateSongList(data){
     const containerSong = document.querySelector(".container-song");
-    containerSong.style.paddingBottom = "30px";
 
     // Boucle qui retire tous les éléments à chaque recherche pour éviter une duplication
     while(containerSong.firstChild){
@@ -200,7 +199,7 @@ function updateSongList(data){
         data.forEach(song =>{
             const songCol = document.createElement("div");
             songCol.className = "col";
-            songCol.style.marginTop = "40px";
+            songCol.style.marginTop = "30px";
 
             const songCover = document.createElement("img");
             songCover.src = "/img/covers/" + song.cover;

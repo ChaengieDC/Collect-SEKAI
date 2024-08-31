@@ -44,26 +44,28 @@ if(footerElement){
 };
 
 // Modification des éléments selon si un utilisateur est connecté ou non
-fetch("/checkSession")
-    .then(response =>{
-        return response.json();
-    })
-    .then(connectionState =>{
-        if(connectionState.success === true){
-            // Modification du menu "Utilisateur" en "{Pseudo}"
-            document.querySelector("#navbarFourthDropdownMenuLink").innerText = connectionState.nickname + " ";
+document.addEventListener("DOMContentLoaded", () =>{
+    fetch("/checkSession")
+        .then(response =>{
+            return response.json();
+        })
+        .then(connectionState =>{
+            if(connectionState.success){
+                // Modification du menu "Utilisateur" en "{Pseudo}"
+                document.querySelector("#navbarFourthDropdownMenuLink").innerText = connectionState.nickname + " ";
 
-            document.querySelector("#loginLink").style.display = "none";
-            document.querySelector("#registerLink").style.display = "none";
+                document.querySelector("#loginLink").style.display = "none";
+                document.querySelector("#registerLink").style.display = "none";
 
-            // Redirection vers le bon profil utilisateur
-            document.querySelector("#profileLink").href = `/profile/${connectionState.id}/${connectionState.nickname}`;
-        } else{
-            document.querySelector("#profileLink").style.display = "none";
-            document.querySelector("#settingsLink").style.display = "none";
-            document.querySelector("#logoutLink").style.display = "none";
-        }
-    })
-    .catch(error =>{
-        console.error(`Une erreur est survenue lors de la récupération de l'état d'authentification: ${error}`);
-    });
+                // Redirection vers le bon profil utilisateur
+                document.querySelector("#profileLink").href = `/profile/${connectionState.id}/${connectionState.nickname}`;
+            } else{
+                document.querySelector("#profileLink").style.display = "none";
+                document.querySelector("#settingsLink").style.display = "none";
+                document.querySelector("#logoutLink").style.display = "none";
+            }
+        })
+        .catch(error =>{
+            console.error(`Une erreur est survenue lors de la récupération de l'état d'authentification: ${error}`);
+        });
+});

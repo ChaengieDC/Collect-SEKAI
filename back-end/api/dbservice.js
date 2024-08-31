@@ -184,29 +184,6 @@ async function postCard(cardData){
 
 
 // Fonctions de type GET
-// Fonction pour récupérer un utilisateur via son ID
-async function getUserByID(userID){
-    const query = 
-        `SELECT *
-        FROM Users
-        WHERE id = ?`;
-
-    try{
-        const user = await new Promise((resolve, reject) =>{
-            connection.query(query, [userID], (error, results) =>{
-                if(error){
-                    reject(error);
-                } else{
-                    resolve(results);
-                }
-            });
-        });
-        return user;
-    } catch(error){
-        throw error;
-    }
-}
-
 // Fonction pour récupérer un utilisateur via son pseudo
 async function getUserByNickname(nickname){
     const query = 
@@ -248,6 +225,30 @@ async function getUserByEmail(email){
             });
         });
         return userSearch.length > 0 ? userSearch : null;
+    } catch(error){
+        throw error;
+    }
+}
+
+// Fonction pour récupérer un profil utilisateur via son ID
+async function getUserProfileByID(userID){
+    const query = 
+        `SELECT Users.nickname, Users.birthdate, Users.displayBirthday, User_Profiles.*
+        FROM Users
+        LEFT JOIN User_Profiles ON Users.id = User_Profiles.id_user
+        WHERE Users.id = ?`;
+
+    try{
+        const user = await new Promise((resolve, reject) =>{
+            connection.query(query, [userID], (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results[0]);
+                }
+            });
+        });
+        return user;
     } catch(error){
         throw error;
     }
@@ -654,4 +655,4 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
 }
 
 
-module.exports = { createUser, postCharacter, postSong, postCard, getUserByID, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, getAllCards, get4StarsCards, getCardByID, filterCards };
+module.exports = { createUser, postCharacter, postSong, postCard, getUserProfileByID, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, getAllCards, get4StarsCards, getCardByID, filterCards };

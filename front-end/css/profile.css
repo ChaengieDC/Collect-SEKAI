@@ -1,0 +1,237 @@
+/* CSS de la page de PROFIL */
+/* ------------------------ */
+/* ------------------------ */
+
+.container-profile{
+    background-color: #fafafa;
+    padding: 30px;
+}
+
+p{
+    font-family: GeosansLight;
+}
+
+.profile-picture{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.username{
+    font-family: YurukaUB;
+    color: #004163;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+.user-desc, .user-birthday{
+    color: #252525;
+    margin-bottom: 0;
+}
+
+.settings-button{
+    background-color: #F8F9FA;
+    border-top: 2px solid #6e9bb359;
+    border-bottom: 2px solid #6e9bb359;
+    border-left: 2px solid #6e9bb359;
+    border-radius: 0;
+    border-bottom-left-radius: 10px;
+    padding: 6px 10px;
+    position: fixed;
+    top: 87px;
+    right: -1px;
+}
+.settings-title{
+    display: none;
+}
+.social-wrapper{
+    margin-bottom: 1.5rem;
+}
+.social-link{
+    padding: 0 4px;
+}
+
+.fav-info{
+    line-height: 1;
+}
+.fav-title{
+    font-size: 18px;
+    font-weight: bold;
+    color: #004163;
+    margin-bottom: 0;
+}
+.fav-unit, .fav-chara, .fav-song{
+    color: #7A8C9F;
+    margin-bottom: 0.5rem;
+}
+
+/* Ligne de séparation entre le profil et la collection */
+hr{
+    border-top: 1px solid #6e9bb38e !important;
+    margin: 30px 0 !important;
+}
+
+.collection-title{
+    font-family: GoBOLD;
+    font-size: 18px;
+    font-weight: bold;
+    color: #004163;
+    margin-bottom: 0.5rem;
+}
+.collection-selectors{
+    font-family: GoBOLD;
+}
+.collection-selectors button{
+    font-size: 13px;
+    font-weight: 400;
+    background-color: #006196;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 1px;
+}
+.collection-selectors button:hover{
+    background-color: #004163;
+}
+
+
+/* Modifications pour un responsive TABLETTE + PC */
+@media (min-width: 576px){
+    .user-info-wrapper{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        align-items: center;
+    }
+
+    .profile-picture{
+        justify-self: end;
+    }
+
+    .user-info{
+        justify-self: start;
+        text-align: left;
+    }
+    .username{
+        margin-top: 0;
+    }
+
+    .settings-button{
+        display: inline-block;
+        font-family: GeosansLight;
+        font-weight: bold;
+        color:#252525;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        position: static;
+    }
+    .settings-button:hover{
+        background-color: #f3f3f3;
+    }
+    .settings-button i, .settings-title{
+        padding: 0 2px;
+    }
+    .settings-title{
+        display: inline-block;
+    }
+    .social-wrapper{
+        margin-bottom: 0;
+    }
+
+    .fav-wrapper{
+        display: flex;
+        justify-content: space-around;
+    }
+    .fav-unit, .fav-chara, .fav-song{
+        margin-bottom: 0;
+    }
+}
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .user-info-wrapper{
+        gap: 15px;
+    }
+    
+    .profile-picture{
+        width: 175px;
+        height: 175px;
+    }
+
+    .user-desc, .user-birthday{
+        font-size: 18px;
+    }
+
+    .settings-button{
+        padding: 3px 10px;
+    }
+    .social-wrapper img{
+        width: auto;
+        height: 20px;
+    }
+
+    .fav-wrapper{
+        margin-top: 1rem;
+    }
+    .fav-title{
+        font-size: 20px;
+    }
+    .fav-unit, .fav-chara, .fav-song{
+        font-size: 18px;
+    }
+
+    .collection-title{
+        font-size: 20px;
+    }
+    .collection-selectors button{
+        font-size: 15px;
+        padding: 7px 30px;
+        margin: 0 2px;
+    }
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    .container-profile{
+        margin: 0 15%;
+    }
+
+    .user-info-wrapper{
+        gap: 20px;
+    }
+
+    .profile-picture{
+        width: 200px;
+        height: 200px;
+    }
+
+    .user-desc, .user-birthday{
+        font-size: 20px;
+    }
+
+    .settings-button{
+        padding: 3px 15px;
+    }
+    .social-wrapper img{
+        width: auto;
+        height: 22px;
+    }
+
+    .fav-wrapper{
+        margin-top: 1.5rem;
+    }
+    .fav-title{
+        font-size: 22px;
+    }
+    .fav-unit, .fav-chara, .fav-song{
+        font-size: 20px;
+    }
+
+    .collection-title{
+        font-size: 22px;
+    }
+    .collection-selectors button{
+        font-size: 17px;
+        padding: 9px 50px;
+        margin: 0 3px;
+    }
+}

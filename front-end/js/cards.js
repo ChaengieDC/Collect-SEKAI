@@ -232,7 +232,6 @@ document.querySelector("form").addEventListener("submit", function (event){
 // Fonction pour réorganiser la liste des cartes
 function updateCardList(data){
     const containerCard = document.querySelector(".container-card");
-    containerCard.style.paddingBottom = "30px";
 
     // Boucle qui retire tous les éléments à chaque recherche pour éviter une duplication
     while(containerCard.firstChild){

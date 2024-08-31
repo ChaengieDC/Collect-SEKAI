@@ -189,14 +189,14 @@ app.get('/logoutUser', async(req, res) =>{
 });
 
 // Requête GET pour récupérer un utilisateur via son ID
-app.get('/getUserByID/:userID', async(req, res) =>{
+app.get('/getUserProfileByID/:userID', async(req, res) =>{
     const userID = req.params.userID;
     try{
-        const user = await dbservice.getUserByID(userID);
+        const user = await dbservice.getUserProfileByID(userID);
         res.json(user);
     } catch(error){
         console.error(error);
-        res.status(500).send(`Erreur lors de la récupération de l'utilisateur: ${error}`);
+        res.status(500).send(`Erreur lors de la récupération du profil utilisateur: ${error}`);
     }
 });
 

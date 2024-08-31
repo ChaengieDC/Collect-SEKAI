@@ -6,16 +6,19 @@
     background-color: #fafafa;
     height: auto;
     min-height: 100vh;
-    padding: 0 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
 }
 
-.unit-logo{
-    margin: 30px 0;
+.unit-logo:first-child{
+    margin-top: 30px;
 }
 
 /* Ligne de séparation entre les groupes */
 hr{
     border-top: 1px solid #6e9bb38e !important;
+    margin: 30px 0 !important;
 }
 hr:last-child{
     display: none;
@@ -30,7 +33,7 @@ hr:last-child{
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     transform: rotate(-3deg);
     margin-top: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 0;
 }
 
 /* Styles des informations du pop-up */
@@ -93,7 +96,6 @@ hr:last-child{
 @media screen and (min-width: 992px){
     .container-chara{
         width: 70%;
-        padding-bottom: 30px;
         margin: 0 5.5vw;
     }
 
