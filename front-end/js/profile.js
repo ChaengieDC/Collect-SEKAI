@@ -227,7 +227,7 @@ function createSettings(userID){
                 if(loggedUserID == userID){
                     const settingsButton = document.createElement("a");
                     settingsButton.className = "settings-button";
-                    settingsButton.href = "#";
+                    settingsButton.href = "/settings.html";
 
                     const settingsIcon = document.createElement("i");
                     settingsIcon.className = "fa-solid fa-gear";

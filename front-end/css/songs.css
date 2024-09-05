@@ -72,6 +72,14 @@
 }
 
 
+/* Modifications pour un responsive TABLETTE + PC */
+@media (min-width: 576px){
+    /* Styles des informations du pop-up */
+    #song-popup-cover{
+        border-bottom: 15px solid #e4f2fa;
+    }
+}
+
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
     .song-cover{
@@ -86,7 +94,6 @@
     }
 
     #song-popup-cover{
-        border-bottom: 15px solid #e4f2fa;
         width: 50%;
         margin-bottom: 20px;
     }
@@ -131,7 +138,6 @@
     }
 
     #song-popup-cover{
-        border-bottom: 15px solid #e4f2fa;
         width: 57.5%;
         margin-bottom: 25px;
     }

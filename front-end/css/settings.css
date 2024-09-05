@@ -1,14 +1,35 @@
-/* CSS des pages d'INSCRIPTION + CONNEXION */
-/* --------------------------------------- */
-/* --------------------------------------- */
+/* CSS de la page des PARAMETRES */
+/* ----------------------------- */
+/* ----------------------------- */
 
-.container-signup, .container-login{
+.container-selectors, .container-settings{
     background-color: #fafafa;
+}
+.container-selectors{
+    padding: 1.3rem !important;
+    margin-top: 20vh;
+}
+.container-settings{
     padding: 0 1.3rem !important;
-    margin: 20vh 0;
+    margin-top: 3vh;
+    margin-bottom: 20vh;
 }
 
-#joinSEKAI{
+.container-selectors button{
+    font-family: GoBOLD;
+    font-size: 13px;
+    font-weight: 400;
+    background-color: #006196;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 1px;
+}
+.container-selectors button:hover{
+    background-color: #004163;
+}
+
+#customization, #social{
     font-size: 19px;
     font-weight: bold;
     color: #004163;
@@ -17,17 +38,17 @@
 }
 
 /* Styles des inputs */
-.log-input{
+label{
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.settings-input{
     background-color: #F1F4F7;
     color: #7A8C9F;
     text-align: center;
     border: 0;
     width: 100%;
     margin-bottom: 10px;
-}
-/* Dernier input avant le bouton */
-.container-login #password{
-    margin-bottom: 0;
 }
 input[type="date"]{
     /* Pour que l'icône et la date se centrent en versions MOBILE */
@@ -39,27 +60,18 @@ input[type="checkbox"]{
     vertical-align: middle;
     margin-top: -2px;
 }
-::placeholder{
-    color: #7A8C9F;
-}
-label{
+.birthdateCheck label{
     font-size: 14px;
     /* Pour aligner le label avec la checkbox */
     vertical-align: middle;
+    margin-bottom: 0;
+}
+/* Dernier input avant le bouton */
+#anilistLink{
+    margin-bottom: 0;
 }
 
-/* Messages d'erreur */
-.error-margin{
-    margin-bottom: 0 !important;
-}
-.error-text{
-    display: none;
-    font-size: 13px;
-    color: #FF3737;
-    margin-bottom: 10px;
-}
-
-.log-button{
+.settings-button{
     font-family: GoBOLD;
     font-weight: bold;
     background-color: #72E4EA;
@@ -67,34 +79,18 @@ label{
     border: none;
     border-radius: 3px;
     padding: 4px 22px;
-    margin-top: 15px;
-}
-
-.separateur{
-    color: #7A8C9F;
-}
-.redirect-link{
-    padding: 15px 0;
-}
-.redirect-link a{
-    font-size: 14px;
-    color: #7A8C9F;
-    text-decoration: none;
-}
-.redirect-link a:hover{
-    font-weight: bold;
-    color: #004163;
+    margin: 15px 0;
 }
 
 
 /* Modifications pour un responsive TABLETTE + PC */
 @media (min-width: 576px){
-    .container-signup, .container-login{
+    .container-selectors, .container-settings{
         border-radius: 15px;
     }
 
     /* Styles des inputs */
-    .log-input{
+    .settings-input{
         /* Pour aligner sur la gauche en responsive */
         text-align: left;
         padding: 0 15px;
@@ -107,102 +103,86 @@ label{
     input[type="date"]{
         flex-direction: row;
     }
-    label{
+    .birthdateCheck label{
         margin-left: 5px;
     }
 
-    .error-text{
-        text-align: left;
-    }
-
-    .log-button{
+    .settings-button{
         font-size: 18px;
-    }
-
-    .separateur{
-        margin: 0 2px;
     }
 }
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
-    .container-signup, .container-login{
+    .container-selectors, .container-settings{
         width: 60vw !important;
-        margin: 15vh 0;
+    }
+    .container-selectors{
+        margin-top: 15vh;
+    }
+    .container-settings{
+        margin-bottom: 15vh;
     }
 
-    #joinSEKAI{
+    .container-selectors button{
+        font-size: 15px;
+        padding: 7px 20px;
+        margin: 0 2px;
+    }
+
+    #customization, #social{
         font-size: 21px;
         padding: 35px 0;
     }
 
     /* Styles des inputs */
-    .log-input{
+    label{
         font-size: 18px;
     }
-    label{
+    .settings-input{
+        font-size: 18px;
+    }
+    .birthdateCheck label{
         font-size: 16px;
     }
 
-    .error-text{
-        font-size: 15px;
-    }
-
-    .log-button{
+    .settings-button{
         padding: 6px 24px;
-        margin-top: 25px;
-    }
-
-    .separateur{
-        font-size: 16px;
-    }
-    .redirect-link{
-        padding: 25px 0;
-    }
-    .redirect-link a{
-        font-size: 16px;
+        margin: 25px 0;
     }
 }
 
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
-    .container-signup{
+    .container-selectors, .container-settings{
         width: 37vw !important;
     }
-    .container-login{
-        width: 30vw !important;
+
+    .container-selectors button{
+        font-size: 17px;
+        padding: 9px 30px;
+        margin: 0 3px;
     }
 
-    #joinSEKAI{
+    #customization, #social{
         font-size: 23px;
         padding: 50px 0;
     }
 
-    .log-input{
+    /* Styles des inputs */
+    label{
+        font-size: 20px;
+    }
+    .settings-input{
         font-size: 20px;
         margin-bottom: 15px;
     }
-    label{
+    .birthdateCheck label{
         font-size: 18px;
     }
 
-    .error-text{
-        font-size: 17px;
-        margin-bottom: 15px;
-    }
-
-    .log-button{
+    .settings-button{
         padding: 8px 26px;
-        margin-top: 35px;
-    }
-
-    .separateur{
-        font-size: 18px;
-    }
-    .redirect-link{
-        padding: 35px 0;
-    }
-    .redirect-link a{
-        font-size: 18px;
+        margin: 35px 0;
     }
 }

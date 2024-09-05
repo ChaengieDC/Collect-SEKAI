@@ -64,6 +64,13 @@ hr:last-child{
 }
 
 
+/* Modifications pour un responsive TABLETTE + PC */
+@media (min-width: 576px){
+    #chara-popup-img{
+        border-bottom: 15px solid #e4f2fa;
+    }
+}
+
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
     .unit-logo{
@@ -80,10 +87,6 @@ hr:last-child{
     #chara-popup-name{
         font-size: 21px;
         margin: 20px 0;
-    }
-
-    #chara-popup-img{
-        border-bottom: 15px solid #e4f2fa;
     }
 
     #chara-popup-introduction{
@@ -113,10 +116,6 @@ hr:last-child{
     #chara-popup-name{
         font-size: 23px;
         margin: 25px 0;
-    }
-
-    #chara-popup-img{
-        border-bottom: 15px solid #e4f2fa;
     }
 
     #chara-popup-introduction{
@@ -149,7 +148,6 @@ hr:last-child{
 }
 
 /* Tailles spécifiques pour l'affichage des personnages en GRID */
-/* Sur l'affichage initial */
 @media (min-width: 932px) and (max-width: 991px), screen and (min-width: 1282px){
     .last-unit{
         display: grid !important;

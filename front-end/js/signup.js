@@ -32,7 +32,10 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
                 const errorType = responseData.errorType;
             
                 // Changements effectués selon le type d'erreur
-                if(errorType === "nickname"){
+                if(errorType === "alreadyAuthenticated"){
+                    window.location.href = "/";
+                    return;
+                } else if(errorType === "nickname"){
                     document.querySelector("#nicknameError").style.display = "block";
                     document.querySelector("#nickname").classList.add("error-margin");
                 } else if(errorType === "email"){

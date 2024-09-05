@@ -38,14 +38,14 @@ label{
 }
 
 /* Bordure autour des champs lorsqu'on les sélectionne */
-/* > Pages d'INSCRIPTION + CONNEXION + SIDEBAR de filtrage */
-.log-input:focus, .filter-input:focus{
+/* > Pages d'INSCRIPTION + CONNEXION + PARAMÈTRES + SIDEBAR de filtrage */
+.log-input:focus, .settings-input:focus, .filter-input:focus{
     outline: 2px dashed #6e9bb359;
 }
 
 /* Changement des couleurs en hover des boutons */
-/* > Pages d'INSCRIPTION + CONNEXION + SIDEBAR de filtrage */
-.log-button:hover, .search-button:hover, .reset-button:hover{
+/* > Pages d'INSCRIPTION + CONNEXION + PARAMÈTRES + SIDEBAR de filtrage */
+.log-button:hover, .settings-button:hover, .search-button:hover, .reset-button:hover{
     background-color: #FFC915;
     color: #252525;
 }
@@ -68,21 +68,24 @@ label{
     border-left: 2px solid #6e9bb359;
     border-radius: 0;
     border-bottom-left-radius: 10px;
-    padding: 6px 10px;
     position: fixed;
     top: 87px;
     right: -1px;
+    padding: 6px 10px;
 }
 
 /* Styles de la zone de la sidebar */
 .sidebar form{
     background-color: #F8F9FA;
     border: 2px solid #6e9bb359;
+    border-right: none;
+    border-bottom: none;
     position: fixed;
     width: 235px;
     top: 87px;
     right: 0;
     bottom: 0;
+    padding: 0 1.3rem;
 }
 
 #titleMenu{
@@ -97,7 +100,6 @@ label{
 .sidebar form label{
     font-size: 16px;
     margin-bottom: 5px;
-    margin-left: 10px;
 }
 .filter-input{
     background-color: #F1F4F7;
@@ -105,7 +107,7 @@ label{
     text-align: center;
     border: 0;
     outline: 1px solid #6e9bb359;
-    width: 70%;
+    width: 100%;
     margin-bottom: 20px;
 }
 
@@ -135,20 +137,15 @@ label{
 }
 
 
-/* Modifications pour un responsive TABLETTE */
-@media (min-width: 576px) and (max-width: 991px){
-    /* Augmentation de la taille du bouton pour afficher/masquer la sidebar */
-    #toggleForm{
-        padding: 8px 12px;
-    }
-
+/* Modifications pour un responsive TABLETTE + PC */
+@media (min-width: 576px){
     #titleMenu{
         font-size: 21px;
     }
 
+    /* Styles des inputs */
     .sidebar form label{
         font-size: 18px;
-        margin-left: 13px;
     }
     .filter-input{
         font-size: 18px;
@@ -156,14 +153,25 @@ label{
 
     .search-button, .reset-button{
         font-size: 18px;
-        margin-right: 4px;
-        margin-left: 4px;
     }
     .search-button{
         padding: 6px 24px;
     }
     .reset-button{
         padding: 6px 14px;
+    }
+}
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    /* Augmentation de la taille du bouton pour afficher/masquer la sidebar */
+    #toggleForm{
+        padding: 8px 12px;
+    }
+
+    .search-button, .reset-button{
+        margin-right: 4px;
+        margin-left: 4px;
     }
 
     .no-result p{
@@ -178,30 +186,15 @@ label{
         width: 19vw;
     }
 
-    #titleMenu{
-        font-size: 21px;
-    }
-
-    .sidebar form label{
-        font-size: 18px;
-        margin-left: 16px;
-    }
+    /* Styles des inputs */
     .filter-input{
-        font-size: 18px;
         margin-bottom: 15px;
     }
 
     .search-button, .reset-button{
-        font-size: 18px;
         margin-top: 15px;
         margin-right: 6px;
         margin-left: 6px;
-    }
-    .search-button{
-        padding: 6px 24px;
-    }
-    .reset-button{
-        padding: 6px 24px;
     }
 
     .no-result p{
@@ -219,12 +212,12 @@ label{
         font-size: 23px;
     }
 
+    /* Styles des inputs */
     .sidebar form label{
         font-size: 20px;
     }
     .filter-input{
         font-size: 20px;
-        margin-bottom: 15px;
     }
 
     .search-button, .reset-button{
@@ -238,7 +231,7 @@ label{
     }
 }
 
-/* Taille spécifique pour le défilement de la sidebar */
+/* Tailles spécifiques pour le défilement de la sidebar */
 @media (max-height: 605px){
     .sidebar form{
         overflow-y: auto;
@@ -281,8 +274,8 @@ label{
     font-size: 22px;
     font-weight: bold;
     color: #6e9bb3;
-    position: absolute;
     line-height: 0.95;
+    position: absolute;
     margin: 15px 0;
 }
 .close:hover{

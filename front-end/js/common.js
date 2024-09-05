@@ -1,7 +1,7 @@
 // JS du MENU
 /* ------- */
 
-// Événement permettant d'afficher ou masquer le menu de filtrage sur les versions mobiles
+// Événement permettant d'afficher ou masquer le menu de filtrage sur les versions MOBILE
 const toggleButton = document.querySelector("#toggleForm");
 const form = document.querySelector("form");
 toggleButton.addEventListener("click", () =>{

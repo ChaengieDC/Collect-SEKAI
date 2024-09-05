@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/settings.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" href="/img/icons/favicon.ico">
+    <title>Paramètres || Collect SEKAI</title>
+</head>
+<body>
+    <!-- Appel de la navbar -->
+    <header></header>
+
+    <div id="settingspage">
+        <div class="container-sm text-center container-selectors">
+            <button class="settings-selectors">Profil</button>
+            <button class="settings-selectors">Compte</button>
+        </div>
+        <div class="container-sm text-center container-settings">
+            <form action="" method="POST">
+                <p id="customization">Personnalisation</p>
+                <div class="label-control text-start">
+                    <label for="userDesc">Description</label>
+                </div>
+                <textarea maxlength="100" class="settings-input" id="userDesc" name="userDesc"></textarea>
+                <div class="label-control text-start">
+                    <label for="favUnit">Groupe préféré</label>
+                </div>
+                <select class="settings-input" id="favUnit" name="favUnit">
+                    <option value="">&nbsp;</option>
+                    <option value="1">Leo/need</option>
+                    <option value="2">MORE MORE JUMP!</option>
+                    <option value="3">Vivid BAD SQUAD</option>
+                    <option value="4">Wonderlands x Showtime</option>
+                    <option value="5">25-ji, Nightcord de.</option>
+                    <option value="6">VIRTUAL SINGER</option>
+                </select>
+                <div class="label-control text-start">
+                    <label for="favChara">Personnage préféré</label>
+                </div>
+                <select class="settings-input" id="favChara" name="favChara">
+                    <option value="">&nbsp;</option>
+                    <option value="1">Ichika Hoshino</option>
+                    <option value="2">Saki Tenma</option>
+                    <option value="3">Honami Mochizuki</option>
+                    <option value="4">Shiho Hinomori</option>
+                    <option value="5">Minori Hanasato</option>
+                    <option value="6">Haruka Kiritani</option>
+                    <option value="7">Airi Momoi</option>
+                    <option value="8">Shizuku Hinomori</option>
+                    <option value="9">Kohane Azusawa</option>
+                    <option value="10">An Shiraishi</option>
+                    <option value="11">Akito Shinonome</option>
+                    <option value="12">Toya Aoyagi</option>
+                    <option value="13">Tsukasa Tenma</option>
+                    <option value="14">Emu Otori</option>
+                    <option value="15">Nene Kusanagi</option>
+                    <option value="16">Rui Kamishiro</option>
+                    <option value="17">Kanade Yoisaki</option>
+                    <option value="18">Mafuyu Asahina</option>
+                    <option value="19">Ena Shinonome</option>
+                    <option value="20">Mizuki Akiyama</option>
+                    <option value="21">Miku Hatsune</option>
+                    <option value="22">Rin Kagamine</option>
+                    <option value="23">Len Kagamine</option>
+                    <option value="24">Luka Megurine</option>
+                    <option value="25">MEIKO</option>
+                    <option value="26">KAITO</option>
+                </select>
+                <div class="label-control text-start">
+                    <label for="favSong">Chanson préférée</label>
+                </div>
+                <input type="text" class="settings-input" id="favSong" name="favSong">
+                <div class="label-control text-start">
+                    <label for="birthdate">Date de naissance</label>
+                </div>
+                <input type="date" class="settings-input" id="birthdate" name="birthdate">
+                <div class="birthdateCheck">
+                    <input type="checkbox" id="checkboxDate" name="checkboxDate">
+                    <label for="checkboxDate">Afficher mon anniversaire sur mon profil</label>
+                </div>
+                <p id="social">Réseaux</p>
+                <div class="label-control text-start">
+                    <label for="twitchLink">Twitch</label>
+                </div>
+                <input type="text" class="settings-input" id="twitchLink" name="twitchLink">
+                <div class="label-control text-start">
+                    <label for="twitterLink">Twitter</label>
+                </div>
+                <input type="text" class="settings-input" id="twitterLink" name="twitterLink">
+                <div class="label-control text-start">
+                    <label for="instagramLink">Instagram</label>
+                </div>
+                <input type="text" class="settings-input" id="instagramLink" name="instagramLink">
+                <div class="label-control text-start">
+                    <label for="malLink">MyAnimeList</label>
+                </div>
+                <input type="text" class="settings-input" id="malLink" name="malLink">
+                <div class="label-control text-start">
+                    <label for="anilistLink">Anilist</label>
+                </div>
+                <input type="text" class="settings-input" id="anilistLink" name="anilistLink">
+                <button type="submit" value="Submit" class="settings-button">Sauvegarder</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/layout.js"></script>
+</body>
+</html>

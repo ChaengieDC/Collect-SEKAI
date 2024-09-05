@@ -40,6 +40,7 @@
 
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
+    /* Également pour les liens du footer */
     .nav-link{
         font-size: 20px !important;
     }
@@ -50,6 +51,7 @@
 
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
+    /* Également pour les liens du footer */
     .nav-link{
         font-size: 22px !important;
     }
@@ -75,7 +77,6 @@
     .nav-item:hover::after{
         opacity: 1;
     }
-
     /* Effet de soulignement constant sous la page active */
     .nav-link.active::after{
         content: "";
@@ -89,7 +90,7 @@
     }
 }
 
-/* Taille spécifique pour le défilement de la sidebar */
+/* Tailles spécifiques pour le défilement de la sidebar */
 @media (max-height: 400px){
     .navbar-sticky{
         max-height: 80vh;
@@ -106,7 +107,7 @@ footer{
     border-top: 1px solid #C0D3DD;
 }
 
-/* Sur version mobile (très réduite), pour réduire l'espacement entre les deux éléments */
+/* Sur les versions MOBILE (très réduite), pour réduire l'espacement entre les deux éléments */
 .footer-item:first-child{
     margin-bottom: -2vh;
 }
@@ -116,43 +117,35 @@ footer{
     font-weight: bold;
     font-size: 14px;
     color:#004163;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
     /* Ajout d'une ligne de séparation entre les copyrights et la nav du footer */
     border-top: 1px solid #dfebf1;
     width: 50%;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
     margin: 0 auto;
 }
 
 
-/* Modifications pour un responsive TABLETTE */
-@media (min-width: 576px) and (max-width: 991px){
-    .nav-link{
-        font-size: 20px !important;
-    }
-    .copyrights{
-        font-size: 18px;
-    }
-
-    /* On retire la margin précédemment appliquée pour la version mobile */
+/* Modifications pour un responsive TABLETTE + PC */
+@media (min-width: 576px){
+    /* On retire la margin précédemment appliquée pour les versions MOBILE */
     .footer-item:first-child{
         margin: 0;
+    }
+}
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .copyrights{
+        font-size: 18px;
     }
 }
 
 /* Modifications pour un responsive PC */
 @media screen and (min-width: 992px){
-    .nav-link{
-        font-size: 22px !important;
-    }
     .copyrights{
         font-size: 20px;
         width: 30%;
-    }
-
-    /* On retire la margin précédemment appliquée pour la version mobile */
-    .footer-item:first-child{
-        margin: 0;
     }
 }
 
@@ -165,21 +158,14 @@ footer{
 #homepage, #charapage, #songpage, #cardpage, #profilepage{
     margin-top: 87px;
 }
-#logpage{
+#logpage, #settingspage{
     margin-top: 104px;
 }
 
 
-/* Modifications pour un responsive TABLETTE */
-@media (min-width: 576px) and (max-width: 991px){
-    #logpage{
-        margin-top: 170px;
-    }
-}
-
-/* Modifications pour un responsive PC */
-@media screen and (min-width: 992px){
-    #logpage{
+/* Modifications pour un responsive TABLETTE + PC */
+@media (min-width: 576px){
+    #logpage, #settingspage{
         margin-top: 170px;
     }
 }

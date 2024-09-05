@@ -89,11 +89,11 @@
     background-color: #fff;
     border: none;
     border-bottom-left-radius: 15%;
+    position: absolute;
+    right: 0;
     padding-right: 0;
     padding-bottom: 1%;
     padding-left: 2%;
-    position: absolute;
-    right: 0;
 }
 .swap-card i{
     font-size: 30px;
@@ -123,6 +123,18 @@
 }
 
 
+/* Modifications pour un responsive TABLETTE + PC */
+@media (min-width: 576px){
+    .addcard-button{
+        padding: 6px 24px;
+    }
+
+    /* Styles des informations du pop-up */
+    #card-popup-img{
+        border-bottom: 15px solid #e4f2fa;
+    }
+}
+
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
     .attribute{
@@ -147,7 +159,6 @@
 
     .addcard-button{
         font-size: 18px;
-        padding: 6px 24px;
     }
 
     /* Styles des informations du pop-up */
@@ -164,7 +175,6 @@
         font-size: 45px;
     }
     #card-popup-img{
-        border-bottom: 15px solid #e4f2fa;
         margin-bottom: 20px;
     }
 
@@ -210,7 +220,6 @@
 
     .addcard-button{
         font-size: 20px;
-        padding: 6px 24px;
     }
 
     /* Styles des informations du pop-up */
@@ -226,7 +235,6 @@
         font-size: 40px;
     }
     #card-popup-img{
-        border-bottom: 15px solid #e4f2fa;
         margin-bottom: 25px;
     }
 
@@ -243,19 +251,7 @@
     }
 }
 
-/* Tailles spécifiques pour éviter de surcharger sur les versions PC */
-@media screen and (min-width: 1282px){
-    .container-card{
-        margin: 0 6.5vw;
-    }
-
-    /* Styles des informations du pop-up */
-    #card-popup-img{
-        border-bottom: 20px solid #e4f2fa;
-    }
-}
-
-/* Tailles spécifiques pour éviter de surcharger sur les versions MOBILES */
+/* Tailles spécifiques pour éviter de surcharger sur les versions MOBILE */
 @media (min-width: 360px) and (max-width: 429px){
     .attribute{
         width: 25px;
@@ -296,5 +292,17 @@
     .card-untrained, .card-trained{
         width: 345px;
         height: 191px; 
+    }
+}
+
+/* Tailles spécifiques pour éviter de surcharger sur les versions PC */
+@media screen and (min-width: 1282px){
+    .container-card{
+        margin: 0 6.5vw;
+    }
+
+    /* Styles des informations du pop-up */
+    #card-popup-img{
+        border-bottom: 20px solid #e4f2fa;
     }
 }

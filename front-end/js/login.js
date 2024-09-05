@@ -21,8 +21,16 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
         })
         .then(responseData =>{
             if(responseData.success === false){
-                document.querySelector("#loginError").style.display = "block";
-                document.querySelector("#password").classList.add("error-margin");
+                const errorType = responseData.errorType;
+            
+                // Changements effectués selon le type d'erreur
+                if(errorType === "alreadyAuthenticated"){
+                    window.location.href = "/";
+                    return;
+                } else if(errorType === "notMatching"){
+                    document.querySelector("#loginError").style.display = "block";
+                    document.querySelector("#password").classList.add("error-margin");
+                }
             } else{
                 window.location.href = "/";
             }

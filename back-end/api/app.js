@@ -40,6 +40,11 @@ app.post('/createUser', async(req, res) =>{
     const userRegister = req.body;
 
     try{
+        if(req.session.user){
+            res.json({ success: false, errorType: "alreadyAuthenticated" });
+            return;
+        }
+
         const userSearch = await dbservice.getUserByNickname(userRegister.nickname);
         if(userSearch){
             res.json({ success: false, errorType: "nickname" });
@@ -86,9 +91,14 @@ app.post("/loginUser", async(req, res) =>{
     const userLogin = req.body;
 
     try{
+        if(req.session.user){
+            res.json({ success: false, errorType: "alreadyAuthenticated" });
+            return;
+        }
+
         const userSearch = await dbservice.getUserByNickname(userLogin.nickname);
         if(!userSearch || userSearch.length === 0){
-            res.json({ success: false });
+            res.json({ success: false, errorType: "notMatching" });
             return;
         }
 
@@ -97,7 +107,7 @@ app.post("/loginUser", async(req, res) =>{
         const passwordMatch = await bcrypt.compare(userLogin.password, hashedPassword);
 
         if(!passwordMatch){
-            res.json({ success: false });
+            res.json({ success: false, errorType: "notMatching" });
             return;
         }
 
