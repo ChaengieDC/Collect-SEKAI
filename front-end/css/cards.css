@@ -46,19 +46,18 @@
 .card-trained{
     position: absolute;
     z-index: 0;
-    /* Décalage pour placer la version trained sous la version untrained, de biais */
+    /* Translate: décalage pour placer la version trained sous la version untrained, de biais */
     transform: translate(-100%) rotate(2deg);
+    transition: transform 0.3s ease;
 }
 /* Légère animation pour interchanger les deux versions d'une carte au passage de la souris */
 .has-trained-card .card-wrapper:hover .card-untrained{
-    position: absolute;
     z-index: 0;
     transform: rotate(2deg);
 }
 .has-trained-card .card-wrapper:hover .card-trained{
-    position: relative;
     z-index: 1;
-    transform: none;
+    transform: translate(-100%) rotate(0deg);
 }
 
 .addcard-button{
