@@ -44,18 +44,18 @@ function stopAudio(){
 
 // Fonction de réinitialisation des clips
 function resetMVs(){
-    const mv2dButton = document.querySelector("#mv2d-selector");
-    const mv3dButton = document.querySelector("#mv3d-selector");
-    const mv2dVideo = document.querySelector("#mv2d-video");
-    const mv3dVideo = document.querySelector("#mv3d-video");
+    const mv2dButton = document.querySelector("#mv2dSelector");
+    const mv3dButton = document.querySelector("#mv3dSelector");
+    const mv2dVideo = document.querySelector("#mv2dVideo");
+    const mv3dVideo = document.querySelector("#mv3dVideo");
 
-    document.querySelector("#mv-selectors").style.display = "";
+    document.querySelector(".mv-selectors").style.display = "";
     mv2dButton.style.display = "none";
     mv2dButton.disabled = false;
     mv3dButton.style.display = "none";
     mv3dButton.disabled = false;
 
-    document.querySelector("#mv-container").style.display = "";
+    document.querySelector(".container-mv").style.display = "";
     mv2dVideo.style.display = "none";
     mv2dVideo.src = "";
     mv3dVideo.style.display = "none";

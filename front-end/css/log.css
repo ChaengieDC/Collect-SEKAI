@@ -100,7 +100,7 @@ label{
         padding: 0 15px;
     }
     /* Permet d'aligner à gauche de l'input date, la checkbox et le label */
-    .birthdateCheck{
+    .birthdate-check{
         display: flex;
     }
     /* Pour remettre en ligne l'icône et la date */

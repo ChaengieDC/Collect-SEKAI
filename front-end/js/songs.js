@@ -93,10 +93,10 @@ function openPopup(songID){
             document.querySelector("#song-popup-lyricist").innerText = song.lyricist;
 
             // Génération des clips
-            const mv2dButton = document.querySelector("#mv2d-selector");
-            const mv3dButton = document.querySelector("#mv3d-selector");
-            const mv2dVideo = document.querySelector("#mv2d-video");
-            const mv3dVideo = document.querySelector("#mv3d-video");
+            const mv2dButton = document.querySelector("#mv2dSelector");
+            const mv3dButton = document.querySelector("#mv3dSelector");
+            const mv2dVideo = document.querySelector("#mv2dVideo");
+            const mv3dVideo = document.querySelector("#mv3dVideo");
 
             if(song.mv){
                 if(song.mv.includes("Clip 2D, Clip 3D")){
@@ -136,8 +136,8 @@ function openPopup(songID){
                     mv3dVideo.src = song.mv3dLink;
                 }
             } else{
-                document.querySelector("#mv-selectors").style.display = "none";
-                document.querySelector("#mv-container").style.display = "none";
+                document.querySelector(".mv-selectors").style.display = "none";
+                document.querySelector(".container-mv").style.display = "none";
             }
         })
         .catch(error =>{

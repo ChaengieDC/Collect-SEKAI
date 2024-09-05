@@ -60,7 +60,7 @@ input[type="checkbox"]{
     vertical-align: middle;
     margin-top: -2px;
 }
-.birthdateCheck label{
+.birthdate-check label{
     font-size: 14px;
     /* Pour aligner le label avec la checkbox */
     vertical-align: middle;
@@ -96,14 +96,14 @@ input[type="checkbox"]{
         padding: 0 15px;
     }
     /* Permet d'aligner à gauche de l'input date, la checkbox et le label */
-    .birthdateCheck{
+    .birthdate-check{
         display: flex;
     }
     /* Pour remettre en ligne l'icône et la date */
     input[type="date"]{
         flex-direction: row;
     }
-    .birthdateCheck label{
+    .birthdate-check label{
         margin-left: 5px;
     }
 
@@ -142,7 +142,7 @@ input[type="checkbox"]{
     .settings-input{
         font-size: 18px;
     }
-    .birthdateCheck label{
+    .birthdate-check label{
         font-size: 16px;
     }
 
@@ -177,7 +177,7 @@ input[type="checkbox"]{
         font-size: 20px;
         margin-bottom: 15px;
     }
-    .birthdateCheck label{
+    .birthdate-check label{
         font-size: 18px;
     }
 
