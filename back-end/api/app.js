@@ -198,15 +198,31 @@ app.get('/logoutUser', async(req, res) =>{
     }
 });
 
-// Requête GET pour récupérer un utilisateur via son ID
+// Requête GET pour récupérer un profil utilisateur via son ID
 app.get('/getUserProfileByID/:userID', async(req, res) =>{
     const userID = req.params.userID;
     try{
-        const user = await dbservice.getUserProfileByID(userID);
-        res.json(user);
+        const profile = await dbservice.getUserProfileByID(userID);
+        res.json(profile);
     } catch(error){
         console.error(error);
         res.status(500).send(`Erreur lors de la récupération du profil utilisateur: ${error}`);
+    }
+});
+
+// Requête GET pour récupérer les paramètres utilisateur
+app.get('/getUserSettings', async(req, res) =>{
+    try{
+        if(req.session.user){
+            const userID = req.session.user.id;
+            const settings = await dbservice.getUserProfileByID(userID);
+            res.json(settings);
+        } else{
+            res.redirect("/login.html");
+        }
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération des paramètres utilisateur: ${error}`);
     }
 });
 

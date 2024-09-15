@@ -96,6 +96,16 @@ function generateProfileHTML(){
             const favWrapper = document.createElement("div");
             favWrapper.className = "fav-wrapper";
 
+            // Mapping pour "Groupe préféré"
+            const unitNames = {
+                1: "Leo/need",
+                2: "MORE MORE JUMP!",
+                3: "Vivid BAD SQUAD",
+                4: "Wonderlands x Showtime",
+                5: "25-ji, Nightcord de.",
+                6: "VIRTUAL SINGER"
+            };
+
             const favInfoUnit = document.createElement("div");
             if(user.favoriteUnit){
                 favInfoUnit.className = "fav-info";
@@ -106,13 +116,43 @@ function generateProfileHTML(){
 
                 const favUnit = document.createElement("p");
                 favUnit.className = "fav-unit";
-                favUnit.textContent = user.favoriteUnit;
+                favUnit.textContent = unitNames[user.favoriteUnit];
 
                 favInfoUnit.appendChild(favTitleUnit);
                 favInfoUnit.appendChild(favUnit);
 
                 hasFavorite = true;
             }
+
+            // Mapping pour "Personnage préféré"
+            const charaNames = {
+                1: "Ichika Hoshino",
+                2: "Saki Tenma",
+                3: "Honami Mochizuki",
+                4: "Shiho Hinomori",
+                5: "Minori Hanasato",
+                6: "Haruka Kiritani",
+                7: "Airi Momoi",
+                8: "Shizuku Hinomori",
+                9: "Kohane Azusawa",
+                10: "An Shiraishi",
+                11: "Akito Shinonome",
+                12: "Toya Aoyagi",
+                13: "Tsukasa Tenma",
+                14: "Emu Otori",
+                15: "Nene Kusanagi",
+                16: "Rui Kamishiro",
+                17: "Kanade Yoisaki",
+                18: "Mafuyu Asahina",
+                19: "Ena Shinonome",
+                20: "Mizuki Akiyama",
+                21: "Miku Hatsune",
+                22: "Rin Kagamine",
+                23: "Len Kagamine",
+                24: "Luka Megurine",
+                25: "MEIKO",
+                26: "KAITO"
+            };
 
             const favInfoChara = document.createElement("div");
             if(user.favoriteCharacter){
@@ -124,7 +164,7 @@ function generateProfileHTML(){
 
                 const favChara = document.createElement("p");
                 favChara.className = "fav-chara";
-                favChara.textContent = user.favoriteCharacter;
+                favChara.textContent = charaNames[user.favoriteCharacter];
 
                 favInfoChara.appendChild(favTitleChara);
                 favInfoChara.appendChild(favChara);
