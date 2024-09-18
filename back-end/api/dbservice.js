@@ -520,6 +520,29 @@ async function filterSongs(searchTerm, selectedUnit, selectedType, selectedVideo
     }
 }
 
+// Fonction pour rechercher des chansons dynamiquement
+async function searchSongs(songQuery){
+    const query =
+        `SELECT id, title, cover
+        FROM Songs
+        WHERE title LIKE ?;`;
+
+    try{
+        const songs = await new Promise((resolve, reject) =>{
+            connection.query(query, [`%${songQuery}%`], (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return songs;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour récupérer toutes les cartes
 async function getAllCards(){
     const query = 
@@ -655,4 +678,4 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
 }
 
 
-module.exports = { createUser, postCharacter, postSong, postCard, getUserProfileByID, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, getAllCards, get4StarsCards, getCardByID, filterCards };
+module.exports = { createUser, postCharacter, postSong, postCard, getUserProfileByID, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getAllCards, get4StarsCards, getCardByID, filterCards };

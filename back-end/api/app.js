@@ -212,9 +212,9 @@ app.get('/getUserProfileByID/:userID', async(req, res) =>{
 
 // Requête GET pour récupérer les paramètres utilisateur
 app.get('/getUserSettings', async(req, res) =>{
+    const userID = req.session.user.id;
     try{
         if(req.session.user){
-            const userID = req.session.user.id;
             const settings = await dbservice.getUserProfileByID(userID);
             res.json(settings);
         } else{
@@ -310,6 +310,18 @@ app.get('/filterSongs', async(req, res) =>{
     } catch(error){
         console.error(error);
         res.status(500).send(`Erreur lors de la récupération des chansons: ${error}`);
+    }
+});
+
+// Requête GET pour rechercher des chansons
+app.get('/searchSongs', async (req, res) =>{
+    const songQuery = req.query.query;
+    try{
+        const songs = await dbservice.searchSongs(songQuery);
+        res.json(songs);
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la recherche des chansons: ${error}`);
     }
 });
 

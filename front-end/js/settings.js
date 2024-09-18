@@ -43,4 +43,97 @@ function generateSettingsHTML(){
 // Appel de la fonction au chargement de la page
 document.addEventListener("DOMContentLoaded", () =>{
     generateSettingsHTML();
+    displaySuggestionsList();
 });
+
+
+// Affichage de la liste de suggestions selon la recherche de l'utilisateur
+document.querySelector("#favSong").addEventListener("input", function(){
+    const songQuery = this.value;
+
+    // Si la requête est trop courte, ne pas faire de recherche
+    if(songQuery.length<3){
+        const suggestionsList = document.querySelector(".suggestions-list");
+
+        while(suggestionsList.firstChild){
+            suggestionsList.removeChild(suggestionsList.firstChild);
+        }
+
+        displaySuggestionsList();
+    } else{
+        fetch(`/searchSongs?query=${encodeURIComponent(songQuery)}`)
+            .then(response =>{
+                return response.json();
+            })
+            .then(songs =>{
+                const suggestionsList = document.querySelector(".suggestions-list");
+
+                while(suggestionsList.firstChild){
+                    suggestionsList.removeChild(suggestionsList.firstChild);
+                }
+
+                songs.forEach(song =>{
+                    const songWrapper = document.createElement("div");
+                    songWrapper.className = "song-wrapper";
+
+                    const songCover = document.createElement("img");
+                    songCover.src = "/img/covers/" + song.cover;
+                    songCover.className = "song-cover";
+                    songCover.alt = song.title;
+                    songCover.width = 100;
+                    songCover.height = 100;
+
+                    const songTitle = document.createElement("div");
+                    songTitle.className = "song-title";
+                    songTitle.textContent = song.title;
+
+                    songWrapper.appendChild(songCover);
+                    songWrapper.appendChild(songTitle);
+                    suggestionsList.appendChild(songWrapper);
+                });
+
+                displaySuggestionsList();
+            })
+            .catch(error => {
+                console.error(`Une erreur est survenue lors du chargement des suggestions: ${error}`);
+            });
+    }
+});
+// Au clic de l'utilisateur sur une suggestion, on ajoute cette dernière à l'input
+document.querySelector(".suggestions-list").addEventListener("click", (event) =>{
+    if(event.target && event.target.matches(".song-title")){
+        document.querySelector("#favSong").value = event.target.textContent;
+
+        // Cacher la liste des suggestions après sélection
+        const suggestionsList = document.querySelector(".suggestions-list");
+
+        while (suggestionsList.firstChild) {
+            suggestionsList.removeChild(suggestionsList.firstChild);
+        }
+
+        displaySuggestionsList();
+    }
+});
+// Si l'utilisateur clique ailleurs: on cache la liste de suggestions
+document.addEventListener("click", (event) =>{
+    if(!event.target.matches("#favSong") && !event.target.matches(".suggestions-list")){
+        const suggestionsList = document.querySelector(".suggestions-list");
+
+        while(suggestionsList.firstChild){
+            suggestionsList.removeChild(suggestionsList.firstChild);
+        }
+
+        displaySuggestionsList();
+    }
+});
+
+// Fonction pour mettre à jour l'affichage de la liste des suggestions
+function displaySuggestionsList(){
+    const suggestionsList = document.querySelector(".suggestions-list");
+
+    if(suggestionsList.children.length>0){
+        suggestionsList.style.display = "block";
+    } else{
+        suggestionsList.style.display = "none";
+    }
+}

@@ -71,6 +71,42 @@ input[type="checkbox"]{
     margin-bottom: 0;
 }
 
+/* Styles de la liste de suggestions */
+.suggestions-list{
+    padding: 0;
+    margin-bottom: 5px;
+}
+.song-wrapper{
+    display: inline-block;
+    position: relative;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+.song-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.475);
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 0 5px;
+}
+.song-wrapper:hover .song-title{
+    opacity: 1;
+}
+
 .settings-button{
     font-family: GoBOLD;
     font-weight: bold;
@@ -136,7 +172,7 @@ input[type="checkbox"]{
     }
 
     /* Styles des inputs */
-    label{
+    label, .song-title{
         font-size: 18px;
     }
     .settings-input{
@@ -170,7 +206,7 @@ input[type="checkbox"]{
     }
 
     /* Styles des inputs */
-    label{
+    label, .song-title{
         font-size: 20px;
     }
     .settings-input{
@@ -179,6 +215,20 @@ input[type="checkbox"]{
     }
     .birthdate-check label{
         font-size: 18px;
+    }
+
+    /* Styles de la liste de suggestions */
+    .suggestions-list{
+        margin-bottom: 5px;
+    }
+    .song-wrapper{
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
+    .song-cover{
+        width: 150px;
+        height: 150px;
     }
 
     .settings-button{
