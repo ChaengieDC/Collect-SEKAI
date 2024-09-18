@@ -126,7 +126,7 @@ function openPopup(cardID){
         })
         .then(data =>{
             const card = data[0];
-            document.querySelector("#card-popup-title").innerText = card.title;
+            document.querySelector("#card-popup-title").textContent = card.title;
 
             // Pour cacher ou non le bouton interchangeant les cartes
             if(!card.trainedCard){
@@ -155,13 +155,13 @@ function openPopup(cardID){
                 document.querySelector("#card-popup-quote").style.display = "none";
                 document.querySelector("#card-popup-voicedQuote").style.display = "none";
             } else{
-                document.querySelector("#card-popup-quote").innerText = `"` + card.quote + `"`;
+                document.querySelector("#card-popup-quote").textContent = `"` + card.quote + `"`;
                 document.querySelector("#card-popup-quote").style.display = "";
                 document.querySelector("#card-popup-voicedQuote").src = "/sound/quotes/" + card.voicedQuote;
                 document.querySelector("#card-popup-voicedQuote").style.display = "";
             }
 
-            document.querySelector("#card-popup-chara").innerText = card.charaName;
+            document.querySelector("#card-popup-chara").textContent = card.charaName;
 
             const popupRarity = document.querySelector("#card-popup-rarity");
             // Boucle qui retire tous les éléments à chaque ouverture du pop-up pour éviter une duplication
@@ -193,9 +193,9 @@ function openPopup(cardID){
             document.querySelector("#card-popup-attribute").width = 25;
             document.querySelector("#card-popup-attribute").height = 25;
 
-            document.querySelector("#card-popup-skillName").innerText = card.skillName;
-            document.querySelector("#card-popup-releaseDate").innerText = "//WIP...";
-            document.querySelector("#card-popup-gacha").innerText = "//WIP...";
+            document.querySelector("#card-popup-skillName").textContent = card.skillName;
+            document.querySelector("#card-popup-releaseDate").textContent = "//WIP...";
+            document.querySelector("#card-popup-gacha").textContent = "//WIP...";
         })
         .catch(error =>{
             console.error(`Une erreur est survenue lors du chargement du pop-up: ${error}`);

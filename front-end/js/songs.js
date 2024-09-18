@@ -63,7 +63,7 @@ function openPopup(songID){
         })
         .then(data =>{
             const song = data[0];
-            document.querySelector("#song-popup-title").innerText = song.title;
+            document.querySelector("#song-popup-title").textContent = song.title;
 
             document.querySelector("#song-popup-cover").src = "/img/covers/" + song.cover;
             document.querySelector("#song-popup-cover").alt = song.title;
@@ -72,25 +72,25 @@ function openPopup(songID){
             document.querySelector("#song-popup-unit").alt = song.unitName;
             document.querySelector("#song-popup-songAudio").src = "/sound/songs/" + song.songAudio;
 
-            document.querySelector("#song-popup-type").innerText = song.type;
-            document.querySelector("#song-popup-easy").innerText = "Nv. " + song.easyLevel + "\n" + song.easyNotes + " notes";
-            document.querySelector("#song-popup-normal").innerText = "Nv. " + song.normalLevel + "\n" + song.normalNotes + " notes";
-            document.querySelector("#song-popup-hard").innerText = "Nv. " + song.hardLevel + "\n" + song.hardNotes + " notes";
-            document.querySelector("#song-popup-expert").innerText = "Nv. " + song.expertLevel + "\n" + song.expertNotes + " notes";
-            document.querySelector("#song-popup-master").innerText = "Nv. " + song.masterLevel + "\n" + song.masterNotes + " notes";
+            document.querySelector("#song-popup-type").textContent = song.type;
+            document.querySelector("#song-popup-easy").textContent = "Nv. " + song.easyLevel + "\n" + song.easyNotes + " notes";
+            document.querySelector("#song-popup-normal").textContent = "Nv. " + song.normalLevel + "\n" + song.normalNotes + " notes";
+            document.querySelector("#song-popup-hard").textContent = "Nv. " + song.hardLevel + "\n" + song.hardNotes + " notes";
+            document.querySelector("#song-popup-expert").textContent = "Nv. " + song.expertLevel + "\n" + song.expertNotes + " notes";
+            document.querySelector("#song-popup-master").textContent = "Nv. " + song.masterLevel + "\n" + song.masterNotes + " notes";
 
             // Pour ajouter certaines informations seulement si elles sont définies, et les cacher si elles ne le sont pas
             if(!song.appendLevel){
                 document.querySelector("#song-popup-append").parentNode.style.display = "none";
             } else{
-                document.querySelector("#song-popup-append").innerText = "Nv. " + song.appendLevel + "\n" + song.appendNotes + " notes";
+                document.querySelector("#song-popup-append").textContent = "Nv. " + song.appendLevel + "\n" + song.appendNotes + " notes";
                 document.querySelector("#song-popup-append").parentNode.style.display = "";
             }
 
-            document.querySelector("#song-popup-bpm").innerText = song.bpm;
-            document.querySelector("#song-popup-arranger").innerText = song.arranger;
-            document.querySelector("#song-popup-composer").innerText = song.composer;
-            document.querySelector("#song-popup-lyricist").innerText = song.lyricist;
+            document.querySelector("#song-popup-bpm").textContent = song.bpm;
+            document.querySelector("#song-popup-arranger").textContent = song.arranger;
+            document.querySelector("#song-popup-composer").textContent = song.composer;
+            document.querySelector("#song-popup-lyricist").textContent = song.lyricist;
 
             // Génération des clips
             const mv2dButton = document.querySelector("#mv2dSelector");

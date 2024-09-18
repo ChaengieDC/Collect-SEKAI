@@ -59,6 +59,10 @@ hr:last-child{
     margin: 0;
 }
 
+/* Pour les sauts de ligne des textContent */
+#chara-popup-position, #chara-popup-birthday, #chara-popup-school, #chara-popup-hobbies, #chara-popup-specialty, #chara-popup-favoriteFood, #chara-popup-hatedFood, #chara-popup-dislikes{
+    white-space: pre-line;
+}
 #chara-popup-color{
     font-weight: bold;
 }

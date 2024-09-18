@@ -13,7 +13,7 @@ function generateProfileHTML(){
             return response.json();
         })
         .then(user =>{
-            document.querySelector("title").innerText = user.nickname + " || Collect SEKAI";
+            document.querySelector("title").textContent = user.nickname + " || Collect SEKAI";
 
             const userInfoWrapper = document.createElement("div");
             userInfoWrapper.className = `user-info-wrapper`;

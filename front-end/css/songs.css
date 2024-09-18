@@ -39,6 +39,11 @@
     margin-bottom: 15px;
 }
 
+/* Pour les sauts de ligne des textContent */
+#song-popup-easy, #song-popup-normal, #song-popup-hard, #song-popup-expert, #song-popup-master, #song-popup-append{
+    white-space: pre-line;
+}
+
 #mv2dSelector, #mv3dSelector{
     background: transparent;
     color: #004163;

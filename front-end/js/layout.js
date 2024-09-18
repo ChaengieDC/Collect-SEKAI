@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         .then(connectionState =>{
             if(connectionState.success){
                 // Modification du menu "Utilisateur" en "{Pseudo}"
-                document.querySelector("#navbarFourthDropdownMenuLink").innerText = connectionState.nickname + " ";
+                document.querySelector("#navbarFourthDropdownMenuLink").textContent = connectionState.nickname + " ";
 
                 document.querySelector("#loginLink").style.display = "none";
                 document.querySelector("#registerLink").style.display = "none";

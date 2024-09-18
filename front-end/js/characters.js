@@ -87,24 +87,24 @@ function openPopup(characterID){
         })
         .then(data =>{
             const character = data[0];
-            document.querySelector("#chara-popup-name").innerText = character.name;
+            document.querySelector("#chara-popup-name").textContent = character.name;
 
             document.querySelector("#chara-popup-img").src = "/img/cards/" + character.img;
             document.querySelector("#chara-popup-img").alt = character.name;
 
-            document.querySelector("#chara-popup-introduction").innerText = character.introduction;
+            document.querySelector("#chara-popup-introduction").textContent = character.introduction;
             
-            document.querySelector("#chara-popup-unit").innerText = character.unitName;
-            document.querySelector("#chara-popup-position").innerText = character.position;
-            document.querySelector("#chara-popup-gender").innerText = character.gender;
-            document.querySelector("#chara-popup-birthday").innerText = character.birthday + "\n" + character.astrologicalSign;
-            document.querySelector("#chara-popup-height").innerText = character.height + " cm";
+            document.querySelector("#chara-popup-unit").textContent = character.unitName;
+            document.querySelector("#chara-popup-position").textContent = character.position;
+            document.querySelector("#chara-popup-gender").textContent = character.gender;
+            document.querySelector("#chara-popup-birthday").textContent = character.birthday + "\n" + character.astrologicalSign;
+            document.querySelector("#chara-popup-height").textContent = character.height + " cm";
 
             // Pour ajouter certaines informations seulement si elles sont définies, et les cacher si elles ne le sont pas
             if(!character.school){
                 document.querySelector("#chara-popup-school").parentNode.style.display = "none";
             } else{
-                document.querySelector("#chara-popup-school").innerText = character.school + "\n" + character.schoolClass;
+                document.querySelector("#chara-popup-school").textContent = character.school + "\n" + character.schoolClass;
                 document.querySelector("#chara-popup-school").parentNode.style.display = "";
             }
             // Boucle pour alléger le code
@@ -113,16 +113,16 @@ function openPopup(characterID){
                 if(!character[property]){
                     element.parentNode.style.display = "none";
                 } else{
-                    element.innerText = character[property];
+                    element.textContent = character[property];
                     element.parentNode.style.display = "";
                 }
             }
 
-            document.querySelector("#chara-popup-color").innerText = character.color;
+            document.querySelector("#chara-popup-color").textContent = character.color;
             // Pour la couleur du personnage en question
             document.querySelector("#chara-popup-color").style.color = character.color;
 
-            document.querySelector("#chara-popup-voice").innerText = character.voice;
+            document.querySelector("#chara-popup-voice").textContent = character.voice;
         })
         .catch(error =>{
             console.error(`Une erreur est survenue lors du chargement du pop-up: ${error}`);
