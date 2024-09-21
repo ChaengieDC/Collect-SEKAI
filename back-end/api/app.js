@@ -34,131 +34,6 @@ app.use('/img', express.static(path.join(__dirname, '../../data/img')));
 app.use('/sound', express.static(path.join(__dirname, '../../data/sound')));
 
 
-// Requêtes de type POST
-// Requête POST pour inscrire un utilisateur dans la BDD
-app.post('/createUser', async(req, res) =>{
-    const userRegister = req.body;
-    try{
-        if(req.session.user){
-            res.json({ success: false, errorType: "alreadyAuthenticated" });
-            return;
-        }
-
-        const userSearch = await dbservice.getUserByNickname(userRegister.nickname);
-        if(userSearch){
-            res.json({ success: false, errorType: "nickname" });
-            return;
-        }
-
-        const emailSearch = await dbservice.getUserByEmail(userRegister.email);
-        if(emailSearch){
-            res.json({ success: false, errorType: "email" });
-            return;
-        }
-
-        if(userRegister.password !== userRegister.confirmPassword){
-            res.json({ success: false, errorType: "password" });
-            return;
-        }
-
-        // Hachage du mot de passe
-        // 10 étant le nombre de fois que le hachage va avoir lieu, un bon compromis entre sécurité et performances
-        const hashedPassword = await bcrypt.hash(userRegister.password, 10);
-
-        // SI la checkbox est coché ALORS true, SINON false
-        const birthdayValue = userRegister.checkboxDate === "on" ? true : false;
-
-        // Objet avec les données de l'utilisateur à enregistrer dans la BDD
-        const userData = {
-            nickname: userRegister.nickname,
-            email: userRegister.email,
-            password: hashedPassword,
-            birthdate: userRegister.birthdate,
-            displayBirthday: birthdayValue
-        };
-
-        await dbservice.createUser(userData);
-        res.json({ success: true });
-    } catch(error){
-        console.error(error);
-        res.status(500).send(`Erreur lors de l\'inscription: ${error}`);
-    }
-});
-
-// Requête POST pour connecter un utilisateur
-app.post("/loginUser", async(req, res) =>{
-    const userLogin = req.body;
-    try{
-        if(req.session.user){
-            res.json({ success: false, errorType: "alreadyAuthenticated" });
-            return;
-        }
-
-        const userSearch = await dbservice.getUserByNickname(userLogin.nickname);
-        if(!userSearch || userSearch.length === 0){
-            res.json({ success: false, errorType: "notMatching" });
-            return;
-        }
-
-        // Si l'utilisateur existe, on vérifie si les mots de passe correspondent
-        const hashedPassword = userSearch[0].password;
-        const passwordMatch = await bcrypt.compare(userLogin.password, hashedPassword);
-
-        if(!passwordMatch){
-            res.json({ success: false, errorType: "notMatching" });
-            return;
-        }
-
-        // Enregistrmeent d'une session utilisateur
-        req.session.user = {
-            id: userSearch[0].id,
-            nickname: userSearch[0].nickname,
-        };
-
-        res.json({ success: true });
-    } catch(error){
-        console.error(error);
-        res.status(500).send(`Erreur lors de la connexion: ${error}`);
-    }
-});
-
-// Requête POST pour insérer un personnage dans la BDD
-app.post('/postCharacter', async(req, res) =>{
-    const characterData = req.body;
-    try{
-        await dbservice.postCharacter(characterData);
-        res.send("Données insérées avec succès.");
-    } catch(error){
-        console.error(error);
-        res.status(500).send(`Erreur lors de l\'insertion des données: ${error}`);
-    }
-});
-
-// Requête POST pour insérer une chanson dans la BDD
-app.post('/postSong', async(req, res) =>{
-    const songData = req.body;
-    try{
-        await dbservice.postSong(songData);
-        res.send("Données insérées avec succès.");
-    } catch(error){
-        console.error(error);
-        res.status(500).send(`Erreur lors de l\'insertion des données: ${error}`);
-    }
-});
-
-// Requête POST pour insérer une carte dans la BDD
-app.post('/postCard', async(req, res) =>{
-    const cardData = req.body;
-    try{
-        await dbservice.postCard(cardData);
-        res.send("Données insérées avec succès.");
-    } catch(error){
-        console.error(error);
-        res.status(500).send(`Erreur lors de l\'insertion des données: ${error}`);
-    }
-});
-
-
 // Requêtes de type GET
 // Requête GET pour vérifier si un utilisateur est bien connecté
 app.get('/checkSession', async(req, res) =>{
@@ -372,6 +247,131 @@ app.get('/filterCards', async(req, res) =>{
     } catch(error){
         console.error(error);
         res.status(500).send(`Erreur lors de la récupération des cartes: ${error}`);
+    }
+});
+
+
+// Requêtes de type POST
+// Requête POST pour inscrire un utilisateur dans la BDD
+app.post('/createUser', async(req, res) =>{
+    const userRegister = req.body;
+    try{
+        if(req.session.user){
+            res.json({ success: false, errorType: "alreadyAuthenticated" });
+            return;
+        }
+
+        const userSearch = await dbservice.getUserByNickname(userRegister.nickname);
+        if(userSearch){
+            res.json({ success: false, errorType: "nickname" });
+            return;
+        }
+
+        const emailSearch = await dbservice.getUserByEmail(userRegister.email);
+        if(emailSearch){
+            res.json({ success: false, errorType: "email" });
+            return;
+        }
+
+        if(userRegister.password !== userRegister.confirmPassword){
+            res.json({ success: false, errorType: "password" });
+            return;
+        }
+
+        // Hachage du mot de passe
+        // 10 étant le nombre de fois que le hachage va avoir lieu, un bon compromis entre sécurité et performances
+        const hashedPassword = await bcrypt.hash(userRegister.password, 10);
+
+        // SI la checkbox est coché ALORS true, SINON false
+        const birthdayValue = userRegister.checkboxDate === "on" ? true : false;
+
+        // Objet avec les données de l'utilisateur à enregistrer dans la BDD
+        const userData = {
+            nickname: userRegister.nickname,
+            email: userRegister.email,
+            password: hashedPassword,
+            birthdate: userRegister.birthdate,
+            displayBirthday: birthdayValue
+        };
+
+        await dbservice.createUser(userData);
+        res.json({ success: true });
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de l\'inscription: ${error}`);
+    }
+});
+
+// Requête POST pour connecter un utilisateur
+app.post("/loginUser", async(req, res) =>{
+    const userLogin = req.body;
+    try{
+        if(req.session.user){
+            res.json({ success: false, errorType: "alreadyAuthenticated" });
+            return;
+        }
+
+        const userSearch = await dbservice.getUserByNickname(userLogin.nickname);
+        if(!userSearch || userSearch.length === 0){
+            res.json({ success: false, errorType: "notMatching" });
+            return;
+        }
+
+        // Si l'utilisateur existe, on vérifie si les mots de passe correspondent
+        const hashedPassword = userSearch[0].password;
+        const passwordMatch = await bcrypt.compare(userLogin.password, hashedPassword);
+
+        if(!passwordMatch){
+            res.json({ success: false, errorType: "notMatching" });
+            return;
+        }
+
+        // Enregistrmeent d'une session utilisateur
+        req.session.user = {
+            id: userSearch[0].id,
+            nickname: userSearch[0].nickname,
+        };
+
+        res.json({ success: true });
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la connexion: ${error}`);
+    }
+});
+
+// Requête POST pour insérer un personnage dans la BDD
+app.post('/postCharacter', async(req, res) =>{
+    const characterData = req.body;
+    try{
+        await dbservice.postCharacter(characterData);
+        res.send("Données insérées avec succès.");
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de l\'insertion des données: ${error}`);
+    }
+});
+
+// Requête POST pour insérer une chanson dans la BDD
+app.post('/postSong', async(req, res) =>{
+    const songData = req.body;
+    try{
+        await dbservice.postSong(songData);
+        res.send("Données insérées avec succès.");
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de l\'insertion des données: ${error}`);
+    }
+});
+
+// Requête POST pour insérer une carte dans la BDD
+app.post('/postCard', async(req, res) =>{
+    const cardData = req.body;
+    try{
+        await dbservice.postCard(cardData);
+        res.send("Données insérées avec succès.");
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de l\'insertion des données: ${error}`);
     }
 });
 

@@ -22,222 +22,6 @@ connection.connect((err) =>{
 });
 
 
-// Fonctions de type POST
-// Fonction pour inscrire un utilisateur dans la BDD
-async function createUser(userData){
-    const query = "INSERT INTO Users (nickname, email, password, birthdate, displayBirthday) VALUES (?, ?, ?, ?, ?)";
-
-    const values = [
-        userData.nickname,
-        userData.email,
-        userData.password,
-        userData.birthdate,
-        userData.displayBirthday
-    ];
-
-    try{
-        const result = await new Promise((resolve, reject) =>{
-            connection.query(query, values, (error, results) =>{
-                if(error){
-                    reject(error);
-                } else{
-                    resolve(results);
-                }
-            });
-        });
-        return result;
-    } catch(error){
-        throw error;
-    }
-}
-
-// Fonction pour créer un profil utilisateur dans la BDD
-async function createUserProfile(newProfileData){
-    const createProfileQuery = "INSERT INTO User_Profiles (description, twitchProfile, twitterProfile, instagramProfile, myanimelistProfile, anilistProfile, favoriteUnit, favoriteCharacter, favoriteSong, id_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    const updateUserQuery = 
-        `UPDATE Users
-        SET birthdate = ?, displayBirthday = ?
-        WHERE id = ?`;
-
-    const profileValues = [
-        newProfileData.description,
-        newProfileData.twitchLink,
-        newProfileData.twitterLink,
-        newProfileData.instagramLink,
-        newProfileData.malLink,
-        newProfileData.anilistLink,
-        newProfileData.favUnit,
-        newProfileData.favCharacter,
-        newProfileData.favSong,
-        newProfileData.id_user
-    ];
-
-    const userValues = [
-        newProfileData.birthdate,
-        newProfileData.displayBirthday,
-        newProfileData.id_user
-    ];
-
-    try{
-        await new Promise((resolve, reject) =>{
-            connection.query(createProfileQuery, profileValues, (error, results) =>{
-                if(error){
-                    reject(error);
-                } else{
-                    resolve(results);
-                }
-            });
-        });
-
-        await new Promise((resolve, reject) =>{
-            connection.query(updateUserQuery, userValues, (error, results) =>{
-                if(error){
-                    reject(error);
-                } else{
-                    resolve(results);
-                }
-            });
-        });
-
-        return;
-    } catch(error){
-        throw error;
-    }
-}
-
-// Fonction pour insérer un personnage dans la BDD
-async function postCharacter(characterData){
-    const query = "INSERT INTO Characters (charaFrame, name, img, introduction, position, gender, birthday, astrologicalSign, height, school, committee, club, partTimeJob, hobbies, specialty, favoriteFood, hatedFood, dislikes, color, voice, id_unit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    const values = [
-        characterData.charaFrame,
-        characterData.name,
-        characterData.img,
-        characterData.introduction,
-        characterData.position,
-        characterData.gender,
-        characterData.birthday,
-        characterData.astrologicalSign,
-        characterData.height,
-        characterData.school,
-        characterData.schoolClass,
-        characterData.committee,
-        characterData.club,
-        characterData.partTimeJob,
-        characterData.hobbies,
-        characterData.specialty,
-        characterData.favoriteFood,
-        characterData.hatedFood,
-        characterData.dislikes,
-        characterData.color,
-        characterData.voice,
-        characterData.id_unit
-    ];
-
-    try{
-        const result = await new Promise((resolve, reject) =>{
-            connection.query(query, values, (error, results) =>{
-                if(error){
-                    reject(error);
-                } else{
-                    resolve(results);
-                }
-            });
-        });
-        return result;
-    } catch(error){
-        throw error;
-    }
-}
-
-// Fonction pour insérer une chanson dans la BDD
-async function postSong(songData){
-    const query =
-        `INSERT INTO Songs (id, title, cover, songAudio, type, easyLevel, easyNotes, normalLevel, normalNotes, hardLevel, hardNotes, expertLevel, expertNotes, masterLevel, masterNotes, appendLevel, appendNotes, 
-            bpm, arranger, composer, lyricist, mv, mv2dLink, mv3dLink, id_unit)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-
-    const values = [
-        songData.id,
-        songData.title,
-        songData.cover,
-        songData.songAudio,
-        songData.type,
-        songData.easyLevel,
-        songData.easyNotes,
-        songData.normalLevel,
-        songData.normalNotes,
-        songData.hardLevel,
-        songData.hardNotes,
-        songData.expertLevel,
-        songData.expertNotes,
-        songData.masterLevel,
-        songData.masterNotes,
-        songData.appendLevel,
-        songData.appendNotes,
-        songData.bpm,
-        songData.arranger,
-        songData.composer,
-        songData.lyricist,
-        songData.mv,
-        songData.mv2dLink,
-        songData.mv3dLink,
-        songData.id_unit
-    ];
-
-    try{
-        const result = await new Promise((resolve, reject) =>{
-            connection.query(query, values, (error, results) =>{
-                if(error){
-                    reject(error);
-                } else{
-                    resolve(results);
-                }
-            });
-        });
-        return result;
-    } catch(error){
-        throw error;
-    }
-}
-
-// Fonction pour insérer une carte dans la BDD
-async function postCard(cardData){
-    const query = "INSERT INTO Cards (id, title, quote, voicedQuote, card, trainedCard, attribute, attributeIcon, rarity, rarityStars, skillName, id_character) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    const values = [
-        cardData.id,
-        cardData.title,
-        cardData.quote,
-        cardData.voicedQuote,
-        cardData.card,
-        cardData.trainedCard,
-        cardData.attribute,
-        cardData.attributeIcon,
-        cardData.rarity,
-        cardData.rarityStars,
-        cardData.skillName,
-        cardData.id_character
-    ];
-
-    try{
-        const result = await new Promise((resolve, reject) =>{
-            connection.query(query, values, (error, results) =>{
-                if(error){
-                    reject(error);
-                } else{
-                    resolve(results);
-                }
-            });
-        });
-        return result;
-    } catch(error){
-        throw error;
-    }
-}
-
-
 // Fonctions de type GET
 // Fonction pour récupérer un utilisateur via son pseudo
 async function getUserByNickname(nickname){
@@ -733,6 +517,222 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
 }
 
 
+// Fonctions de type POST
+// Fonction pour inscrire un utilisateur dans la BDD
+async function createUser(userData){
+    const query = "INSERT INTO Users (nickname, email, password, birthdate, displayBirthday) VALUES (?, ?, ?, ?, ?)";
+
+    const values = [
+        userData.nickname,
+        userData.email,
+        userData.password,
+        userData.birthdate,
+        userData.displayBirthday
+    ];
+
+    try{
+        const result = await new Promise((resolve, reject) =>{
+            connection.query(query, values, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
+
+// Fonction pour créer un profil utilisateur dans la BDD
+async function createUserProfile(newProfileData){
+    const createProfileQuery = "INSERT INTO User_Profiles (description, twitchProfile, twitterProfile, instagramProfile, myanimelistProfile, anilistProfile, favoriteUnit, favoriteCharacter, favoriteSong, id_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    const updateUserQuery = 
+        `UPDATE Users
+        SET birthdate = ?, displayBirthday = ?
+        WHERE id = ?`;
+
+    const profileValues = [
+        newProfileData.description,
+        newProfileData.twitchLink,
+        newProfileData.twitterLink,
+        newProfileData.instagramLink,
+        newProfileData.malLink,
+        newProfileData.anilistLink,
+        newProfileData.favUnit,
+        newProfileData.favCharacter,
+        newProfileData.favSong,
+        newProfileData.id_user
+    ];
+
+    const userValues = [
+        newProfileData.birthdate,
+        newProfileData.displayBirthday,
+        newProfileData.id_user
+    ];
+
+    try{
+        await new Promise((resolve, reject) =>{
+            connection.query(createProfileQuery, profileValues, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+
+        await new Promise((resolve, reject) =>{
+            connection.query(updateUserQuery, userValues, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+
+        return;
+    } catch(error){
+        throw error;
+    }
+}
+
+// Fonction pour insérer un personnage dans la BDD
+async function postCharacter(characterData){
+    const query = "INSERT INTO Characters (charaFrame, name, img, introduction, position, gender, birthday, astrologicalSign, height, school, committee, club, partTimeJob, hobbies, specialty, favoriteFood, hatedFood, dislikes, color, voice, id_unit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    const values = [
+        characterData.charaFrame,
+        characterData.name,
+        characterData.img,
+        characterData.introduction,
+        characterData.position,
+        characterData.gender,
+        characterData.birthday,
+        characterData.astrologicalSign,
+        characterData.height,
+        characterData.school,
+        characterData.schoolClass,
+        characterData.committee,
+        characterData.club,
+        characterData.partTimeJob,
+        characterData.hobbies,
+        characterData.specialty,
+        characterData.favoriteFood,
+        characterData.hatedFood,
+        characterData.dislikes,
+        characterData.color,
+        characterData.voice,
+        characterData.id_unit
+    ];
+
+    try{
+        const result = await new Promise((resolve, reject) =>{
+            connection.query(query, values, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
+
+// Fonction pour insérer une chanson dans la BDD
+async function postSong(songData){
+    const query =
+        `INSERT INTO Songs (id, title, cover, songAudio, type, easyLevel, easyNotes, normalLevel, normalNotes, hardLevel, hardNotes, expertLevel, expertNotes, masterLevel, masterNotes, appendLevel, appendNotes, 
+            bpm, arranger, composer, lyricist, mv, mv2dLink, mv3dLink, id_unit)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    const values = [
+        songData.id,
+        songData.title,
+        songData.cover,
+        songData.songAudio,
+        songData.type,
+        songData.easyLevel,
+        songData.easyNotes,
+        songData.normalLevel,
+        songData.normalNotes,
+        songData.hardLevel,
+        songData.hardNotes,
+        songData.expertLevel,
+        songData.expertNotes,
+        songData.masterLevel,
+        songData.masterNotes,
+        songData.appendLevel,
+        songData.appendNotes,
+        songData.bpm,
+        songData.arranger,
+        songData.composer,
+        songData.lyricist,
+        songData.mv,
+        songData.mv2dLink,
+        songData.mv3dLink,
+        songData.id_unit
+    ];
+
+    try{
+        const result = await new Promise((resolve, reject) =>{
+            connection.query(query, values, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
+
+// Fonction pour insérer une carte dans la BDD
+async function postCard(cardData){
+    const query = "INSERT INTO Cards (id, title, quote, voicedQuote, card, trainedCard, attribute, attributeIcon, rarity, rarityStars, skillName, id_character) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    const values = [
+        cardData.id,
+        cardData.title,
+        cardData.quote,
+        cardData.voicedQuote,
+        cardData.card,
+        cardData.trainedCard,
+        cardData.attribute,
+        cardData.attributeIcon,
+        cardData.rarity,
+        cardData.rarityStars,
+        cardData.skillName,
+        cardData.id_character
+    ];
+
+    try{
+        const result = await new Promise((resolve, reject) =>{
+            connection.query(query, values, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
+
+
 // Fonctions de type PUT
 // Fonction pour modifier un profil utilisateur
 async function updateUserProfile(userID, profileData){
@@ -793,4 +793,4 @@ async function updateUserProfile(userID, profileData){
 }
 
 
-module.exports = { createUser, createUserProfile, postCharacter, postSong, postCard, getUserProfileByID, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getAllCards, get4StarsCards, getCardByID, filterCards, updateUserProfile };
+module.exports = { getUserByNickname, getUserByEmail, getUserProfileByID, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getAllCards, get4StarsCards, getCardByID, filterCards, createUser, createUserProfile, postCharacter, postSong, postCard, updateUserProfile };
