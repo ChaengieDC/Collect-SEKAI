@@ -137,3 +137,32 @@ function displaySuggestionsList(){
         suggestionsList.style.display = "none";
     }
 }
+
+
+// Envoi du formulaire de modification (requête PUT) au clic de l'utilisateur
+document.querySelector("form").addEventListener("submit", async (event) =>{
+    event.preventDefault(); // Empêche la soumission par défaut du formulaire
+
+    const formData = new FormData(event.target);
+    // Pour récupérer toutes les valeurs du formulaire et les transformer en objet JavaScript
+    const data = Object.fromEntries(formData.entries());
+
+    fetch("/updateUserProfile", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        })
+        .then(response =>{
+            return response.json();
+        })
+        .then(responseData =>{
+            if(responseData.success === false){
+                window.location.href = "/login.html";
+            } else{
+                alert("Paramètres mis à jour");
+            }
+        })
+    .catch(error => {
+        console.error(`Une erreur est survenue lors de la mise à jour du profil: ${error}`);
+    });
+});

@@ -51,6 +51,61 @@ async function createUser(userData){
     }
 }
 
+// Fonction pour créer un profil utilisateur dans la BDD
+async function createUserProfile(newProfileData){
+    const createProfileQuery = "INSERT INTO User_Profiles (description, twitchProfile, twitterProfile, instagramProfile, myanimelistProfile, anilistProfile, favoriteUnit, favoriteCharacter, favoriteSong, id_user) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    const updateUserQuery = 
+        `UPDATE Users
+        SET birthdate = ?, displayBirthday = ?
+        WHERE id = ?`;
+
+    const profileValues = [
+        newProfileData.description,
+        newProfileData.twitchLink,
+        newProfileData.twitterLink,
+        newProfileData.instagramLink,
+        newProfileData.malLink,
+        newProfileData.anilistLink,
+        newProfileData.favUnit,
+        newProfileData.favCharacter,
+        newProfileData.favSong,
+        newProfileData.id_user
+    ];
+
+    const userValues = [
+        newProfileData.birthdate,
+        newProfileData.displayBirthday,
+        newProfileData.id_user
+    ];
+
+    try{
+        await new Promise((resolve, reject) =>{
+            connection.query(createProfileQuery, profileValues, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+
+        await new Promise((resolve, reject) =>{
+            connection.query(updateUserQuery, userValues, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+
+        return;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour insérer un personnage dans la BDD
 async function postCharacter(characterData){
     const query = "INSERT INTO Characters (charaFrame, name, img, introduction, position, gender, birthday, astrologicalSign, height, school, committee, club, partTimeJob, hobbies, specialty, favoriteFood, hatedFood, dislikes, color, voice, id_unit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -678,4 +733,64 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
 }
 
 
-module.exports = { createUser, postCharacter, postSong, postCard, getUserProfileByID, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getAllCards, get4StarsCards, getCardByID, filterCards };
+// Fonctions de type PUT
+// Fonction pour modifier un profil utilisateur
+async function updateUserProfile(userID, profileData){
+    const updateProfileQuery = 
+        `UPDATE User_Profiles
+        SET description = ?, twitchProfile = ?, twitterProfile = ?, instagramProfile = ?, myanimelistProfile = ?, anilistProfile = ?, favoriteUnit = ?, favoriteCharacter = ?, favoriteSong = ?
+        WHERE id_user = ?`;
+
+    const updateUserQuery = 
+        `UPDATE Users
+        SET birthdate = ?, displayBirthday = ?
+        WHERE id = ?`;
+
+    const profileValues = [
+        profileData.description,
+        profileData.twitchLink,
+        profileData.twitterLink,
+        profileData.instagramLink,
+        profileData.malLink,
+        profileData.anilistLink,
+        profileData.favUnit,
+        profileData.favCharacter,
+        profileData.favSong,
+        userID
+    ];
+
+    const userValues = [
+        profileData.birthdate,
+        profileData.displayBirthday,
+        userID
+    ];
+
+    try{
+        await new Promise((resolve, reject) =>{
+            connection.query(updateProfileQuery, profileValues, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+
+        await new Promise((resolve, reject) =>{
+            connection.query(updateUserQuery, userValues, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+
+        return;
+    } catch(error){
+        throw error;
+    }
+}
+
+
+module.exports = { createUser, createUserProfile, postCharacter, postSong, postCard, getUserProfileByID, getUserByNickname, getUserByEmail, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getAllCards, get4StarsCards, getCardByID, filterCards, updateUserProfile };

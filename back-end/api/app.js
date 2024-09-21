@@ -38,7 +38,6 @@ app.use('/sound', express.static(path.join(__dirname, '../../data/sound')));
 // Requête POST pour inscrire un utilisateur dans la BDD
 app.post('/createUser', async(req, res) =>{
     const userRegister = req.body;
-
     try{
         if(req.session.user){
             res.json({ success: false, errorType: "alreadyAuthenticated" });
@@ -89,7 +88,6 @@ app.post('/createUser', async(req, res) =>{
 // Requête POST pour connecter un utilisateur
 app.post("/loginUser", async(req, res) =>{
     const userLogin = req.body;
-
     try{
         if(req.session.user){
             res.json({ success: false, errorType: "alreadyAuthenticated" });
@@ -127,7 +125,6 @@ app.post("/loginUser", async(req, res) =>{
 // Requête POST pour insérer un personnage dans la BDD
 app.post('/postCharacter', async(req, res) =>{
     const characterData = req.body;
-
     try{
         await dbservice.postCharacter(characterData);
         res.send("Données insérées avec succès.");
@@ -140,7 +137,6 @@ app.post('/postCharacter', async(req, res) =>{
 // Requête POST pour insérer une chanson dans la BDD
 app.post('/postSong', async(req, res) =>{
     const songData = req.body;
-
     try{
         await dbservice.postSong(songData);
         res.send("Données insérées avec succès.");
@@ -153,7 +149,6 @@ app.post('/postSong', async(req, res) =>{
 // Requête POST pour insérer une carte dans la BDD
 app.post('/postCard', async(req, res) =>{
     const cardData = req.body;
-
     try{
         await dbservice.postCard(cardData);
         res.send("Données insérées avec succès.");
@@ -377,6 +372,60 @@ app.get('/filterCards', async(req, res) =>{
     } catch(error){
         console.error(error);
         res.status(500).send(`Erreur lors de la récupération des cartes: ${error}`);
+    }
+});
+
+
+// Requêtes de type PUT
+// Requête PUT pour modifier un profil utilisateur
+app.put('/updateUserProfile', async(req, res) =>{
+    if(!req.session.user){
+        res.json({ success: false });
+        return;
+    }
+
+    const userID = req.session.user.id;
+    const userProfile = req.body;
+    try{
+        const existingProfile = await dbservice.getUserProfileByID(userID);
+
+        if(existingProfile.id === null){
+            const newProfileData = {
+                description: userProfile.userDesc,
+                favUnit: userProfile.favUnit,
+                favCharacter: userProfile.favChara,
+                favSong: userProfile.favSong,
+                birthdate: userProfile.birthdate,
+                displayBirthday: userProfile.checkboxDate === "on" ? true : false,
+                twitchLink: userProfile.twitchLink,
+                twitterLink: userProfile.twitterLink,
+                instagramLink: userProfile.instagramLink,
+                malLink: userProfile.malLink,
+                anilistLink: userProfile.anilistLink,
+                id_user: userID
+            };
+            await dbservice.createUserProfile(newProfileData);
+        } else{
+            const profileData = {
+                description: userProfile.userDesc,
+                favUnit: userProfile.favUnit,
+                favCharacter: userProfile.favChara,
+                favSong: userProfile.favSong,
+                birthdate: userProfile.birthdate,
+                displayBirthday: userProfile.checkboxDate === "on" ? true : false,
+                twitchLink: userProfile.twitchLink,
+                twitterLink: userProfile.twitterLink,
+                instagramLink: userProfile.instagramLink,
+                malLink: userProfile.malLink,
+                anilistLink: userProfile.anilistLink
+            };
+            await dbservice.updateUserProfile(userID, profileData);
+        }
+
+        res.json({ success: true });
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la mise à jour du profil utilisateur: ${error}`);
     }
 });
 

@@ -1,6 +1,7 @@
 // JS de la page de CONNEXION
 /* ----------------------- */
 
+// Envoi du formulaire de connexion (requête POST) au clic de l'utilisateur
 document.querySelector("form").addEventListener("submit", async (event) =>{
     event.preventDefault(); // Empêche la soumission par défaut du formulaire
 
@@ -8,13 +9,14 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
     document.querySelector("#loginError").style.display = "none";
     document.querySelector("#password").classList.remove("error-margin");
 
-    const nickname = document.getElementById("nickname").value;
-    const password = document.getElementById("password").value;
+    const formData = new FormData(event.target);
+    // Pour récupérer toutes les valeurs du formulaire et les transformer en objet JavaScript
+    const data = Object.fromEntries(formData.entries());
 
     fetch("/loginUser", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nickname, password })
+            body: JSON.stringify(data)
         })
         .then(response =>{
             return response.json();

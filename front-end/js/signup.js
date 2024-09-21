@@ -1,6 +1,7 @@
 // JS de la page d'INSCRIPTION
 /* ------------------------ */
 
+// Envoi du formulaire d'inscription (requête POST) au clic de l'utilisateur
 document.querySelector("form").addEventListener("submit", async (event) =>{
     event.preventDefault(); // Empêche la soumission par défaut du formulaire
 
@@ -12,17 +13,14 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
     document.querySelector("#passwordError").style.display = "none";
     document.querySelector("#confirmPassword").classList.remove("error-margin");
 
-    const nickname = document.getElementById("nickname").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-    const birthdate = document.getElementById("birthdate").value;
-    const checkboxDate = document.getElementById("checkboxDate").checked ? "on" : "off";
+    const formData = new FormData(event.target);
+    // Pour récupérer toutes les valeurs du formulaire et les transformer en objet JavaScript
+    const data = Object.fromEntries(formData.entries());
 
     fetch("/createUser", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nickname, email, password, confirmPassword, birthdate, checkboxDate })
+            body: JSON.stringify(data)
         })
         .then(response =>{
             return response.json();
