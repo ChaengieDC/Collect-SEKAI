@@ -159,7 +159,13 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
             if(responseData.success === false){
                 window.location.href = "/login.html";
             } else{
-                alert("Paramètres mis à jour");
+                    const alert = document.querySelector("#alert");
+                    alert.style.display = "block";
+                
+                    // Masquer après 3 secondes
+                    setTimeout(() =>{
+                        alert.style.display = "none";
+                    }, 3000);
             }
         })
     .catch(error => {

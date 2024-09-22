@@ -29,6 +29,28 @@
     background-color: #004163;
 }
 
+#alert{
+    font-family: GeosansLight;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #dcf3d5;
+    color: #5b7251;
+    border: 1px solid #82a174;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    animation: slideUp 0.5s ease forwards;
+    padding: 5px 5px;
+}
+/* Animation de glissement vers le haut */
+@keyframes slideUp{
+    from{ transform: translate(-50%, 50%); opacity: 0; }
+    to{ transform: translate(-50%, -50%); opacity: 1; }
+}
+
 #customization, #social{
     font-size: 19px;
     font-weight: bold;
@@ -125,6 +147,10 @@ input[type="checkbox"]{
         border-radius: 15px;
     }
 
+    #alert{
+        padding: 7px 7px;
+    }
+
     /* Styles des inputs */
     .settings-input{
         /* Pour aligner sur la gauche en responsive */
@@ -166,6 +192,10 @@ input[type="checkbox"]{
         margin: 0 2px;
     }
 
+    #alert{
+        font-size: 16px;
+    }
+
     #customization, #social{
         font-size: 21px;
         padding: 35px 0;
@@ -198,6 +228,10 @@ input[type="checkbox"]{
         font-size: 17px;
         padding: 9px 30px;
         margin: 0 3px;
+    }
+
+    #alert{
+        font-size: 18px;
     }
 
     #customization, #social{
