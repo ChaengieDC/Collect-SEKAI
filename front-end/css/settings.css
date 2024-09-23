@@ -29,28 +29,6 @@
     background-color: #004163;
 }
 
-#alert{
-    font-family: GeosansLight;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: #dcf3d5;
-    color: #5b7251;
-    border: 1px solid #82a174;
-    border-radius: 5px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 1000;
-    transform: translate(-50%, -50%);
-    animation: slideUp 0.5s ease forwards;
-    padding: 5px 5px;
-}
-/* Animation de glissement vers le haut */
-@keyframes slideUp{
-    from{ transform: translate(-50%, 50%); opacity: 0; }
-    to{ transform: translate(-50%, -50%); opacity: 1; }
-}
-
 #customization, #social{
     font-size: 19px;
     font-weight: bold;
@@ -129,6 +107,38 @@ input[type="checkbox"]{
     opacity: 1;
 }
 
+/* Messages d'erreur et d'alerte */
+.error-margin{
+    margin-bottom: 0 !important;
+}
+.error-text{
+    display: none;
+    font-size: 13px;
+    color: #FF3737;
+    margin-bottom: 10px;
+}
+#alert{
+    font-family: GeosansLight;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #dcf3d5;
+    color: #5b7251;
+    border: 1px solid #82a174;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    animation: slideUp 0.5s ease forwards;
+    padding: 5px 5px;
+}
+/* Animation de glissement vers le haut */
+@keyframes slideUp{
+    from{ transform: translate(-50%, 50%); opacity: 0; }
+    to{ transform: translate(-50%, -50%); opacity: 1; }
+}
+
 .settings-button{
     font-family: GoBOLD;
     font-weight: bold;
@@ -147,10 +157,6 @@ input[type="checkbox"]{
         border-radius: 15px;
     }
 
-    #alert{
-        padding: 7px 7px;
-    }
-
     /* Styles des inputs */
     .settings-input{
         /* Pour aligner sur la gauche en responsive */
@@ -167,6 +173,14 @@ input[type="checkbox"]{
     }
     .birthdate-check label{
         margin-left: 5px;
+    }
+
+    /* Messages d'erreur et d'alerte */
+    .error-text{
+        text-align: left;
+    }
+    #alert{
+        padding: 7px 7px;
     }
 
     .settings-button{
@@ -192,10 +206,6 @@ input[type="checkbox"]{
         margin: 0 2px;
     }
 
-    #alert{
-        font-size: 16px;
-    }
-
     #customization, #social{
         font-size: 21px;
         padding: 35px 0;
@@ -209,6 +219,14 @@ input[type="checkbox"]{
         font-size: 18px;
     }
     .birthdate-check label{
+        font-size: 16px;
+    }
+
+    /* Messages d'erreur et d'alerte */
+    .error-text{
+        font-size: 15px;
+    }
+    #alert{
         font-size: 16px;
     }
 
@@ -228,10 +246,6 @@ input[type="checkbox"]{
         font-size: 17px;
         padding: 9px 30px;
         margin: 0 3px;
-    }
-
-    #alert{
-        font-size: 18px;
     }
 
     #customization, #social{
@@ -263,6 +277,15 @@ input[type="checkbox"]{
     .song-cover{
         width: 150px;
         height: 150px;
+    }
+
+    /* Messages d'erreur et d'alerte */
+    .error-text{
+        font-size: 17px;
+        margin-bottom: 15px;
+    }
+    #alert{
+        font-size: 18px;
     }
 
     .settings-button{

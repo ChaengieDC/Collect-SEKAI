@@ -111,6 +111,7 @@ label{
         margin-left: 5px;
     }
 
+    /* Messages d'erreur */
     .error-text{
         text-align: left;
     }
@@ -144,6 +145,7 @@ label{
         font-size: 16px;
     }
 
+    /* Messages d'erreur */
     .error-text{
         font-size: 15px;
     }
@@ -186,6 +188,7 @@ label{
         font-size: 18px;
     }
 
+    /* Messages d'erreur */
     .error-text{
         font-size: 17px;
         margin-bottom: 15px;

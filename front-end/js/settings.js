@@ -157,8 +157,20 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
         })
         .then(responseData =>{
             if(responseData.success === false){
-                window.location.href = "/login.html";
+                const errorType = responseData.errorType;
+
+                // Changements effectués selon le type d'erreur
+                if(errorType === "notValid"){
+                    document.querySelector("#notValidError").style.display = "block";
+                    document.querySelector("#favSong").classList.add("error-margin");
+                } else{
+                    window.location.href = "/login.html";
+                    return;
+                }
             } else{
+                    document.querySelector("#notValidError").style.display = "none";
+                    document.querySelector("#favSong").classList.remove("error-margin");
+
                     const alert = document.querySelector("#alert");
                     alert.style.display = "block";
                 

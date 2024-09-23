@@ -364,11 +364,11 @@ async function searchSongs(songQuery){
     const query =
         `SELECT id, title, cover
         FROM Songs
-        WHERE title LIKE ?;`;
+        WHERE title LIKE CONCAT('%', ?, '%')`;
 
     try{
         const songs = await new Promise((resolve, reject) =>{
-            connection.query(query, [`%${songQuery}%`], (error, results) =>{
+            connection.query(query, songQuery, (error, results) =>{
                 if(error){
                     reject(error);
                 } else{
@@ -377,6 +377,29 @@ async function searchSongs(songQuery){
             });
         });
         return songs;
+    } catch(error){
+        throw error;
+    }
+}
+
+// Fonction pour récupérer une chanson précise
+async function getOneSong(songQuery){
+    const query =
+        `SELECT id, title
+        FROM Songs
+        WHERE title = ?`;
+
+    try{
+        const song = await new Promise((resolve, reject) =>{
+            connection.query(query, songQuery, (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return song;
     } catch(error){
         throw error;
     }
@@ -793,4 +816,4 @@ async function updateUserProfile(userID, profileData){
 }
 
 
-module.exports = { getUserByNickname, getUserByEmail, getUserProfileByID, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getAllCards, get4StarsCards, getCardByID, filterCards, createUser, createUserProfile, postCharacter, postSong, postCard, updateUserProfile };
+module.exports = { getUserByNickname, getUserByEmail, getUserProfileByID, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getOneSong, getAllCards, get4StarsCards, getCardByID, filterCards, createUser, createUserProfile, postCharacter, postSong, postCard, updateUserProfile };

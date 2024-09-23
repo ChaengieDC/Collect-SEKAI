@@ -387,8 +387,16 @@ app.put('/updateUserProfile', async(req, res) =>{
     const userID = req.session.user.id;
     const userProfile = req.body;
     try{
-        const existingProfile = await dbservice.getUserProfileByID(userID);
+        const favoriteSong = userProfile.favSong;
+        if(favoriteSong){
+            const validSong = await dbservice.getOneSong(favoriteSong);
+            if(validSong.length === 0){
+                res.json({ success: false, errorType: "notValid" });
+                return;
+            }
+        }
 
+        const existingProfile = await dbservice.getUserProfileByID(userID);
         if(existingProfile.id === null){
             const newProfileData = {
                 description: userProfile.userDesc,
