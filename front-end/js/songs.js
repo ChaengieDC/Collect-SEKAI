@@ -88,7 +88,14 @@ function openPopup(songID){
             }
 
             document.querySelector("#song-popup-bpm").textContent = song.bpm;
-            document.querySelector("#song-popup-arranger").textContent = song.arranger;
+
+            if(!song.arranger){
+                document.querySelector("#song-popup-arranger").parentNode.style.display = "none";
+            } else{
+                document.querySelector("#song-popup-arranger").textContent = song.arranger;
+                document.querySelector("#song-popup-arranger").parentNode.style.display = "";
+            }
+
             document.querySelector("#song-popup-composer").textContent = song.composer;
             document.querySelector("#song-popup-lyricist").textContent = song.lyricist;
 
