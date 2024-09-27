@@ -116,7 +116,7 @@ function openPopup(songID){
                     mv2dButton.addEventListener("click", () =>{
                         mv3dVideo.style.display = "none";
                         // Message vers l'API de YouTube pour arrêter la vidéo
-                        mv3dVideo.contentWindow.postMessage('{"event":"command","func":"stopVideo"}', 'https://www.youtube.com');
+                        mv3dVideo.contentWindow.postMessage(`{"event":"command","func":"stopVideo"}`, "https://www.youtube.com");
     
                         mv2dVideo.style.display = "inline-block";
                         mv2dVideo.src = song.mv2dLink + "&enablejsapi=1";
@@ -124,7 +124,7 @@ function openPopup(songID){
                     mv3dButton.addEventListener("click", () =>{
                         mv2dVideo.style.display = "none";
                         // Message vers l'API de YouTube pour arrêter la vidéo
-                        mv2dVideo.contentWindow.postMessage('{"event":"command","func":"stopVideo"}', 'https://www.youtube.com');
+                        mv2dVideo.contentWindow.postMessage(`{"event":"command","func":"stopVideo"}`, "https://www.youtube.com");
     
                         mv3dVideo.style.display = "inline-block";
                         mv3dVideo.src = song.mv3dLink + "&enablejsapi=1";
