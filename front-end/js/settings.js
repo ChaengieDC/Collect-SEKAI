@@ -171,7 +171,7 @@ document.querySelector("form").addEventListener("submit", async (event) =>{
                     document.querySelector("#notValidError").style.display = "none";
                     document.querySelector("#favSong").classList.remove("error-margin");
 
-                    const alert = document.querySelector("#alert");
+                    const alert = document.querySelector("#alertPos");
                     alert.style.display = "block";
                 
                     // Masquer après 3 secondes

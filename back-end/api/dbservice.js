@@ -406,16 +406,17 @@ async function getOneSong(songQuery){
 }
 
 // Fonction pour récupérer toutes les cartes
-async function getAllCards(){
+async function getAllCards(userID){
     const query = 
-        `SELECT Cards.*, Characters.name as charaName, Units.name as unitName
+        `SELECT Cards.*, Characters.name as charaName, Units.name as unitName,
+            (SELECT COUNT(*) FROM Card_Collections CC WHERE CC.id_user = ? AND CC.id_card = Cards.id) > 0 AS possessed
         FROM Cards
         INNER JOIN Characters ON Cards.id_character = Characters.id
         INNER JOIN Units ON Characters.id_unit = Units.id;`;
 
     try{
         const cards = await new Promise((resolve, reject) =>{
-            connection.query(query, (error, results) =>{
+            connection.query(query, [userID], (error, results) =>{
                 if(error){
                     reject(error);
                 } else{
@@ -755,6 +756,26 @@ async function postCard(cardData){
     }
 }
 
+// Fonction pour ajouter une carte à la collection
+async function addCard(userID, cardID){
+    const query = "INSERT INTO Card_Collections (id_user, id_card) VALUES (?, ?)";
+
+    try{
+        const result = await new Promise((resolve, reject) =>{
+            connection.query(query, [userID, cardID], (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
+
 
 // Fonctions de type PUT
 // Fonction pour modifier un profil utilisateur
@@ -816,4 +837,28 @@ async function updateUserProfile(userID, profileData){
 }
 
 
-module.exports = { getUserByNickname, getUserByEmail, getUserProfileByID, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getOneSong, getAllCards, get4StarsCards, getCardByID, filterCards, createUser, createUserProfile, postCharacter, postSong, postCard, updateUserProfile };
+// Fonctions de type DELETE
+// Fonction pour supprimer une carte de la collection
+async function removeCard(userID, cardID){
+    const query = 
+    `DELETE FROM Card_Collections
+    WHERE id_user = ? AND id_card = ?`;
+
+    try{
+        const result = await new Promise((resolve, reject) =>{
+            connection.query(query, [userID, cardID], (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
+
+
+module.exports = { getUserByNickname, getUserByEmail, getUserProfileByID, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getOneSong, getAllCards, get4StarsCards, getCardByID, filterCards, createUser, createUserProfile, postCharacter, postSong, postCard, addCard, updateUserProfile, removeCard };

@@ -48,17 +48,6 @@ label{
     vertical-align: middle;
 }
 
-/* Messages d'erreur */
-.error-margin{
-    margin-bottom: 0 !important;
-}
-.error-text{
-    display: none;
-    font-size: 13px;
-    color: #FF3737;
-    margin-bottom: 10px;
-}
-
 .log-button{
     font-family: GoBOLD;
     font-weight: bold;
@@ -111,11 +100,6 @@ label{
         margin-left: 5px;
     }
 
-    /* Messages d'erreur */
-    .error-text{
-        text-align: left;
-    }
-
     .log-button{
         font-size: 18px;
     }
@@ -143,11 +127,6 @@ label{
     }
     label{
         font-size: 16px;
-    }
-
-    /* Messages d'erreur */
-    .error-text{
-        font-size: 15px;
     }
 
     .log-button{
@@ -186,12 +165,6 @@ label{
     }
     label{
         font-size: 18px;
-    }
-
-    /* Messages d'erreur */
-    .error-text{
-        font-size: 17px;
-        margin-bottom: 15px;
     }
 
     .log-button{

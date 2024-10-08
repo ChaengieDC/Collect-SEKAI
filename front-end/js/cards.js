@@ -74,11 +74,89 @@ function generateCardsHTML(){
                     cardTrained.height = 123;
                 }
 
-                const addToCollection = document.createElement("button");
-                addToCollection.type = "submit";
-                addToCollection.value = "submit";
-                addToCollection.className = "addcard-button";
-                addToCollection.textContent = "+ Ajouter à ma collection";
+                const collectionButton = document.createElement("button");
+                collectionButton.type = "submit";
+                collectionButton.value = "submit";
+                collectionButton.className = "addcard-button";
+                collectionButton.dataset.cardId = card.id; // Pour stocker l'ID de la carte
+
+                // Pour ajouter une classe pour l'état de suppression
+                if(card.possessed){
+                    collectionButton.classList.add("remove");
+                } else{
+                    collectionButton.classList.remove("remove");
+                }
+    
+                // Pour définir l'état de la carte: possédée ou non possédée
+                collectionButton.dataset.possession = card.possessed ? "true" : "false";
+                collectionButton.textContent = card.possessed ? "- Supprimer de ma collection" : "+ Ajouter à ma collection";
+    
+                collectionButton.addEventListener("click", async (event) =>{
+                    const cardID = event.target.dataset.cardId;
+                    const isPossessed = event.target.dataset.possession === "true";
+    
+                    if(isPossessed){
+                        fetch("/removeCard", {
+                            method: "DELETE",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ cardID })
+                        })
+                        .then(response =>{
+                            return response.json();
+                        })
+                        .then(responseData =>{
+                            if(responseData.success === false){
+                                window.location.href = "/login.html";
+                                return;
+                            } else{
+                                event.target.classList.remove("remove");
+                                event.target.dataset.possession = "false";
+                                event.target.textContent = "+ Ajouter à ma collection";
+
+                                const alert = document.querySelector("#alertNeg");
+                                alert.style.display = "block";
+                            
+                                // Masquer après 3 secondes
+                                setTimeout(() =>{
+                                    alert.style.display = "none";
+                                }, 3000);
+                            }
+                        })
+                        .catch(error =>{
+                            console.error(`Erreur lors de la suppression de la carte: ${error}`);
+                        });
+                    } else {
+                        fetch("/addCard", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ cardID })
+                        })
+                        .then(response =>{
+                            return response.json();
+                        })
+                        .then(responseData =>{
+                            if(responseData.success === false){
+                                window.location.href = "/login.html";
+                                return;
+                            } else{
+                                event.target.classList.add("remove");
+                                event.target.dataset.possession = "true";
+                                event.target.textContent = "- Supprimer de ma collection";
+
+                                const alert = document.querySelector("#alertPos");
+                                alert.style.display = "block";
+                            
+                                // Masquer après 3 secondes
+                                setTimeout(() =>{
+                                    alert.style.display = "none";
+                                }, 3000);
+                            }
+                        })
+                        .catch(error =>{
+                            console.error(`Erreur lors de l'ajout de la carte: ${error}`);
+                        });
+                    }
+                });
 
                 cardWrapper.appendChild(cardAttribute);
                 cardWrapper.appendChild(rarityWrapper);
@@ -90,7 +168,7 @@ function generateCardsHTML(){
     
                 cardElements.appendChild(cardWrapper);
                 cardCol.appendChild(cardElements);
-                cardCol.appendChild(addToCollection);
+                cardCol.appendChild(collectionButton);
                 cardsRow.appendChild(cardCol);
             });
 
@@ -314,11 +392,89 @@ function updateCardList(data){
                 cardTrained.height = 123;
             }
 
-            const addToCollection = document.createElement("button");
-            addToCollection.type = "submit";
-            addToCollection.value = "submit";
-            addToCollection.className = "addcard-button";
-            addToCollection.textContent = "+ Ajouter à ma collection";
+            const collectionButton = document.createElement("button");
+            collectionButton.type = "submit";
+            collectionButton.value = "submit";
+            collectionButton.className = "addcard-button";
+            collectionButton.dataset.cardId = card.id; // Pour stocker l'ID de la carte
+
+            // Pour ajouter une classe pour l'état de suppression
+            if(card.possessed){
+                collectionButton.classList.add("remove");
+            } else{
+                collectionButton.classList.remove("remove");
+            }
+
+            // Pour définir l'état de la carte: possédée ou non possédée
+            collectionButton.dataset.possession = card.possessed ? "true" : "false";
+            collectionButton.textContent = card.possessed ? "- Supprimer de ma collection" : "+ Ajouter à ma collection";
+
+            collectionButton.addEventListener("click", async (event) =>{
+                const cardID = event.target.dataset.cardId;
+                const isPossessed = event.target.dataset.possession === "true";
+
+                if(isPossessed){
+                    fetch("/removeCard", {
+                        method: "DELETE",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ cardID })
+                    })
+                    .then(response =>{
+                        return response.json();
+                    })
+                    .then(responseData =>{
+                        if(responseData.success === false){
+                            window.location.href = "/login.html";
+                            return;
+                        } else{
+                            event.target.classList.remove("remove");
+                            event.target.dataset.possession = "false";
+                            event.target.textContent = "+ Ajouter à ma collection";
+
+                            const alert = document.querySelector("#alertNeg");
+                            alert.style.display = "block";
+                        
+                            // Masquer après 3 secondes
+                            setTimeout(() =>{
+                                alert.style.display = "none";
+                            }, 3000);
+                        }
+                    })
+                    .catch(error =>{
+                        console.error(`Erreur lors de la suppression de la carte: ${error}`);
+                    });
+                } else {
+                    fetch("/addCard", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ cardID })
+                    })
+                    .then(response =>{
+                        return response.json();
+                    })
+                    .then(responseData =>{
+                        if(responseData.success === false){
+                            window.location.href = "/login.html";
+                            return;
+                        } else{
+                            event.target.classList.add("remove");
+                            event.target.dataset.possession = "true";
+                            event.target.textContent = "- Supprimer de ma collection";
+
+                            const alert = document.querySelector("#alertPos");
+                            alert.style.display = "block";
+                        
+                            // Masquer après 3 secondes
+                            setTimeout(() =>{
+                                alert.style.display = "none";
+                            }, 3000);
+                        }
+                    })
+                    .catch(error =>{
+                        console.error(`Erreur lors de l'ajout de la carte: ${error}`);
+                    });
+                }
+            });
 
             cardWrapper.appendChild(cardAttribute);
             cardWrapper.appendChild(rarityWrapper);
@@ -330,7 +486,7 @@ function updateCardList(data){
 
             cardElements.appendChild(cardWrapper);
             cardCol.appendChild(cardElements);
-            cardCol.appendChild(addToCollection);
+            cardCol.appendChild(collectionButton);
             cardsRow.appendChild(cardCol);
         });
 

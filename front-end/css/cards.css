@@ -74,6 +74,13 @@
 .addcard-button:hover{
     background-color: #72E4EA;
 }
+/* Pour le bouton dans l'état de suppression */
+.addcard-button.remove{
+    background-color: #72E4EA;
+}
+.addcard-button.remove:hover{
+    background-color: #FFC915;
+}
 
 /* Styles des informations du pop-up */
 #card-popup-title{

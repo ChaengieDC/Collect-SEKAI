@@ -197,8 +197,9 @@ app.get('/searchSongs', async (req, res) =>{
 
 // Requête GET pour récupérer toutes les cartes
 app.get('/getAllCards', async(req, res) =>{
+    const userID = req.session.user ? req.session.user.id : null;
     try{
-        const cards = await dbservice.getAllCards();
+        const cards = await dbservice.getAllCards(userID);
         res.json(cards);
     } catch(error){
         console.error(error);
@@ -375,6 +376,24 @@ app.post('/postCard', async(req, res) =>{
     }
 });
 
+// Requête POST pour ajouter une carte à la collection
+app.post('/addCard', async(req, res) =>{
+    if(!req.session.user){
+        res.json({ success: false });
+        return;
+    }
+
+    const userID = req.session.user.id;
+    const cardID = req.body.cardID;
+    try{
+        await dbservice.addCard(userID, cardID);
+        res.json({ success: true });
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de l\'insertion des données: ${error}`);
+    }
+});
+
 
 // Requêtes de type PUT
 // Requête PUT pour modifier un profil utilisateur
@@ -434,6 +453,26 @@ app.put('/updateUserProfile', async(req, res) =>{
     } catch(error){
         console.error(error);
         res.status(500).send(`Erreur lors de la mise à jour du profil utilisateur: ${error}`);
+    }
+});
+
+
+// Requêtes de type DELETE
+// Requête DELETE pour supprimer une carte de la collection
+app.delete('/removeCard', async(req, res) =>{
+    if(!req.session.user){
+        res.json({ success: false });
+        return;
+    }
+
+    const userID = req.session.user.id;
+    const cardID = req.body.cardID;
+    try{
+        await dbservice.removeCard(userID, cardID);
+        res.json({ success: true });
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la suppression des données: ${error}`);
     }
 });
 

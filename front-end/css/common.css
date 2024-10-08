@@ -51,6 +51,84 @@ label{
 }
 
 
+/* CSS des MESSAGES d'ERREUR ET D'ALERTE */
+/* ------------------------------------- */
+/* ------------------------------------- */
+
+.error-margin{
+    margin-bottom: 0 !important;
+}
+.error-text{
+    display: none;
+    font-size: 13px;
+    color: #ef4444;
+    margin-bottom: 10px;
+}
+
+#alertPos, #alertNeg{
+    font-family: GeosansLight;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 25px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    animation: slideUp 0.5s ease forwards;
+    padding: 5px 15px;
+}
+#alertPos{
+    background: #aef766;
+    color: #252525;
+    
+}
+#alertNeg{
+    background: #ef4444;
+    color: #fff;
+}
+/* Animation de glissement vers le haut */
+@keyframes slideUp{
+    from{ transform: translate(-50%, 50%); opacity: 0; }
+    to{ transform: translate(-50%, -50%); opacity: 1; }
+}
+
+
+/* Modifications pour un responsive TABLETTE + PC */
+@media (min-width: 576px){
+    .error-text{
+        text-align: left;
+    }
+
+    #alertPos, #alertNeg{
+        padding: 7px 20px;
+    }
+}
+
+/* Modifications pour un responsive TABLETTE */
+@media (min-width: 576px) and (max-width: 991px){
+    .error-text{
+        font-size: 15px;
+    }
+
+    #alertPos, #alertNeg{
+        font-size: 16px;
+    }
+}
+
+/* Modifications pour un responsive PC */
+@media screen and (min-width: 992px){
+    .error-text{
+        font-size: 17px;
+        margin-bottom: 15px;
+    }
+    
+    #alertPos, #alertNeg{
+        font-size: 18px;
+    }
+}
+
+
 /* CSS du MENU / FILTRAGE */
 /* ---------------------- */
 /* ---------------------- */
