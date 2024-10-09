@@ -170,9 +170,10 @@ app.get('/filterSongs', async(req, res) =>{
         const selectedUnit = req.query.unit;
         const selectedType = req.query.type;
         const selectedVideo = req.query.mv;
+        const selectedOrder = req.query.order;
 
-        if(searchTerm || selectedUnit || selectedType || selectedVideo){
-            const filteredSongs = await dbservice.filterSongs(searchTerm, selectedUnit, selectedType, selectedVideo);
+        if(searchTerm || selectedUnit || selectedType || selectedVideo || selectedOrder){
+            const filteredSongs = await dbservice.filterSongs(searchTerm, selectedUnit, selectedType, selectedVideo, selectedOrder);
             res.json(filteredSongs);
         } else{
             res.status(400).json(`Paramètres manquants dans la requête GET: ${error}`);
@@ -238,9 +239,10 @@ app.get('/filterCards', async(req, res) =>{
         const selectedUnit = req.query.unit;
         const selectedRarity = req.query.rarity;
         const selectedAttribute = req.query.attribute;
+        const selectedOrder = req.query.order;
 
-        if(searchTerm || selectedCharacter || selectedUnit || selectedRarity || selectedAttribute){
-            const filteredCards = await dbservice.filterCards(searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute);
+        if(searchTerm || selectedCharacter || selectedUnit || selectedRarity || selectedAttribute || selectedOrder){
+            const filteredCards = await dbservice.filterCards(searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute, selectedOrder);
             res.json(filteredCards);
         } else{
             res.status(400).json(`Paramètres manquants dans la requête GET: ${error}`);

@@ -303,7 +303,7 @@ async function getSongByID(songID){
 }
 
 // Fonction pour filtrer les chansons
-async function filterSongs(searchTerm, selectedUnit, selectedType, selectedVideo){
+async function filterSongs(searchTerm, selectedUnit, selectedType, selectedVideo, selectedOrder){
     const sqlParams = [];
     let whereClause = "1 = 1";
 
@@ -335,6 +335,13 @@ async function filterSongs(searchTerm, selectedUnit, selectedType, selectedVideo
     if(selectedVideo){
         whereClause += " AND Songs.mv LIKE ?";
         sqlParams.push(selectedVideo);
+    }
+    if(selectedOrder === "Ascendant"){
+        whereClause += " ORDER BY Songs.id ASC";
+        sqlParams.push(selectedOrder);
+    } else{
+        whereClause += " ORDER BY Songs.id DESC";
+        sqlParams.push(selectedOrder);
     }
 
     const query =
@@ -479,7 +486,7 @@ async function getCardByID(cardID){
 }
 
 // Fonction pour filtrer les cartes
-async function filterCards(searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute){
+async function filterCards(searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute, selectedOrder){
     const sqlParams = [];
     let whereClause = "1 = 1";
 
@@ -515,6 +522,13 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
     if(selectedAttribute){
         whereClause += " AND Cards.attribute = ?";
         sqlParams.push(selectedAttribute);
+    }
+    if(selectedOrder === "Ascendant"){
+        whereClause += " ORDER BY Cards.id ASC";
+        sqlParams.push(selectedOrder);
+    } else{
+        whereClause += " ORDER BY Cards.id DESC";
+        sqlParams.push(selectedOrder);
     }
 
     const query =

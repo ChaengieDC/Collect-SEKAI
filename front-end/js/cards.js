@@ -286,14 +286,15 @@ document.querySelector("form").addEventListener("submit", function (event){
     event.preventDefault(); // Empêche la soumission par défaut du formulaire
     
     const formData = new FormData(this);
-    const searchTerm = formData.get("searchBar");
-    const selectedCharacter = formData.get("character");
-    const selectedUnit = formData.get("unit");
-    const selectedRarity = formData.get("rarity");
-    const selectedAttribute = formData.get("attribute");
+    const searchTerm = formData.get("searchBar") || "";
+    const selectedCharacter = formData.get("character") || "";
+    const selectedUnit = formData.get("unit") || "";
+    const selectedRarity = formData.get("rarity") || "";
+    const selectedAttribute = formData.get("attribute") || "";
+    const selectedOrder = formData.get("order") || "Descendant";
     const url = form.action;
     // Envoi d'une requête au serveur pour récupérer les cartes filtrées
-    fetch(`${url}?searchBar=${searchTerm}&character=${selectedCharacter}&unit=${selectedUnit}&rarity=${selectedRarity}&attribute=${selectedAttribute}`)
+    fetch(`${url}?searchBar=${searchTerm}&character=${selectedCharacter}&unit=${selectedUnit}&rarity=${selectedRarity}&attribute=${selectedAttribute}&order=${selectedOrder}`)
         .then(response =>{
             return response.json();
         })
@@ -326,9 +327,6 @@ function updateCardList(data){
         noResult.appendChild(textResult);
         containerCard.appendChild(noResult);
     } else{
-        // Tri des données par ID de façon décroissante (les plus récentes en haut)
-        data.sort((a, b) => b.id - a.id);
-
         const cardsRow = document.createElement("div");
         cardsRow.className = `row cards-grid`;
 

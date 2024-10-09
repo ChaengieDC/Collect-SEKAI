@@ -158,13 +158,14 @@ document.querySelector("form").addEventListener("submit", function (event){
     event.preventDefault(); // Empêche la soumission par défaut du formulaire
     
     const formData = new FormData(this);
-    const searchTerm = formData.get("searchBar");
-    const selectedUnit = formData.get("unit");
-    const selectedType = formData.get("type");
-    const selectedVideo = formData.get("mv");
+    const searchTerm = formData.get("searchBar") || "";
+    const selectedUnit = formData.get("unit") || "";
+    const selectedType = formData.get("type") || "";
+    const selectedVideo = formData.get("mv") || "";
+    const selectedOrder = formData.get("order") || "Descendant";
     const url = form.action;
     // Envoi d'une requête au serveur pour récupérer les chansons filtrées
-    fetch(`${url}?searchBar=${searchTerm}&unit=${selectedUnit}&type=${selectedType}&mv=${selectedVideo}`)
+    fetch(`${url}?searchBar=${searchTerm}&unit=${selectedUnit}&type=${selectedType}&mv=${selectedVideo}&order=${selectedOrder}`)
         .then(response =>{
             return response.json();
         })
@@ -197,9 +198,6 @@ function updateSongList(data){
         noResult.appendChild(textResult);
         containerSong.appendChild(noResult);
     } else{
-        // Tri des données par ID de façon décroissante (les plus récentes en haut)
-        data.sort((a, b) => b.id - a.id);
-
         const songsRow = document.createElement("div");
         songsRow.className = `row cards-grid`;
 
