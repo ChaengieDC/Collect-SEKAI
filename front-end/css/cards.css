@@ -19,16 +19,14 @@
     position: absolute;
     z-index: 2;
     /* Décalage pour placer le contenu en haut à droite de la carte */
-    transform: translateX(950%) translateY(25%);
+    transform: translateX(940%) translateY(34%);
 }
 .rarity-wrapper{
+    display: grid;
     position: absolute;
-    /* Pour placer le contenu en bas de la carte */
-    top: 86%;
-    left: 50%;
+    bottom: 5.5%;
     z-index: 2;
-    /* Décalage pour centrer le contenu */
-    transform: translate(-50%, -50%);
+    transform: translateX(7px);
 }
 
 /* Effet de pointeur sur les cartes */
@@ -128,9 +126,17 @@
     margin-bottom: 15px;
 }
 
+#card-popup-rarity img:not(:last-child){
+    margin-right: 3px;
+}
+
 
 /* Modifications pour un responsive TABLETTE + PC */
 @media (min-width: 576px){
+    .rarity-wrapper{
+        transform: translateX(10px);
+    }
+
     .addcard-button{
         padding: 6px 24px;
     }
@@ -144,18 +150,17 @@
 /* Modifications pour un responsive TABLETTE */
 @media (min-width: 576px) and (max-width: 991px){
     .attribute{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         /* Décalage pour placer le contenu en haut à droite de la carte */
-        transform: translateX(1090%) translateY(23%);
+        transform: translateX(1484%) translateY(32%);
     }
     .rarity-wrapper{
-        /* Pour placer le contenu en bas de la carte */
-        top: 89.5%;
+        bottom: 3.5%;
     }
     .rarity-wrapper img{
-        width: 40px;
-        height: 40px; 
+        width: 30px;
+        height: 30px; 
     }
 
     .card-untrained, .card-trained{
@@ -205,18 +210,17 @@
     }
 
     .attribute{
-        width: 45px;
-        height: 45px;
+        width: 35px;
+        height: 35px;
         /* Décalage pour placer le contenu en haut à droite de la carte */
-        transform: translateX(1100%) translateY(23%);
+        transform: translateX(1444%) translateY(30%);
     }
     .rarity-wrapper{
-        /* Pour placer le contenu en bas de la carte */
-        top: 89.5%;
+        bottom: 3.25%;
     }
     .rarity-wrapper img{
-        width: 45px;
-        height: 45px; 
+        width: 35px;
+        height: 35px; 
     }
 
     .card-untrained, .card-trained{
@@ -260,18 +264,11 @@
 /* Tailles spécifiques pour éviter de surcharger sur les versions MOBILE */
 @media (min-width: 360px) and (max-width: 429px){
     .attribute{
-        width: 25px;
-        height: 25px;
         /* Décalage pour placer le contenu en haut à droite de la carte */
-        transform: translateX(975%) translateY(26%);
+        transform: translateX(1240%) translateY(34%);
     }
     .rarity-wrapper{
-        /* Pour placer le contenu en bas de la carte */
-        top: 87.5%;
-    }
-    .rarity-wrapper img{
-        width: 25px;
-        height: 25px; 
+        bottom: 4.5%;
     }
 
     .card-untrained, .card-trained{
@@ -281,18 +278,17 @@
 }
 @media (min-width: 430px) and (max-width: 575px){
     .attribute{
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         /* Décalage pour placer le contenu en haut à droite de la carte */
-        transform: translateX(1023%) translateY(27%);
+        transform: translateX(1252%) translateY(28%);
     }
     .rarity-wrapper{
-        /* Pour placer le contenu en bas de la carte */
-        top: 88%;
+        bottom: 3.5%;
     }
     .rarity-wrapper img{
-        width: 30px;
-        height: 30px; 
+        width: 25px;
+        height: 25px; 
     }
 
     .card-untrained, .card-trained{
