@@ -194,15 +194,41 @@ function generateProfileHTML(){
             collectionTitle.className = "collection-title";
             collectionTitle.textContent = "C O L L E C T I O N";
 
-            const collectionSelectors = document.createElement("div");
-            collectionSelectors.className = "collection-selectors";
+            const collectionWrapper = document.createElement("div");
+            collectionWrapper.className = "collection-wrapper";
+
+            const buttonsWrapper = document.createElement("div");
+            buttonsWrapper.className = "buttons-wrapper";
 
             const cardsButton = document.createElement("button");
             cardsButton.textContent = "Cartes";
+            cardsButton.addEventListener("click", () =>{
+                // Boucle qui retire tous les éléments à chaque clique pour éviter une duplication
+                while(userCollection.firstChild){
+                    userCollection.removeChild(userCollection.firstChild);
+                }
+
+                generateCardCollectionHTML();
+            });
             const eventsButton = document.createElement("button");
             eventsButton.textContent = "Événements";
+            eventsButton.addEventListener("click", () =>{
+                // Boucle qui retire tous les éléments à chaque clique pour éviter une duplication
+                while(userCollection.firstChild){
+                    userCollection.removeChild(userCollection.firstChild);
+                }
+            });
             const emotesButton = document.createElement("button");
             emotesButton.textContent = "Emotes";
+            emotesButton.addEventListener("click", () =>{
+                // Boucle qui retire tous les éléments à chaque clique pour éviter une duplication
+                while(userCollection.firstChild){
+                    userCollection.removeChild(userCollection.firstChild);
+                }
+            });
+
+            const userCollection = document.createElement("div");
+            userCollection.className = "user-collection";
 
             userInfo.appendChild(username);
             userInfo.appendChild(userDesc);
@@ -229,9 +255,11 @@ function generateProfileHTML(){
                 favWrapper.appendChild(favInfoSong);
             }
 
-            collectionSelectors.appendChild(cardsButton);
-            collectionSelectors.appendChild(eventsButton);
-            collectionSelectors.appendChild(emotesButton);
+            buttonsWrapper.appendChild(cardsButton);
+            buttonsWrapper.appendChild(eventsButton);
+            buttonsWrapper.appendChild(emotesButton);
+            collectionWrapper.appendChild(buttonsWrapper);
+            collectionWrapper.appendChild(userCollection);
 
             const containerProfile = document.querySelector(".container-profile");
             containerProfile.appendChild(userInfoWrapper);
@@ -242,7 +270,7 @@ function generateProfileHTML(){
 
             containerProfile.appendChild(document.createElement("hr"));
             containerProfile.appendChild(collectionTitle);
-            containerProfile.appendChild(collectionSelectors);
+            containerProfile.appendChild(collectionWrapper);
         })
         .catch(error =>{
             console.error(`Une erreur est survenue lors du chargement du code html: ${error}`);
@@ -251,7 +279,55 @@ function generateProfileHTML(){
 // Appel de la fonction au chargement de la page
 document.addEventListener("DOMContentLoaded", () =>{
     generateProfileHTML();
+    setTimeout(() =>{
+        generateCardCollectionHTML();
+    }, 100);
 });
+
+// Fonction pour récupérer la collection d'un utilisateur et la générer sur son profil
+function generateCardCollectionHTML(){
+    // Pour séparer l'URL du profil en segments en utilisant "/" comme séparateur
+    const profileURL = window.location.pathname.split("/");
+    // On récupère l'ID utilisateur de l'URL, situé au 3ème segment (index 2 dans le tableau)
+    const userID = profileURL[2];
+
+    fetch(`/getUserCardCollectionByID/${userID}`)
+        .then(response =>{
+            return response.json();
+        })
+        .then(collection =>{
+            // Tri de la collection par ID de façon décroissante (les plus récentes en haut)
+            collection.sort((a, b) => b.id - a.id);
+
+            const userCollection = document.querySelector(".user-collection");
+
+            if(collection.length === 0){
+                const noResult = document.createElement("div");
+                noResult.className = "no-result";
+        
+                const textResult = document.createElement("p");
+                textResult.textContent = "Pas de cartes possédées."
+        
+                noResult.appendChild(textResult);
+                userCollection.appendChild(noResult);
+            } else {
+                collection.forEach(card =>{
+                    const cardThumbnail = document.createElement("img");
+                    cardThumbnail.src = "/img/thumbnails/" + card.cardThumbnail;
+                    cardThumbnail.className = "card-thumbnail";
+                    cardThumbnail.alt = card.charaName;
+                    cardThumbnail.width = 52;
+                    cardThumbnail.height = 52;
+                    cardThumbnail.onclick = () => openPopup(userID, card.id, card.additionDate);
+        
+                    userCollection.appendChild(cardThumbnail);
+                });
+            }
+        })
+        .catch(error =>{
+            console.error(`Une erreur est survenue lors du chargement du code html: ${error}`);
+        });
+}
 
 // Fonction pour créer un bouton vers les paramètres si le profil correspond à celui de l'utilisateur de la session
 function createSettings(userID){
@@ -294,5 +370,184 @@ function createSettings(userID){
         })
         .catch(error =>{
             console.error(`Une erreur est survenue lors de la comparaison: ${error}`);
+        });
+}
+
+
+// Pour ouvrir le pop-up contenant les informations de la carte sélectionnée
+function openPopup(userID, cardID, additionDate){
+    const popupContainer = document.querySelector("#popup");
+    popupContainer.style.display = "block";
+
+    // Pour empêcher de scroll sur la page en arrière-plan
+    const htmlScroll = document.querySelector("html");
+    htmlScroll.style.overflowY = "hidden";
+
+    // Remettre la page en haut lors de l'ouverture du pop-up
+    popupContainer.scrollTop = 0;
+
+    // Permet de récupérer les données json des personnages
+    fetch("/getCardByID/" + cardID)
+        .then(response =>{
+            return response.json();
+        })
+        .then(data =>{
+            const card = data[0];
+
+            fetch("/checkSession")
+                .then(response =>{
+                    return response.json();
+                })
+                .then(sessionData =>{
+                    if(sessionData.success){
+                        const loggedUserID = sessionData.id;
+        
+                        // Comparaison entre l'ID du profil sélectionné et celui de la session utilisateur
+                        if(loggedUserID == userID){
+                            const possessedInfo = document.querySelector(".possessed-info");
+
+                            // Boucle qui retire tous les éléments à chaque ouverture du pop-up pour éviter une duplication
+                            while(possessedInfo.firstChild){
+                                possessedInfo.removeChild(possessedInfo.firstChild);
+                            }
+
+                            const deleteButton = document.createElement("button");
+                            deleteButton.type = "submit";
+                            deleteButton.value = "submit";
+                            deleteButton.className = "delete-button";
+                            deleteButton.dataset.cardId = card.id; // Pour stocker l'ID de la carte
+                            deleteButton.textContent = "- Supprimer de ma collection";
+
+                            deleteButton.addEventListener("click", async (event) =>{
+                                const confirmation = confirm("Êtes-vous bien sûr de vouloir supprimer cette carte de votre collection ?");
+
+                                if(!confirmation){
+                                    // Si l'utilisateur annule, on arrête l'exécution ici
+                                    return;
+                                }
+
+                                const cardID = event.target.dataset.cardId;
+                
+                                fetch("/removeCard", {
+                                    method: "DELETE",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({ cardID })
+                                })
+                                .then(response =>{
+                                    return response.json();
+                                })
+                                .then(responseData =>{
+                                    if(responseData.success === true){
+                                        location.reload();
+                                    }
+                                })
+                                .catch(error =>{
+                                    console.error(`Erreur lors de la suppression de la carte: ${error}`);
+                                });
+                            });
+
+                            const cardAdditionDate = document.createElement("h6");
+                            cardAdditionDate.className = "addition-date";
+
+                            // On récupère la date enregistrée dans la BDD (au format ISO YYYY-MM-DD)
+                            const isoDate = additionDate;
+                            // Création d'un objet date pour manipuler cette dernière
+                            const date = new Date(isoDate);
+                            // On lui indique quels et comment afficher les éléments suivants
+                            const options = {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric"
+                            };
+                            // On la retranscrit au format français selon les options sélectionnées
+                            const formattedDate = date.toLocaleDateString("fr-FR", options);
+
+                            cardAdditionDate.textContent = "Ajoutée le " + formattedDate + ".";
+                            
+                            document.querySelector(".close").style.marginTop = "0";
+
+                            possessedInfo.appendChild(deleteButton);
+                            possessedInfo.appendChild(cardAdditionDate);
+                            possessedInfo.appendChild(document.createElement("hr"));
+                        }
+                    }
+                })
+                .catch(error =>{
+                    console.error(`Une erreur est survenue lors de la comparaison: ${error}`);
+                });
+
+            document.querySelector("#card-popup-title").textContent = card.title;
+
+            // Pour cacher ou non le bouton interchangeant les cartes
+            if(!card.trainedCard){
+                document.querySelector(".swap-card").style.display = "none";
+            } else{
+                document.querySelector(".swap-card").style.display = "";
+
+                // Bouton interchangeant les cartes
+                let imageState = 1;
+                document.querySelector(".swap-card").addEventListener("click", () =>{
+                    if(imageState == 1){
+                        document.querySelector("#card-popup-img").src = "/img/cards/" + card.trainedCard;
+                        imageState = 2;
+                    } else{
+                        document.querySelector("#card-popup-img").src = "/img/cards/" + card.card;
+                        imageState = 1;
+                    }
+                });
+            }
+
+            document.querySelector("#card-popup-img").src = "/img/cards/" + card.card;
+            document.querySelector("#card-popup-img").alt = card.title;
+
+            // Pour ajouter certaines informations seulement si elles sont définies, et les cacher si elles ne le sont pas
+            if(!card.quote){
+                document.querySelector("#card-popup-quote").style.display = "none";
+                document.querySelector("#card-popup-voicedQuote").style.display = "none";
+            } else{
+                document.querySelector("#card-popup-quote").textContent = `"` + card.quote + `"`;
+                document.querySelector("#card-popup-quote").style.display = "";
+                document.querySelector("#card-popup-voicedQuote").src = "/sound/quotes/" + card.voicedQuote;
+                document.querySelector("#card-popup-voicedQuote").style.display = "";
+            }
+
+            document.querySelector("#card-popup-chara").textContent = card.charaName;
+
+            const popupRarity = document.querySelector("#card-popup-rarity");
+            // Boucle qui retire tous les éléments à chaque ouverture du pop-up pour éviter une duplication
+            while(popupRarity.firstChild){
+                popupRarity.removeChild(popupRarity.firstChild);
+            }
+
+            // Puis on les rajoute selon les caractéristiques de la carte
+            let nbStars = 1;
+            if(card.rarity == "✰4"){
+                nbStars = 4;
+            } else if(card.rarity == "✰3"){
+                nbStars = 3;
+            } else if(card.rarity == "✰2"){
+                nbStars = 2;
+            }
+            for(let i=0; i<nbStars; i++){
+                const rarityStar = document.createElement("img");
+                rarityStar.src = "/img/icons/" + card.rarityStars;
+                rarityStar.alt = card.rarity;
+                rarityStar.width = 25;
+                rarityStar.height = 25;
+            
+                popupRarity.appendChild(rarityStar);
+            }
+
+            document.querySelector("#card-popup-attribute").src = "/img/icons/" + card.attributeIcon;
+            document.querySelector("#card-popup-attribute").alt = card.attribute;
+            document.querySelector("#card-popup-attribute").width = 25;
+            document.querySelector("#card-popup-attribute").height = 25;
+
+            document.querySelector("#card-popup-skillName").textContent = card.skillName;
+            document.querySelector("#card-popup-releaseDate").textContent = "//WIP...";
+            document.querySelector("#card-popup-gacha").textContent = "//WIP...";
+        })
+        .catch(error =>{
+            console.error(`Une erreur est survenue lors du chargement du pop-up: ${error}`);
         });
 }

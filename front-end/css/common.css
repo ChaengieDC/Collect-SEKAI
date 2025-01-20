@@ -212,6 +212,7 @@ label{
     font-size: 25px;
     color: #252525;
     padding-top: 30px;
+    margin-bottom: 0;
 }
 
 
@@ -354,7 +355,7 @@ label{
     color: #6e9bb3;
     line-height: 0.95;
     position: absolute;
-    margin: 15px 0;
+    margin-top: 15px;
 }
 .close:hover{
     color: #252525;

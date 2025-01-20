@@ -93,6 +93,31 @@ async function getUserProfileByID(userID){
     }
 }
 
+// Fonction pour récupérer une collection utilisateur via son ID
+async function getUserCardCollectionByID(userID){
+    const query = 
+        `SELECT Card_Collections.additionDate, Cards.id, Cards.cardThumbnail, Characters.name as charaName
+        FROM Card_Collections
+        INNER JOIN Cards ON Card_Collections.id_card = Cards.id
+        INNER JOIN Characters ON Cards.id_character = Characters.id
+        WHERE Card_Collections.id_user = ?`;
+
+    try{
+        const user = await new Promise((resolve, reject) =>{
+            connection.query(query, [userID], (error, results) =>{
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results);
+                }
+            });
+        });
+        return user;
+    } catch(error){
+        throw error;
+    }
+}
+
 // Fonction pour récupérer les groupes avec leurs membres respectifs depuis la BDD
 async function getAllUnitsWithMembers(){
     const query =
@@ -419,7 +444,7 @@ async function getAllCards(userID){
             (SELECT COUNT(*) FROM Card_Collections CC WHERE CC.id_user = ? AND CC.id_card = Cards.id) > 0 AS possessed
         FROM Cards
         INNER JOIN Characters ON Cards.id_character = Characters.id
-        INNER JOIN Units ON Characters.id_unit = Units.id;`;
+        INNER JOIN Units ON Characters.id_unit = Units.id`;
 
     try{
         const cards = await new Promise((resolve, reject) =>{
@@ -486,8 +511,8 @@ async function getCardByID(cardID){
 }
 
 // Fonction pour filtrer les cartes
-async function filterCards(searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute, selectedOrder){
-    const sqlParams = [];
+async function filterCards(userID, searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute, selectedOrder){
+    const sqlParams = [[userID]];
     let whereClause = "1 = 1";
 
     // SI une information est fournie, ALORS on ajoute la clause à la requête
@@ -532,7 +557,8 @@ async function filterCards(searchTerm, selectedCharacter, selectedUnit, selected
     }
 
     const query =
-        `SELECT Cards.*
+        `SELECT Cards.*, Characters.name as charaName, Units.name as unitName,
+            (SELECT COUNT(*) FROM Card_Collections CC WHERE CC.id_user = ? AND CC.id_card = Cards.id) > 0 AS possessed
         FROM Cards
         INNER JOIN Characters ON Cards.id_character = Characters.id
         INNER JOIN Units ON Characters.id_unit = Units.id
@@ -875,4 +901,4 @@ async function removeCard(userID, cardID){
 }
 
 
-module.exports = { getUserByNickname, getUserByEmail, getUserProfileByID, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getOneSong, getAllCards, get4StarsCards, getCardByID, filterCards, createUser, createUserProfile, postCharacter, postSong, postCard, addCard, updateUserProfile, removeCard };
+module.exports = { getUserByNickname, getUserByEmail, getUserProfileByID, getUserCardCollectionByID, getAllUnitsWithMembers, getCharacterByID, filterCharacters, getAllSongs, getSongByID, filterSongs, searchSongs, getOneSong, getAllCards, get4StarsCards, getCardByID, filterCards, createUser, createUserProfile, postCharacter, postSong, postCard, addCard, updateUserProfile, removeCard };

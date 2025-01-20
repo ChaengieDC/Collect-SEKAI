@@ -77,20 +77,110 @@ hr{
     color: #004163;
     margin-bottom: 0.5rem;
 }
-.collection-selectors{
+
+.collection-wrapper{
     font-family: GoBOLD;
 }
-.collection-selectors button{
+
+.buttons-wrapper{
+    display: flex;
+}
+.buttons-wrapper button{
     font-size: 13px;
     font-weight: 400;
     background-color: #006196;
     color: white;
     border: none;
+    width: 100%;
     padding: 5px 10px;
-    margin: 0 1px;
 }
-.collection-selectors button:hover{
+.buttons-wrapper button:nth-child(2){
+    margin: 0 2px;
+}
+.buttons-wrapper button:hover{
     background-color: #004163;
+}
+
+.card-thumbnail{
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.no-result p{
+    padding-top: 0.5rem !important;
+}
+
+/* Styles des informations du pop-up */
+.delete-button{
+    font-family: GoBOLD;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #72E4EA;
+    color: #252525;
+    border: none;
+    border-radius: 3px;
+    padding: 4px 22px;
+    margin-top: 30px;
+}
+.delete-button:hover{
+    background-color: #FFC915;
+}
+.addition-date{
+    font-family: GeosansLight;
+    font-style: italic;
+    font-size: 14px;
+    color: #252525;
+    margin: 0;
+}
+
+#card-popup-title{
+    font-family: GeosansLight;
+    font-size: 19px;
+    font-weight: bold;
+    color: #004163;
+    margin: 15px 0;
+}
+
+.swap-card{
+    background-color: #fff;
+    border: none;
+    border-bottom-left-radius: 15%;
+    position: absolute;
+    right: 0;
+    padding-right: 0;
+    padding-bottom: 1%;
+    padding-left: 2%;
+}
+.swap-card i{
+    font-size: 30px;
+    color: #004163;
+    transition: all 0.4s ease;
+}
+.swap-card:hover i{
+    transform: rotate(180deg);
+    opacity: 30%;
+}
+#card-popup-img{
+    border-bottom: 10px solid #e4f2fa;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#card-popup-quote{
+    font-family: GeosansLight;
+    font-size: 16px;
+    color: #252525;
+    line-height: 125%;
+    padding-bottom: 0.75vh;
+    margin: 0;
+}
+#card-popup-voicedQuote{
+    margin-bottom: 15px;
+}
+
+#card-popup-rarity img:not(:last-child){
+    margin-right: 3px;
 }
 
 
@@ -144,6 +234,15 @@ hr{
     .fav-unit, .fav-chara, .fav-song{
         margin-bottom: 0;
     }
+
+    /* Styles des informations du pop-up */
+    .delete-button{
+        padding: 6px 24px;
+    }
+
+    #card-popup-img{
+        border-bottom: 15px solid #e4f2fa;
+    }
 }
 
 /* Modifications pour un responsive TABLETTE */
@@ -181,11 +280,62 @@ hr{
 
     .collection-title{
         font-size: 20px;
+        margin-bottom: 1rem;
     }
-    .collection-selectors button{
+
+    .buttons-wrapper button{
         font-size: 15px;
         padding: 7px 30px;
-        margin: 0 2px;
+    }
+    .buttons-wrapper button:nth-child(2){
+        margin: 0 4px;
+    }
+
+    .card-thumbnail{
+        width: 102px;
+        height: 102px;
+        margin-top: 1rem;
+        margin-right: 9px;
+        margin-left: 9px;
+    }
+    .no-result p{
+        padding-top: 1rem !important;
+    }
+
+    /* Styles des informations du pop-up */
+    .delete-button{
+        font-size: 18px;
+    }
+    .addition-date{
+        font-size: 16px;
+    }
+
+    #card-popup-title{
+        font-size: 21px;
+        margin: 20px 0;
+    }
+
+    .swap-card{
+        padding-bottom: 1%;
+        padding-left: 1.25%;
+    }
+    .swap-card i{
+        font-size: 45px;
+    }
+    #card-popup-img{
+        margin-bottom: 20px;
+    }
+
+    #card-popup-quote{
+        font-size: 18px;
+    }
+    #card-popup-voicedQuote{
+        margin-bottom: 20px;
+    }
+
+    #card-popup-rarity img, #card-popup-attribute{
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -228,10 +378,68 @@ hr{
 
     .collection-title{
         font-size: 22px;
+        margin-bottom: 1.5rem;
     }
-    .collection-selectors button{
+    
+    .buttons-wrapper button{
         font-size: 17px;
         padding: 9px 50px;
-        margin: 0 3px;
+    }
+    .buttons-wrapper button:nth-child(2){
+        margin: 0 6px;
+    }
+
+    .card-thumbnail{
+        width: 152px;
+        height: 152px;
+        margin-top: 1.5rem;
+        margin-right: 13px;
+        margin-left: 13px;
+    }
+    .no-result p{
+        padding-top: 1.5rem !important;
+    }
+
+    /* Styles des informations du pop-up */
+    .delete-button{
+        font-size: 20px;
+    }
+    .addition-date{
+        font-size: 18px;
+    }
+
+    #card-popup-title{
+        font-size: 23px;
+        margin: 25px 0;
+    }
+    .swap-card{
+        padding-bottom: 1.75%;
+        padding-left: 2.25%;
+    }
+    .swap-card i{
+        font-size: 40px;
+    }
+    #card-popup-img{
+        margin-bottom: 25px;
+    }
+
+    #card-popup-quote{
+        font-size: 20px;
+    }
+    #card-popup-voicedQuote{
+        margin-bottom: 25px;
+    }
+
+    #card-popup-rarity img, #card-popup-attribute{
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Tailles spécifiques pour éviter de surcharger sur les versions PC */
+@media screen and (min-width: 1282px){
+    /* Styles des informations du pop-up */
+    #card-popup-img{
+        border-bottom: 20px solid #e4f2fa;
     }
 }

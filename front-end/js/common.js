@@ -2,23 +2,27 @@
 /* ------- */
 
 // Événement permettant d'afficher ou masquer le menu de filtrage sur les versions MOBILE
-const toggleButton = document.querySelector("#toggleForm");
-const form = document.querySelector("form");
-toggleButton.addEventListener("click", () =>{
-    form.classList.toggle("d-none");
-    // Pour déplacer la position du bouton selon si le menu est affiché ou masqué
-    if(form.classList.contains("d-none")){
-        toggleButton.style.right = "-1px";
-    } else{
-        toggleButton.style.right = "234px";
-    }
-});
+if(["/characters.html", "/songs.html", "/cards.html"].includes(window.location.pathname)){
+    const toggleButton = document.querySelector("#toggleForm");
+    const form = document.querySelector("form");
+    toggleButton.addEventListener("click", () =>{
+        form.classList.toggle("d-none");
+        // Pour déplacer la position du bouton selon si le menu est affiché ou masqué
+        if(form.classList.contains("d-none")){
+            toggleButton.style.right = "-1px";
+        } else{
+            toggleButton.style.right = "234px";
+        }
+    });  
+}
 
 // Pour recharger la page après le reset du menu de filtrage
-const resetButton = document.querySelector(".reset-button");
-resetButton.addEventListener("click", () =>{
-    location.reload();
-});
+if(["/characters.html", "/songs.html", "/cards.html"].includes(window.location.pathname)){
+    const resetButton = document.querySelector(".reset-button");
+    resetButton.addEventListener("click", () =>{
+        location.reload();
+    });
+}
 
 
 /* JS du POP-UP */
@@ -64,38 +68,36 @@ function resetMVs(){
 
 // Pour fermer le pop-up
 // Via la croix
-const closeButton = document.querySelector(".close");
-const popupContainer = document.querySelector("#popup");
-const htmlScroll = document.querySelector("html");
-closeButton.addEventListener("click", () =>{
-    popupContainer.style.display = "none";
-    htmlScroll.style.overflow = "";
-    document.body.style.overflow = "";
-
-    // Arrêt de l'audio à la fermeture du pop-up
-    if(window.location.pathname === "/songs.html" || window.location.pathname === "/cards.html"){
-        stopAudio();     
-    }
-    // Réinitialisation des clips
-    if(window.location.pathname === "/songs.html"){
-        resetMVs();
-    }
-});
-// Via un clic en dehors de ce dernier
-popupContainer.addEventListener("click", (e) =>{
-    const popup = document.querySelector(".popup-content");
-    if(!popup.contains(e.target)){
+if(["/characters.html", "/songs.html", "/cards.html"].includes(window.location.pathname) || window.location.pathname.startsWith("/profile/")){
+    const closeButton = document.querySelector(".close");
+    const popupContainer = document.querySelector("#popup");
+    const htmlScroll = document.querySelector("html");
+    closeButton.addEventListener("click", () =>{
         popupContainer.style.display = "none";
         htmlScroll.style.overflow = "";
         document.body.style.overflow = "";
 
         // Arrêt de l'audio à la fermeture du pop-up
-        if(window.location.pathname === "/songs.html" || window.location.pathname === "/cards.html"){
-            stopAudio();     
-        }
+        stopAudio();     
         // Réinitialisation des clips
         if(window.location.pathname === "/songs.html"){
             resetMVs();
         }
-    }
-});
+    });
+    // Via un clic en dehors de ce dernier
+    popupContainer.addEventListener("click", (e) =>{
+        const popup = document.querySelector(".popup-content");
+        if(!popup.contains(e.target)){
+            popupContainer.style.display = "none";
+            htmlScroll.style.overflow = "";
+            document.body.style.overflow = "";
+
+            // Arrêt de l'audio à la fermeture du pop-up
+            stopAudio();     
+            // Réinitialisation des clips
+            if(window.location.pathname === "/songs.html"){
+                resetMVs();
+            }
+        }
+    });
+}

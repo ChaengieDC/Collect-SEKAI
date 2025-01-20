@@ -80,6 +80,18 @@ app.get('/getUserProfileByID/:userID', async(req, res) =>{
     }
 });
 
+// Requête GET pour récupérer une collection utilisateur via son ID
+app.get('/getUserCardCollectionByID/:userID', async(req, res) =>{
+    const userID = req.params.userID;
+    try{
+        const collection = await dbservice.getUserCardCollectionByID(userID);
+        res.json(collection);
+    } catch(error){
+        console.error(error);
+        res.status(500).send(`Erreur lors de la récupération de la collection utilisateur: ${error}`);
+    }
+});
+
 // Requête GET pour récupérer les paramètres utilisateur
 app.get('/getUserSettings', async(req, res) =>{
     const userID = req.session.user.id;
@@ -233,6 +245,7 @@ app.get('/getCardByID/:cardID', async(req, res) =>{
 
 // Requête GET pour filtrer les cartes
 app.get('/filterCards', async(req, res) =>{
+    const userID = req.session.user ? req.session.user.id : null;
     try{
         const searchTerm = req.query.searchBar;
         const selectedCharacter = req.query.character;
@@ -242,7 +255,7 @@ app.get('/filterCards', async(req, res) =>{
         const selectedOrder = req.query.order;
 
         if(searchTerm || selectedCharacter || selectedUnit || selectedRarity || selectedAttribute || selectedOrder){
-            const filteredCards = await dbservice.filterCards(searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute, selectedOrder);
+            const filteredCards = await dbservice.filterCards(userID, searchTerm, selectedCharacter, selectedUnit, selectedRarity, selectedAttribute, selectedOrder);
             res.json(filteredCards);
         } else{
             res.status(400).json(`Paramètres manquants dans la requête GET: ${error}`);

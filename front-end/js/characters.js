@@ -134,6 +134,7 @@ function openPopup(characterID){
 document.querySelector("form").addEventListener("submit", function (event){
     event.preventDefault(); // Empêche la soumission par défaut du formulaire
     
+    const form = this;
     const formData = new FormData(this);
     const searchTerm = formData.get("searchBar");
     const selectedUnit = formData.get("unit");
