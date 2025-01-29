@@ -763,7 +763,7 @@ async function postSong(songData){
 
 // Fonction pour insérer une carte dans la BDD
 async function postCard(cardData){
-    const query = "INSERT INTO Cards (id, title, quote, voicedQuote, card, trainedCard, attribute, attributeIcon, rarity, rarityStars, skillName, id_character) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const query = "INSERT INTO Cards (id, title, quote, voicedQuote, card, trainedCard, cardThumbnail, attribute, attributeIcon, rarity, rarityStars, skillName, id_character) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     const values = [
         cardData.id,
@@ -772,6 +772,7 @@ async function postCard(cardData){
         cardData.voicedQuote,
         cardData.card,
         cardData.trainedCard,
+        cardData.cardThumbnail,
         cardData.attribute,
         cardData.attributeIcon,
         cardData.rarity,
