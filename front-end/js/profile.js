@@ -63,11 +63,11 @@ function generateProfileHTML(){
             socialInfo.className = "social-info";
 
             const socialMedia = [
-                { url: "https://www.twitch.tv/", username: user.twitchProfile, icon: "/img/social/twitch.png", alt: "Twitch" },
-                { url: "https://x.com/", username: user.twitterProfile, icon: "/img/social/twitter.png", alt: "Twitter" },
-                { url: "https://www.instagram.com/", username: user.instagramProfile, icon: "/img/social/instagram.png", alt: "Instagram" },
-                { url: "https://myanimelist.net/profile/", username: user.myanimelistProfile, icon: "/img/social/myanimelist.png", alt: "MyAnimeList", style: true },
-                { url: "https://anilist.co/user/", username: user.anilistProfile, icon: "/img/social/anilist.png", alt: "Anilist", style: true }
+                { url: "https://www.twitch.tv/", username: formatSocialLink(user.twitchProfile, "twitch"), icon: "/img/social/twitch.png", alt: "Twitch" },
+                { url: "https://x.com/", username: formatSocialLink(user.twitterProfile, "twitter"), icon: "/img/social/twitter.png", alt: "Twitter" },
+                { url: "https://www.instagram.com/", username: formatSocialLink(user.instagramProfile, "instagram"), icon: "/img/social/instagram.png", alt: "Instagram" },
+                { url: "https://myanimelist.net/profile/", username: formatSocialLink(user.myanimelistProfile, "myanimelist"), icon: "/img/social/myanimelist.png", alt: "MyAnimeList", style: true },
+                { url: "https://anilist.co/user/", username: formatSocialLink(user.anilistProfile, "anilist"), icon: "/img/social/anilist.png", alt: "Anilist", style: true }
             ];
             socialMedia.forEach(media =>{
                 // Pour chaque réseau social, on regarde si l'utilisateur l'a renseigné, et si oui, on l'ajoute
@@ -90,6 +90,27 @@ function generateProfileHTML(){
                     socialInfo.appendChild(socialLink);
                 }
             });
+            // Fonction pour nettoyer l'entrée utilisateur (lien complet ou pseudo)
+            function formatSocialLink(input, platform){
+                const urlPatterns = {
+                    twitch: /(?:https?:\/\/)?(?:www\.)?twitch\.tv\/([\w-]+)/i,
+                    twitter: /(?:https?:\/\/)?(?:www\.)?(?:twitter|x)\.com\/([\w-]+)/i,
+                    instagram: /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([\w-]+)/i,
+                    myanimelist: /(?:https?:\/\/)?(?:www\.)?myanimelist\.net\/profile\/([\w-]+)/i,
+                    anilist: /(?:https?:\/\/)?(?:www\.)?anilist\.co\/user\/([\w-]+)/i,
+                };
+
+                const pattern = urlPatterns[platform];
+                if(pattern){
+                    const match = input?.trim().match(pattern);
+                    if(match){
+                        // Si c'est un lien complet, on extrait le pseudo
+                        return match[1];
+                    }
+                }
+                // Si ce n'est pas un lien complet, on retourne l'entrée telle quelle
+                return input?.trim();
+            }
 
             // Pour vérifier si des favoris ont été sélectionnés
             let hasFavorite = false;

@@ -24,6 +24,13 @@
     font-weight: bold;
     color:#004163 !important;
 }
+/* Pour désactiver le hover sur les appareils tactiles */
+@media (pointer: coarse){
+    .nav-link:hover, .dropdown-item:hover {
+        font-weight: normal;
+        color: #6e9bb3 !important;
+    }
+}
 /* Couleur du clic sur le menu hamburger */
 .navbar-toggler{
     color: #dfebf1 !important;

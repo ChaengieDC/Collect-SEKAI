@@ -13,7 +13,15 @@ if(["/characters.html", "/songs.html", "/cards.html"].includes(window.location.p
         } else{
             toggleButton.style.right = "234px";
         }
-    });  
+    });
+    // Événement pour fermer le menu de filtrage si l'on clique en dehors du menu sur les versions MOBILE
+    document.addEventListener("click", (e) =>{
+        const sidebar = document.querySelector(".sidebar form");
+        if(!sidebar.contains(e.target) && !toggleButton.contains(e.target)){
+            form.classList.add("d-none");
+            toggleButton.style.right = "-1px";
+        }
+    });
 }
 
 // Pour recharger la page après le reset du menu de filtrage
