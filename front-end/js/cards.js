@@ -97,64 +97,64 @@ function generateCardsHTML(){
     
                     if(isPossessed){
                         fetch("/removeCard", {
-                            method: "DELETE",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ cardID })
-                        })
-                        .then(response =>{
-                            return response.json();
-                        })
-                        .then(responseData =>{
-                            if(responseData.success === false){
-                                window.location.href = "/login.html";
-                                return;
-                            } else{
-                                event.target.classList.remove("remove");
-                                event.target.dataset.possession = "false";
-                                event.target.textContent = "+ Ajouter à ma collection";
+                                method: "DELETE",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ cardID })
+                            })
+                            .then(response =>{
+                                return response.json();
+                            })
+                            .then(responseData =>{
+                                if(responseData.success === false){
+                                    window.location.href = "/login.html";
+                                    return;
+                                } else{
+                                    event.target.classList.remove("remove");
+                                    event.target.dataset.possession = "false";
+                                    event.target.textContent = "+ Ajouter à ma collection";
 
-                                const alert = document.querySelector("#alertNeg");
-                                alert.style.display = "block";
-                            
-                                // Masquer après 3 secondes
-                                setTimeout(() =>{
-                                    alert.style.display = "none";
-                                }, 3000);
-                            }
-                        })
-                        .catch(error =>{
-                            console.error(`Erreur lors de la suppression de la carte: ${error}`);
-                        });
+                                    const alert = document.querySelector("#alertNeg");
+                                    alert.style.display = "block";
+                                
+                                    // Masquer après 3 secondes
+                                    setTimeout(() =>{
+                                        alert.style.display = "none";
+                                    }, 3000);
+                                }
+                            })
+                            .catch(error =>{
+                                console.error(`Erreur lors de la suppression de la carte: ${error}`);
+                            });
                     } else {
                         fetch("/addCard", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ cardID })
-                        })
-                        .then(response =>{
-                            return response.json();
-                        })
-                        .then(responseData =>{
-                            if(responseData.success === false){
-                                window.location.href = "/login.html";
-                                return;
-                            } else{
-                                event.target.classList.add("remove");
-                                event.target.dataset.possession = "true";
-                                event.target.textContent = "- Supprimer de ma collection";
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ cardID })
+                            })
+                            .then(response =>{
+                                return response.json();
+                            })
+                            .then(responseData =>{
+                                if(responseData.success === false){
+                                    window.location.href = "/login.html";
+                                    return;
+                                } else{
+                                    event.target.classList.add("remove");
+                                    event.target.dataset.possession = "true";
+                                    event.target.textContent = "- Supprimer de ma collection";
 
-                                const alert = document.querySelector("#alertPos");
-                                alert.style.display = "block";
-                            
-                                // Masquer après 3 secondes
-                                setTimeout(() =>{
-                                    alert.style.display = "none";
-                                }, 3000);
-                            }
-                        })
-                        .catch(error =>{
-                            console.error(`Erreur lors de l'ajout de la carte: ${error}`);
-                        });
+                                    const alert = document.querySelector("#alertPos");
+                                    alert.style.display = "block";
+                                
+                                    // Masquer après 3 secondes
+                                    setTimeout(() =>{
+                                        alert.style.display = "none";
+                                    }, 3000);
+                                }
+                            })
+                            .catch(error =>{
+                                console.error(`Erreur lors de l'ajout de la carte: ${error}`);
+                            });
                     }
                 });
 
@@ -414,64 +414,64 @@ function updateCardList(data){
 
                 if(isPossessed){
                     fetch("/removeCard", {
-                        method: "DELETE",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ cardID })
-                    })
-                    .then(response =>{
-                        return response.json();
-                    })
-                    .then(responseData =>{
-                        if(responseData.success === false){
-                            window.location.href = "/login.html";
-                            return;
-                        } else{
-                            event.target.classList.remove("remove");
-                            event.target.dataset.possession = "false";
-                            event.target.textContent = "+ Ajouter à ma collection";
+                            method: "DELETE",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ cardID })
+                        })
+                        .then(response =>{
+                            return response.json();
+                        })
+                        .then(responseData =>{
+                            if(responseData.success === false){
+                                window.location.href = "/login.html";
+                                return;
+                            } else{
+                                event.target.classList.remove("remove");
+                                event.target.dataset.possession = "false";
+                                event.target.textContent = "+ Ajouter à ma collection";
 
-                            const alert = document.querySelector("#alertNeg");
-                            alert.style.display = "block";
-                        
-                            // Masquer après 3 secondes
-                            setTimeout(() =>{
-                                alert.style.display = "none";
-                            }, 3000);
-                        }
-                    })
-                    .catch(error =>{
-                        console.error(`Erreur lors de la suppression de la carte: ${error}`);
-                    });
+                                const alert = document.querySelector("#alertNeg");
+                                alert.style.display = "block";
+                            
+                                // Masquer après 3 secondes
+                                setTimeout(() =>{
+                                    alert.style.display = "none";
+                                }, 3000);
+                            }
+                        })
+                        .catch(error =>{
+                            console.error(`Erreur lors de la suppression de la carte: ${error}`);
+                        });
                 } else {
                     fetch("/addCard", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ cardID })
-                    })
-                    .then(response =>{
-                        return response.json();
-                    })
-                    .then(responseData =>{
-                        if(responseData.success === false){
-                            window.location.href = "/login.html";
-                            return;
-                        } else{
-                            event.target.classList.add("remove");
-                            event.target.dataset.possession = "true";
-                            event.target.textContent = "- Supprimer de ma collection";
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ cardID })
+                        })
+                        .then(response =>{
+                            return response.json();
+                        })
+                        .then(responseData =>{
+                            if(responseData.success === false){
+                                window.location.href = "/login.html";
+                                return;
+                            } else{
+                                event.target.classList.add("remove");
+                                event.target.dataset.possession = "true";
+                                event.target.textContent = "- Supprimer de ma collection";
 
-                            const alert = document.querySelector("#alertPos");
-                            alert.style.display = "block";
-                        
-                            // Masquer après 3 secondes
-                            setTimeout(() =>{
-                                alert.style.display = "none";
-                            }, 3000);
-                        }
-                    })
-                    .catch(error =>{
-                        console.error(`Erreur lors de l'ajout de la carte: ${error}`);
-                    });
+                                const alert = document.querySelector("#alertPos");
+                                alert.style.display = "block";
+                            
+                                // Masquer après 3 secondes
+                                setTimeout(() =>{
+                                    alert.style.display = "none";
+                                }, 3000);
+                            }
+                        })
+                        .catch(error =>{
+                            console.error(`Erreur lors de l'ajout de la carte: ${error}`);
+                        });
                 }
             });
 

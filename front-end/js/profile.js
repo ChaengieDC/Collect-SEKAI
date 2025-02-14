@@ -450,21 +450,21 @@ function openPopup(userID, cardID, additionDate){
                                 const cardID = event.target.dataset.cardId;
                 
                                 fetch("/removeCard", {
-                                    method: "DELETE",
-                                    headers: { "Content-Type": "application/json" },
-                                    body: JSON.stringify({ cardID })
-                                })
-                                .then(response =>{
-                                    return response.json();
-                                })
-                                .then(responseData =>{
-                                    if(responseData.success === true){
-                                        location.reload();
-                                    }
-                                })
-                                .catch(error =>{
-                                    console.error(`Erreur lors de la suppression de la carte: ${error}`);
-                                });
+                                        method: "DELETE",
+                                        headers: { "Content-Type": "application/json" },
+                                        body: JSON.stringify({ cardID })
+                                    })
+                                    .then(response =>{
+                                        return response.json();
+                                    })
+                                    .then(responseData =>{
+                                        if(responseData.success === true){
+                                            location.reload();
+                                        }
+                                    })
+                                    .catch(error =>{
+                                        console.error(`Erreur lors de la suppression de la carte: ${error}`);
+                                    });
                             });
 
                             const cardAdditionDate = document.createElement("h6");
