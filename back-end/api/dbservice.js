@@ -358,8 +358,14 @@ async function filterSongs(searchTerm, selectedUnit, selectedType, selectedVideo
         sqlParams.push(selectedType);
     }
     if(selectedVideo){
-        whereClause += " AND Songs.mv LIKE ?";
-        sqlParams.push(selectedVideo);
+        if(selectedVideo){
+            if(selectedVideo === "Aucun"){
+                whereClause += " AND Songs.mv IS NULL";
+            } else{
+                whereClause += " AND Songs.mv LIKE ?";
+                sqlParams.push(selectedVideo);
+            }
+        }
     }
     if(selectedOrder === "Ascendant"){
         whereClause += " ORDER BY Songs.id ASC";
